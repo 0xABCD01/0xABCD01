@@ -1,6 +1,4 @@
-<div align="center">
-
-## Cyber Security Enthusiast | Bug Hunter | Pentester | Developer 
+# Cyber Security Enthusiast | Bug Hunter | Pentester | Developer 
 
 <br/>
 
