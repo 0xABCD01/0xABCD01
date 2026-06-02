@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=110&lines=0xABCD01;Bug+Hunter+%C2%B7+Pentester+%C2%B7+OSINT+%26+Digital+Forensics+%C2%B7+Developer" alt="0xABCD01" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=110&lines=0xABCD01;BugHunter+%C2%B7+Pentester+%C2%B7+OSINT+%26+Digital+Forensics+%C2%B7+Developer" alt="0xABCD01" />
 
 <br/>
 
@@ -19,18 +19,14 @@ I also build tools I actually use: cloud storage, recon automation, and workflow
 
 ## Skills & Expertise
 
-```
 Pentesting & Bug Bounty: XSS, SQLi, SSRF, IDOR, auth issues, exploitation work, and more.
 Network Security: traffic analysis, packet manipulation, pivoting around systems.
 Reverse engineering & Exploit Development. 
 OSINT & Digital Forensics.
-```
 
 ## Languages
 
-```
 Python · Go · TypeScript · JavaScript 
-```
 
 ## Pinned
 
@@ -45,7 +41,6 @@ Python · Go · TypeScript · JavaScript
 <div align="center">
 
 ![Followers](https://img.shields.io/github/followers/0xABCD01?style=flat-square&logo=github&color=181717)
-![Public repos](https://img.shields.io/github/public-repos/0xABCD01?style=flat-square&logo=github&color=181717)
 ![Total stars](https://img.shields.io/github/stars/0xABCD01?style=flat-square&logo=github&color=f85149)
 
 </div>
