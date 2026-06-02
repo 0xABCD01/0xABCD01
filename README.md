@@ -22,8 +22,8 @@ I also build tools I actually use: cloud storage, recon automation, and workflow
 - **OSINT & Digital Forensics**.
 
 ## Languages
-
-Python · Go · TypeScript · JavaScript 
+ 
+Python · Go · TypeScript · JavaScript · Bash
 
 ## Pinned
 
