@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=110&lines=0xABCD01;BugHunter+%C2%B7+Pentester+%C2%B7+OSINT+%26+Digital+Forensics+%C2%B7+Developer" alt="0xABCD01" />
+## Cyber Security Enthusiast | Bug Hunter | Pentester | Developer 
 
 <br/>
 
