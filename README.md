@@ -17,10 +17,10 @@ I also build tools I actually use: cloud storage, recon automation, and workflow
 
 ## Skills & Expertise
 
-Pentesting & Bug Bounty: XSS, SQLi, SSRF, IDOR, auth issues, exploitation work, and more.
-Network Security: traffic analysis, packet manipulation, pivoting around systems.
-Reverse engineering & Exploit Development. 
-OSINT & Digital Forensics.
+- Pentesting & Bug Bounty: XSS, SQLi, SSRF, IDOR, auth issues, exploitation work, and more.
+- Network Security: traffic analysis, packet manipulation, pivoting around systems.
+- Reverse engineering & Exploit Development. 
+- OSINT & Digital Forensics.
 
 ## Languages
 
