@@ -21,10 +21,6 @@ I also build tools I actually use: cloud storage, recon automation, and workflow
 - **Reverse engineering & Exploit Development**. 
 - **OSINT & Digital Forensics**.
 
-## Languages
- 
-Python · Go · TypeScript · JavaScript · Bash
-
 ## Pinned
 
 | Repo | Stars | What it does |
