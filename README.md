@@ -1,4 +1,4 @@
-# Cyber Security Enthusiast | Bug Hunter | Pentester | Developer 
+# Cyber Security Enthusiast | Developer 
 
 <br/>
 
