@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" width="1600" height="400" role="img" aria-labelledby="ttlL dscL">
+  <title id="ttlL">Profile banner</title>
+  <desc id="dscL">Editorial composition of layered navy, sage and lavender arcs on a warm cream field, with a fine gold rule and a few small sparkles.</desc>
+  <defs>
+    <linearGradient id="fieldL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FDFBF7"/>
+      <stop offset="0.55" stop-color="#F7F2E8"/>
+      <stop offset="1" stop-color="#F0E9DD"/>
+    </linearGradient>
+    <radialGradient id="glowL" cx="0.8" cy="0.15" r="0.85">
+      <stop offset="0" stop-color="#C6BEE0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#C6BEE0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="navyL" x1="0.1" y1="1" x2="0.9" y2="0">
+      <stop offset="0" stop-color="#22304F"/>
+      <stop offset="1" stop-color="#16203A"/>
+    </linearGradient>
+    <linearGradient id="goldL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B08D57" stop-opacity="0.12"/>
+      <stop offset="0.45" stop-color="#A8823F"/>
+      <stop offset="1" stop-color="#B08D57" stop-opacity="0.12"/>
+    </linearGradient>
+    <pattern id="dotsL" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.3" fill="#18253D" opacity="0.10"/>
+    </pattern>
+    <clipPath id="clipL"><rect width="1600" height="400" rx="28"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#clipL)">
+    <rect width="1600" height="400" fill="url(#fieldL)"/>
+    <rect width="1600" height="400" fill="url(#glowL)"/>
+
+    <rect x="0" y="0" width="620" height="400" fill="url(#dotsL)"/>
+
+    <circle cx="1085" cy="300" r="215" fill="none" stroke="#8E86B8" stroke-opacity="0.35" stroke-width="1.5"/>
+    <circle cx="1085" cy="300" r="285" fill="none" stroke="#8E86B8" stroke-opacity="0.2" stroke-width="1.5"/>
+
+    <path d="M1168 400 C1168 198 1322 46 1544 46 C1563 46 1582 48 1600 52 L1600 400 Z" fill="url(#navyL)" opacity="0.96"/>
+    <path d="M1288 400 C1288 250 1414 132 1600 122 L1600 400 Z" fill="#A9BBA3" opacity="0.92"/>
+    <path d="M1404 400 C1404 302 1494 218 1600 208 L1600 400 Z" fill="#C6BEE0" opacity="0.95"/>
+
+    <path d="M1136 400 C1136 186 1300 26 1538 26" fill="none" stroke="url(#goldL)" stroke-width="2.5" stroke-linecap="round"/>
+
+    <rect x="96" y="120" width="240" height="2" fill="#A8823F" opacity="0.45"/>
+    <rect x="96" y="134" width="140" height="2" fill="#18253D" opacity="0.14"/>
+    <rect x="96" y="268" width="300" height="2" fill="#18253D" opacity="0.10"/>
+    <rect x="96" y="282" width="196" height="2" fill="#A8823F" opacity="0.3"/>
+
+    <g fill="#A8823F">
+      <path d="M320 78 C324 98 330 104 350 108 C330 112 324 118 320 138 C316 118 310 112 290 108 C310 104 316 98 320 78 Z" opacity="0.85"/>
+      <path d="M618 316 C621 331 625 335 640 338 C625 341 621 345 618 360 C615 345 611 341 596 338 C611 335 615 331 618 316 Z" opacity="0.55"/>
+    </g>
+    <g fill="#22304F">
+      <path d="M742 96 C744 106 747 109 757 111 C747 113 744 116 742 126 C740 116 737 113 727 111 C737 109 740 106 742 96 Z" opacity="0.38"/>
+      <path d="M176 210 C178 219 181 222 190 224 C181 226 178 229 176 238 C174 229 171 226 162 224 C171 222 174 219 176 210 Z" opacity="0.24"/>
+    </g>
+  </g>
+
+  <rect x="0.75" y="0.75" width="1598.5" height="398.5" rx="27.5" fill="none" stroke="#18253D" stroke-opacity="0.12" stroke-width="1.5"/>
+</svg>
