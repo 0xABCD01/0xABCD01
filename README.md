@@ -24,9 +24,7 @@ I break things—web apps, binaries, network services. If it has an attack surfa
 
 | Repo | Stars | What it does |
 |------|-------|-------------|
-| [CVE-2026-41089](https://github.com/0xABCD01/CVE-2026-41089) | ![Stars](https://img.shields.io/github/stars/0xABCD01/CVE-2026-41089?style=flat-square) | PoC for Netlogon CLDAP stack overflow. Pre-auth, UDP 389, CVSS 9.8. |
-| [cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager) | ![Stars](https://img.shields.io/github/stars/0xABCD01/cloud-file-manager?style=flat-square) | Self-hosted cloud storage. Encryption, permissions, audit trails. |
-| [codex-skills](https://github.com/0xABCD01/codex-skills) | ![Stars](https://img.shields.io/github/stars/0xABCD01/codex-skills?style=flat-square) | Prompt templates for Codex CLI. Forces workflows over guessing. |
+| [CVE-2026-41089](https://github.com/0xABCD01/CVE-2026-41089) | ![Stars](https://img.shields.io/github/stars/0xABCD01/CVE-2026-41089?style=flat-square) | PoC for Netlogon CLDAP stack overflow. Pre-auth, UDP 389, CVSS 9.8.
 
 ## Stats
 
