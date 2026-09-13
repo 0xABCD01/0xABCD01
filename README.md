@@ -117,9 +117,9 @@ respects the reader's time.
   <img alt="GitHub followers" src="https://img.shields.io/github/followers/0xABCD01?style=flat-square&label=followers&color=8E86B8&labelColor=232838" />
 </p>
 
-This account is young — I opened it in mid-2026 — and the graph above reflects focused bursts
-around releases rather than daily noise. I would rather show four repositories I can defend in an
-interview than forty I cannot.
+This account is young — I opened it in mid-2026 — and the work behind those numbers came in focused
+bursts around releases rather than as daily noise. I would rather show a handful of repositories I
+can defend in an interview than forty I cannot.
 
 ## Learning journey
 
