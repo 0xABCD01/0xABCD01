@@ -1,4 +1,4 @@
-# Cyber Security Enthusiast | Developer 
+# Cyber Security Enthusiast
 
 <br/>
 
@@ -11,7 +11,6 @@
 ## About
 
 I break things—web apps, binaries, network services. If it has an attack surface, I’ll probably end up looking at it.
-I also build tools I actually use: cloud storage, recon automation, and workflow tooling.
 
 
 ## Skills & Expertise
