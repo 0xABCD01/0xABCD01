@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract profile banner</title>
+  <desc id="desc">A calm editorial composition of navy, cream, lavender, sage, and gold shapes.</desc>
+  <defs>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18253d" />
+      <stop offset="1" stop-color="#24262b" />
+    </linearGradient>
+    <linearGradient id="cream" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f1e6" />
+      <stop offset="1" stop-color="#e8e0d5" />
+    </linearGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#f8f1e6" opacity="0.18" />
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="420" rx="28" fill="url(#wash)" />
+  <rect x="930" y="0" width="670" height="420" fill="url(#dots)" opacity="0.5" />
+
+  <path d="M1010 420C1010 185 1160 48 1374 48c115 0 174 38 226 92v280z" fill="url(#cream)" opacity="0.96" />
+  <path d="M1118 420c0-157 101-268 247-268 86 0 153 37 235 111v157z" fill="#c9c3d9" opacity="0.75" />
+  <path d="M1244 420c0-94 63-166 147-166 79 0 147 62 209 143v23z" fill="#a9b9a4" opacity="0.82" />
+
+  <path d="M106 332c176-172 334-222 520-156 122 43 202 41 302-25" fill="none" stroke="#c3a36a" stroke-width="3" opacity="0.9" />
+  <path d="M106 350c176-172 334-222 520-156 122 43 202 41 302-25" fill="none" stroke="#c9c3d9" stroke-width="1.5" opacity="0.58" />
+  <path d="M101 98h286" stroke="#f8f1e6" stroke-width="2" opacity="0.75" />
+  <path d="M101 112h156" stroke="#a9b9a4" stroke-width="2" opacity="0.8" />
+
+  <circle cx="246" cy="266" r="10" fill="#c3a36a" />
+  <circle cx="520" cy="182" r="7" fill="#a9b9a4" />
+  <circle cx="808" cy="151" r="9" fill="#c9c3d9" />
+  <circle cx="1090" cy="92" r="7" fill="#c3a36a" />
+  <circle cx="1340" cy="246" r="8" fill="#18253d" opacity="0.7" />
+
+  <g fill="none" stroke="#f8f1e6" stroke-width="2" opacity="0.7">
+    <path d="M246 266l274-84 288-31" />
+    <path d="M808 151l282-59" />
+  </g>
+
+  <g fill="#f8f1e6" opacity="0.8">
+    <path d="M690 72l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" />
+    <path d="M890 278l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" />
+    <path d="M1460 92l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" />
+  </g>
+</svg>
