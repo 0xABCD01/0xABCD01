@@ -112,7 +112,7 @@ respects the reader's time.
 ## GitHub activity
 
 <p>
-  <img alt="Stars on CVE-2026-41089" src="https://img.shields.io/github/stars/0xABCD01/CVE-2026-41089?style=flat-square&label=stars_%C2%B7_CVE_2026_41089&color=B08D57&labelColor=232838" />
+  <img alt="Stars on CVE-2026-41089" src="https://img.shields.io/github/stars/0xABCD01/CVE-2026-41089?style=flat-square&label=stars&color=B08D57&labelColor=232838" />
   <img alt="Forks of CVE-2026-41089" src="https://img.shields.io/github/forks/0xABCD01/CVE-2026-41089?style=flat-square&label=forks&color=8FA388&labelColor=232838" />
   <img alt="GitHub followers" src="https://img.shields.io/github/followers/0xABCD01?style=flat-square&label=followers&color=8E86B8&labelColor=232838" />
 </p>
