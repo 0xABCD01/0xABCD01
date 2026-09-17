@@ -1,130 +1,91 @@
 <p align="center">
   <img
     src="./assets/profile-banner.svg"
-    alt="Abstract navy, cream, lavender, sage, and gold profile banner"
+    alt="Abstract geometric banner in navy, cream, lavender, sage, and gold"
     width="100%"
-  />
+  >
 </p>
 
-<h1 align="center">Hello, I'm 0xABCD01</h1>
+# Hi, I'm 0xABCD01
 
-<p align="center">
-  <strong>Security-minded builder creating practical tools, thoughtful systems, and clear evidence.</strong>
-</p>
+**Building developer tools and self-hosted software, with an interest in application security.**
 
-<p align="center">
-  <a href="https://x.com/VortexXzy">
-    <img src="https://img.shields.io/badge/X-@VortexXzy-18253D?style=flat-square&logo=x&logoColor=white" alt="X profile" />
-  </a>
-  &middot;
-  <a href="https://github.com/0xABCD01">
-    <img src="https://img.shields.io/badge/GitHub-0xABCD01-24262B?style=flat-square&logo=github&logoColor=white" alt="GitHub profile" />
-  </a>
-</p>
+> Useful tools for the sharp edges of software.
 
-<hr />
-
-<p align="center">
-  A small corner for practical tools, privacy-minded ideas, and the occasional satisfying bug fix.
-</p>
-
-## About me
-
-I work across security research, developer tooling, privacy-minded applications, and technical documentation.
-
-My public repositories span Python, TypeScript, testing, Docker workflows, GitHub Actions, and application security.
-
-I enjoy understanding how systems behave at their edges, then turning that work into tools, tests, and documentation that other people can use.
-
-## Current focus
-
-- Improving test quality and making weakened tests easier to detect.
-- Building focused developer tools that explain problems instead of hiding them.
-- Exploring privacy-conscious applications with clear permissions and audit trails.
-- Documenting technical work with reproducible examples and honest limitations.
+I like useful tools, readable code, and edge cases that refuse to stay quiet.
 
 ## What I'm building
 
-### Test quality tooling
+**[test-amnesty](https://github.com/0xABCD01/test-amnesty)**  
+Compares original and edited pytest tests against the same implementation to surface changes that weaken regression detection.
 
-[test-amnesty](https://github.com/0xABCD01/test-amnesty) checks supported pytest changes by comparing the original and edited tests against the same implementation.
+**[cachelint](https://github.com/0xABCD01/cachelint)**  
+A zero-dependency Dockerfile analyzer that predicts cache invalidation and suggests a faster layer order.
 
-### Developer experience tooling
+**[cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager)**  
+A self-hosted cloud storage project exploring encryption, permissions, and audit trails.
 
-[cachelint](https://github.com/0xABCD01/cachelint) analyzes Dockerfiles, predicts cache invalidation, and suggests a faster layer order.
+**[codex-skills](https://github.com/0xABCD01/codex-skills)**  
+A collection of workflow prompts for Codex CLI, covering fixes, tests, refactors, migrations, and reviews.
 
-### Privacy-minded applications
+## About me
 
-[cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager) explores self-hosted file management with encryption, fine-grained permissions, and audit trails.
+I work across developer tooling, self-hosted software, and application security research.
 
-## Tech stack
+My public repositories focus on test quality, Docker build behavior, and systems where permissions and data handling deserve a closer look.
 
-<p>
-  <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" />
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
-  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" />
-  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-242424?style=flat-square&logo=next.js&logoColor=white" />
-  <img alt="Docker" src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
-  <img alt="pytest" src="https://img.shields.io/badge/pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white" />
-  <img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white" />
-</p>
+## Current focus
 
-I prefer simple interfaces, reproducible experiments, readable code, and documentation that respects the reader's time.
+- Making weakened tests easier to detect.
+- Making Docker build behavior easier to reason about.
+- Exploring self-hosted software with explicit access controls and audit trails.
+- Writing technical work with reproducible examples and clear limitations.
 
-## Featured projects
+## Tools I use
 
-### [test-amnesty](https://github.com/0xABCD01/test-amnesty)
+`Python` | `TypeScript` | `FastAPI` | `Next.js` | `Docker` | `pytest` | `GitHub Actions`
 
-An evidence-oriented pytest tool for identifying supported test changes that weaken regression detection.
+## Related research
 
-### [cachelint](https://github.com/0xABCD01/cachelint)
+- [CVE-2026-41089](https://github.com/0xABCD01/CVE-2026-41089): Netlogon and CLDAP vulnerability research with a proof of concept.
+- [CVE-2026-48866](https://github.com/0xABCD01/CVE-2026-48866): Gravity Forms path-traversal research with a proof of concept.
 
-A zero-dependency Dockerfile linter that predicts cache invalidation and suggests a faster layer order.
+Research repositories should be read together with their references, affected-version notes, disclosure context, and authorized-testing scope.
 
-### [cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager)
+## Learning
 
-A self-hosted file manager project exploring encrypted storage, fine-grained permissions, and auditable file access.
-
-### [codex-skills](https://github.com/0xABCD01/codex-skills)
-
-Workflow-focused skills for making Codex CLI tasks more consistent, repeatable, and easier to review.
-
-## Selected security research
-
-[CVE-2026-41089](https://github.com/0xABCD01/CVE-2026-41089) is a public repository documenting a Netlogon and CLDAP proof of concept.
-
-Research repositories should be reviewed together with their advisory status, affected versions, disclosure timeline, and safe testing scope.
-
-## Learning journey
+Areas I keep exploring:
 
 - Application security and authorization design.
-- Secure testing and evidence-driven developer workflows.
+- Test quality and evidence-driven development.
 - Containerized systems and CI/CD reliability.
-- Privacy, access control, and auditable infrastructure.
+- Privacy, access control, and auditability.
 
 ## GitHub activity
 
-I keep my work visible through public repositories, releases, issues, pull requests, and the GitHub contribution graph.
+I keep this profile lightweight and let GitHub's native contribution graph do the talking.
 
-The projects above are the clearest snapshot of what I am building and learning right now.
+The projects above are the clearest snapshot of my public work.
 
-## A few professional fun facts
+## Fun facts
 
-- I like tools that show their evidence.
 - I read README files as part of the product.
-- I enjoy turning one sharp observation into a small, reusable tool.
-- I think one clear command beats ten decorative badges.
+- I like tools that show their evidence.
+- One clear command beats ten decorative badges.
 
 ## Contact
 
 - X: [@VortexXzy](https://x.com/VortexXzy)
-- GitHub: [0xABCD01](https://github.com/0xABCD01)
 - Project questions: open an issue in the relevant repository.
 
-<hr />
+<!-- Optional: add one verified professional contact before publishing.
+- Email: [YOUR EMAIL]
+- Portfolio: [YOUR PORTFOLIO LINK]
+- LinkedIn: [YOUR LINKEDIN URL]
+-->
 
-<p align="center">
-  Thanks for stopping by.
-  <br />
-  If a project helps you, an issue, thoughtful review, or small contribution is always welcome.
-</p>
+---
+
+Thanks for stopping by.
+
+A thoughtful issue, review, or focused pull request is always welcome.
