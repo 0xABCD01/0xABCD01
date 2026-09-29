@@ -48,6 +48,48 @@ status="$(curl -s -o /dev/null -m 8 -w '%{http_code}' "$TARGET/api/og?value=nucl
   die "no HTTP response from $TARGET/api/og (target down? for a container: sudo docker ps && sudo docker start cve-2026-94545)"
 log "target $TARGET answers (HTTP $status on /api/og)"
 
+# -------------------------------------------------------------------- keypair
+# Signing needs a keypair, and nuclei can only create one interactively: it asks
+# for a user/organization name and then twice for a passphrase (hidden input).
+# A mismatch is fatal and saves nothing, and there is no flag to skip the prompts
+# (the noUserPassphrase switch is only used by nuclei's own tests). So this script
+# does not pretend to automate it - it checks for the keys and prints the exact
+# command and the exact answers when they are missing.
+KEYS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nuclei/keys"
+CERT_FILE="$KEYS_DIR/nuclei-user.crt"
+KEY_FILE="$KEYS_DIR/nuclei-user-private-key.pem"
+
+if [ -n "${NUCLEI_USER_CERTIFICATE:-}" ] && [ -n "${NUCLEI_USER_PRIVATE_KEY:-}" ]; then
+  log "using the keypair from NUCLEI_USER_CERTIFICATE / NUCLEI_USER_PRIVATE_KEY"
+elif [ -f "$CERT_FILE" ] && [ -f "$KEY_FILE" ]; then
+  log "using the existing keypair in $KEYS_DIR"
+  if grep -qE 'ENCRYPTED|Proc-Type: 4,ENCRYPTED' "$KEY_FILE" 2>/dev/null; then
+    log "note: the private key is passphrase-protected - nuclei will ask for it while signing"
+  fi
+else
+  cat >&2 <<EOF
+${c_red}[nuclei-run]${c_off} no signing keypair found in $KEYS_DIR
+
+nuclei refuses to run unsigned javascript: templates, so the keypair must exist
+first. Create it once, interactively:
+
+    nuclei -sign -t $TEMPLATE_DIR/CVE-2026-94545.yaml
+
+Answer the prompts (input is hidden, it is not echoed):
+    [*] Enter User/Organization Name (exit to abort) :   any name, e.g. hax0r
+    [*] Enter passphrase (exit to abort):                press Enter twice for
+    [*] Enter same passphrase again:                     no passphrase, or type
+                                                         the same one twice
+
+"passphrase did not match try again" means the two entries differed - easy when
+nothing is echoed - and nothing was saved, so just run it again. An empty
+passphrase is allowed and then you are never asked for it again.
+
+Then re-run:  $0 $TARGET
+EOF
+  exit 1
+fi
+
 # ----------------------------------------------------------------- sign copies
 mkdir -p "$SIGNED_DIR"
 for name in CVE-2026-94545.yaml CVE-2026-94545-rce.yaml; do
@@ -62,7 +104,7 @@ for name in CVE-2026-94545.yaml CVE-2026-94545-rce.yaml; do
   grep -q '^# digest:' "$SIGNED_DIR/$name" ||
     die "could not sign $name - run 'nuclei -sign -t $SIGNED_DIR' by hand and read its output"
 done
-log "both templates signed (~/.config/nuclei/keys)"
+log "both templates signed"
 
 # ------------------------------------------------------------------- runner
 # verdicts come from nuclei's own JSONL output, not from scraping log text

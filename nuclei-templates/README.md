@@ -81,7 +81,12 @@ Signing workflow (`-sign`, ECDSA keypair in `~/.config/nuclei/keys/`, overridabl
 `NUCLEI_USER_CERTIFICATE` / `NUCLEI_USER_PRIVATE_KEY`):
 
 1. `nuclei -sign -t <file>` with no keys present **generates the keypair and exits** —
-   run it a second time to actually sign.
+   run it a second time to actually sign. Key generation asks for a name and then twice
+   for a passphrase; the input is hidden, a mismatch fails with
+   `[FTL] passphrase did not match try again` and saves nothing, and **an empty passphrase
+   (Enter twice) is allowed** — that stores the key unencrypted and stops nuclei asking
+   again. Keys live in `~/.config/nuclei/keys/` or in `NUCLEI_USER_CERTIFICATE` /
+   `NUCLEI_USER_PRIVATE_KEY`.
 2. The signature is appended to the YAML as a `# digest: <sig>:<fragment>` line. Any later
    edit invalidates it and the template goes back to being "unsigned or tampered", so
    re-sign after every change.

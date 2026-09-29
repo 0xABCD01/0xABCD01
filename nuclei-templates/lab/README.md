@@ -100,6 +100,39 @@ nuclei -u http://127.0.0.1:3001 -t CVE-2026-94545-rce.yaml        # gate stops i
 Signing edits the file (a `# digest:` line is appended), so sign a copy if you want to keep
 the repository file pristine — that is exactly what `run-nuclei.sh` does under `.signed/`.
 
+### The signing prompts
+
+The first `nuclei -sign` asks three questions and the input is **not echoed**, so typos are
+easy and a mismatch is fatal:
+
+```
+[*] Enter User/Organization Name (exit to abort) : ops
+[*] Enter passphrase (exit to abort):
+[*] Enter same passphrase again:
+[FTL] passphrase did not match try again
+```
+
+`FTL` means it gave up **before writing anything** — no keys, no signature. Just run it
+again and type carefully, or accept the easy path: an **empty passphrase is allowed**, so
+pressing Enter at both prompts stores the private key unencrypted (`chmod 600`) and you are
+never asked for a passphrase again. There is no flag that skips the prompts
+(`noUserPassphrase` exists only in nuclei's test suite).
+
+Where the keys land, and how to bypass the directory entirely:
+
+| Path | Contents |
+| --- | --- |
+| `~/.config/nuclei/keys/nuclei-user.crt` | self-signed certificate (identifier = the name you typed) |
+| `~/.config/nuclei/keys/nuclei-user-private-key.pem` | ECDSA P-256 private key, encrypted only if you set a passphrase |
+| `NUCLEI_USER_CERTIFICATE` / `NUCLEI_USER_PRIVATE_KEY` | env overrides, either the PEM content itself or a path to it |
+
+After a successful key generation nuclei exits (`os.Exit(0)`), which is why the same
+`-sign` command has to be run twice. Verify a template is signed with
+`grep -n '^# digest:' <file>`; edit the file and it is unsigned again.
+
+(`nuclei -sign --help` mentions `NUCLEI_SIGNATURE_PRIVATE_KEY`; that help text is stale —
+the code reads `NUCLEI_USER_CERTIFICATE` / `NUCLEI_USER_PRIVATE_KEY`.)
+
 ### Running against a containerised lab
 
 The same templates work against the advisory's Docker image (`docker build -t cve-2026-94545 .`
