@@ -2,6 +2,7 @@
 .runtime/
 run/
 .signed/
+.upstream/
 tools/node_modules/
 logs/
 pids/

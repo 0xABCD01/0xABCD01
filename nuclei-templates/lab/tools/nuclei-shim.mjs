@@ -29,6 +29,8 @@
 //   --var name=value     override/define a template variable (repeatable)
 //   --print-response     print the script result (part: response)
 //   --print-request      print each HTTP request the script makes
+//   --dump-requests <dir>  save every request body (payload parity checks
+//                        against the advisory's exploit.py)
 //   --oob-log <path>     file the lab listener appends OOB hits to; new lines
 //                        after the run satisfy interactsh_protocol matchers
 //                        (lab stand-in for a real interactsh correlation)
@@ -69,7 +71,7 @@ const EXIT_ERROR = 1
 
 // ------------------------------------------------------------------ CLI parsing
 function parseArgs(argv) {
-  const opts = { vars: {}, oobLog: '', printResponse: false, printRequest: false, precondition: true, quiet: false }
+  const opts = { vars: {}, oobLog: '', printResponse: false, printRequest: false, precondition: true, quiet: false, dumpRequests: '' }
   const positional = []
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
@@ -86,6 +88,8 @@ function parseArgs(argv) {
       opts.printRequest = true
     } else if (arg === '--no-precondition') {
       opts.precondition = false
+    } else if (arg === '--dump-requests') {
+      opts.dumpRequests = argv[++i] || ''
     } else if (arg === '--quiet') {
       opts.quiet = true
     } else if (arg === '-h' || arg === '--help') {
@@ -156,6 +160,10 @@ function makeHttpModule() {
     const timeoutMs = (Number(TimeoutSeconds) || 60) * 1000
 
     requestSeq += 1
+    if (opts.dumpRequests && Body !== undefined && Body !== null) {
+      fs.mkdirSync(opts.dumpRequests, { recursive: true })
+      fs.writeFileSync(path.join(opts.dumpRequests, `${String(requestSeq).padStart(2, '0')}-${method}.bin`), String(Body))
+    }
     if (opts.printRequest) {
       say(`[shim] #${requestSeq} ${method} ${URL} body=${Body === undefined || Body === null ? 0 : Buffer.byteLength(String(Body))}B`)
     }

