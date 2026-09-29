@@ -149,7 +149,34 @@ openssl req -new -x509 -key ~/.config/nuclei/keys/nuclei-user-private-key.pem \
 ```
 
 `./run-nuclei.sh` does this automatically when no keypair exists (skip with
-`--no-keygen`, point elsewhere with `--keys-dir DIR`). More options: `--check`
+`--no-keygen`, point elsewhere with `--keys-dir DIR`).
+
+#### "passphrase did not match try again", repeatedly
+
+That `FTL` fires **before** anything is written, so the next `nuclei -sign` asks the same
+three questions again — repeating the command, or the answers, cannot break the loop. Triage:
+
+```bash
+ls -l ~/.config/nuclei/keys/                                        # nothing here = that is why it prompts
+head -1 ~/.config/nuclei/keys/nuclei-user-private-key.pem           # must be BEGIN EC PRIVATE KEY (SEC1)
+openssl x509 -in ~/.config/nuclei/keys/nuclei-user.crt -noout -subject   # must show a CN
+echo "$HOME"; command -v nuclei; env | grep -i xdg                  # is it looking in another HOME?
+sudo ls -l /root/.config/nuclei/keys 2>/dev/null                    # ever ran nuclei under sudo?
+```
+
+Two facts from the code, both worth knowing before answering the prompts again:
+
+* An empty passphrase is valid: `x/term.readPasswordLine` returns on `\n` without rejecting
+  empty input, so **pressing Enter at both prompts succeeds** (unencrypted key, and no
+  passphrase question on later runs). If you still get "did not match", at least one prompt
+  received characters you did not intend — most often a stray keystroke, or pasting (a paste
+  can carry its own `\n`/`\r` into the first read).
+* If you *want* a passphrase, do not paste it. Enter it by hand twice, or let
+  `make-signing-keys.sh` create an unencrypted pair and skip the question entirely.
+
+A keypair that exists but is unreadable is just as bad as none: nuclei logs
+`Invalid user cert found: …` and falls back to the generator prompt. `--force` (or simply
+re-running the `openssl` lines, which overwrite) replaces it. More options: `--check`
 (report only), `--sign FILE` (create, sign, verify — repeatable), `--no-create`,
 `--force` (replace an unusable pair), `--name` (certificate CN), `--print-env`. Formats are not arbitrary: the private
 key has to be SEC1 (`BEGIN EC PRIVATE KEY`) because nuclei parses it with
