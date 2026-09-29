@@ -126,8 +126,32 @@ Where the keys land, and how to bypass the directory entirely:
 | `~/.config/nuclei/keys/nuclei-user-private-key.pem` | ECDSA P-256 private key, encrypted only if you set a passphrase |
 | `NUCLEI_USER_CERTIFICATE` / `NUCLEI_USER_PRIVATE_KEY` | env overrides, either the PEM content itself or a path to it |
 
+### Skip the prompts entirely
+
+The prompts are the fragile part of this workflow, so the reliable route is to pre-create a
+keypair in the exact format the signer reads and never let nuclei generate one:
+
+```bash
+./make-signing-keys.sh              # no prompts; ~/.config/nuclei/keys by default
+nuclei -sign -t CVE-2026-94545.yaml # one pass, nothing to type
+grep -n '^# digest:' CVE-2026-94545.yaml
+
+# equivalent by hand
+mkdir -p ~/.config/nuclei/keys && chmod 700 ~/.config/nuclei/keys
+openssl ecparam -name prime256v1 -genkey -noout \
+  -out ~/.config/nuclei/keys/nuclei-user-private-key.pem
+openssl req -new -x509 -key ~/.config/nuclei/keys/nuclei-user-private-key.pem \
+  -subj "/CN=$USER" -days 1460 -sha256 -out ~/.config/nuclei/keys/nuclei-user.crt
+```
+
+`./run-nuclei.sh` does this automatically when no keypair exists (skip with
+`--no-keygen`, point elsewhere with `--keys-dir DIR`). Formats are not arbitrary: the private
+key has to be SEC1 (`BEGIN EC PRIVATE KEY`) because nuclei parses it with
+`x509.ParseECPrivateKey`, and the certificate needs a CN or `ParseUserCert` refuses it.
+
 After a successful key generation nuclei exits (`os.Exit(0)`), which is why the same
-`-sign` command has to be run twice. Verify a template is signed with
+`-sign` command has to be run twice **only when nuclei itself generated the keypair** — with
+a pre-created pair one pass is enough. Verify a template is signed with
 `grep -n '^# digest:' <file>`; edit the file and it is unsigned again.
 
 (`nuclei -sign --help` mentions `NUCLEI_SIGNATURE_PRIVATE_KEY`; that help text is stale —

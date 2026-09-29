@@ -94,6 +94,32 @@ Signing workflow (`-sign`, ECDSA keypair in `~/.config/nuclei/keys/`, overridabl
    that signed it. Do not commit signed templates; sign the copy you run
    (`lab/run-nuclei.sh` signs copies under `lab/.signed/`).
 
+**Prompt-free keypair (recommended).** The interactive prompts are easy to fail — the
+passphrase input is not echoed, and `[FTL] passphrase did not match try again` means the two
+entries differed, nothing was written and you start over. Instead pre-create the pair in the
+format the signer reads (SEC1 EC key + self-signed x509 cert), and `nuclei -sign` never asks
+anything:
+
+```bash
+./lab/make-signing-keys.sh              # writes ~/.config/nuclei/keys/{nuclei-user.crt,nuclei-user-private-key.pem}
+nuclei -sign -t CVE-2026-94545.yaml     # single pass, no prompts
+grep -n '^# digest:' CVE-2026-94545.yaml
+
+# by hand, same result:
+mkdir -p ~/.config/nuclei/keys && chmod 700 ~/.config/nuclei/keys
+openssl ecparam -name prime256v1 -genkey -noout \
+  -out ~/.config/nuclei/keys/nuclei-user-private-key.pem   # SEC1: "BEGIN EC PRIVATE KEY"
+openssl req -new -x509 -key ~/.config/nuclei/keys/nuclei-user-private-key.pem \
+  -subj "/CN=$USER" -days 1460 -sha256 -out ~/.config/nuclei/keys/nuclei-user.crt
+```
+
+Two format details, both required: the private key must be SEC1 (`openssl ecparam -genkey`,
+*not* `openssl genpkey` which emits PKCS#8), and the certificate must carry a CN — nuclei
+parses the key with `x509.ParseECPrivateKey` and rejects a cert without a common name. The
+pair can also be supplied out-of-tree via `NUCLEI_USER_CERTIFICATE` /
+`NUCLEI_USER_PRIVATE_KEY`. `lab/make-signing-keys.sh --help` lists its options, and
+`lab/run-nuclei.sh` creates a keypair automatically when none is present.
+
 ### Variables
 
 | Name | Template | Default | Notes |

