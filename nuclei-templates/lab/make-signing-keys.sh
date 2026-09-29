@@ -26,6 +26,7 @@
 #   ./make-signing-keys.sh --force                  # replace an unusable pair
 #   ./make-signing-keys.sh --print-env              # print NUCLEI_USER_* exports
 #   ./make-signing-keys.sh --check                  # verify, create nothing
+#   ./make-signing-keys.sh --diag                   # full triage report
 #   ./make-signing-keys.sh --sign p.yaml            # keys if needed, then sign
 #   ./make-signing-keys.sh --sign a.yaml --sign b.yaml --no-create
 set -euo pipefail
@@ -35,6 +36,7 @@ CN_NAME="${USER:-nuclei-local}"
 FORCE=0
 PRINT_ENV=0
 CHECK_ONLY=0
+DIAG=0
 CREATE=1
 SIGN_FILES=()
 
@@ -45,6 +47,7 @@ while [ $# -gt 0 ]; do
     --force)     FORCE=1; shift ;;
     --print-env) PRINT_ENV=1; shift ;;
     --check)     CHECK_ONLY=1; shift ;;
+    --diag)      DIAG=1; shift ;;
     --no-create) CREATE=0; shift ;;
     --sign)      SIGN_FILES+=("${2:?--sign needs a template path}"); shift 2 ;;
     -h|--help)   sed -n '2,31p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 0 ;;
@@ -78,6 +81,64 @@ check_pair() {
 }
 
 command -v openssl >/dev/null 2>&1 || fail "openssl is required to create or inspect the keypair"
+
+# ------------------------------------------------------------------- --diag
+if [ "$DIAG" = "1" ]; then
+  echo "environment"
+  echo "  HOME                       ${HOME:-<unset>}"
+  echo "  XDG_CONFIG_HOME            ${XDG_CONFIG_HOME:-<unset>}"
+  echo "  NUCLEI_KEYS_DIR            ${NUCLEI_KEYS_DIR:-<unset>}"
+  echo "  NUCLEI_USER_CERTIFICATE    ${NUCLEI_USER_CERTIFICATE:-<unset>}"
+  echo "  NUCLEI_USER_PRIVATE_KEY    ${NUCLEI_USER_PRIVATE_KEY:-<unset>}"
+  if command -v nuclei >/dev/null 2>&1; then
+    printf '  nuclei                     %s (%s)\n' "$(command -v nuclei)" \
+      "$(nuclei -version 2>&1 | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+' | head -1)"
+  else
+    echo "  nuclei                     not on PATH"
+  fi
+  echo "  keys directory             $KEYS_DIR"
+  echo
+  echo "keypair"
+  if [ -d "$KEYS_DIR" ]; then
+    ls -ld "$KEYS_DIR" | sed 's/^/  /'
+    for f in "$KEY_FILE" "$CERT_FILE"; do
+      if [ -f "$f" ]; then ls -l "$f" | sed 's/^/  /'; else echo "  MISSING: $f"; fi
+    done
+    if [ -f "$KEY_FILE" ]; then
+      header="$(head -1 "$KEY_FILE")"
+      echo "  key header                 $header"
+      case "$header" in
+        *"BEGIN EC PRIVATE KEY"*) echo "  key format                 SEC1 (ok)" ;;
+        *"BEGIN PRIVATE KEY"*)    echo "  key format                 PKCS#8 - nuclei will REJECT this" ;;
+        *)                        echo "  key format                 not a PEM private key" ;;
+      esac
+      openssl ec -in "$KEY_FILE" -check -noout 2>&1 | sed 's/^/  openssl: /'
+      if grep -qE 'ENCRYPTED|Proc-Type: 4,ENCRYPTED' "$KEY_FILE" 2>/dev/null; then
+        echo "  encryption                 ENCRYPTED - nuclei will ask for the passphrase"
+      else
+        echo "  encryption                 plain (no passphrase prompt)"
+      fi
+    fi
+    if [ -f "$CERT_FILE" ]; then
+      openssl x509 -in "$CERT_FILE" -noout -subject -dates 2>&1 | sed 's/^/  cert: /'
+    fi
+    [ -w "$KEYS_DIR" ] || echo "  WARNING: $KEYS_DIR is not writable by $(id -un)"
+  else
+    echo "  MISSING: $KEYS_DIR (this is why nuclei keeps offering to generate keys)"
+  fi
+  if [ -d /root/.config/nuclei/keys ] 2>/dev/null; then
+    echo
+    echo "  note: /root/.config/nuclei/keys exists - if you ever ran 'sudo nuclei -sign',"
+    echo "        that keypair is NOT the one nuclei uses as your normal user"
+  fi
+  echo
+  if [ -f "$CERT_FILE" ] && [ -f "$KEY_FILE" ]; then
+    echo "verdict: keypair present - nuclei -sign should not prompt"
+  else
+    echo "verdict: keypair incomplete - run this script without --diag to create it"
+  fi
+  exit 0
+fi
 
 # ---------------------------------------------------------------- --check only
 if [ "$CHECK_ONLY" = "1" ]; then

@@ -151,6 +151,36 @@ openssl req -new -x509 -key ~/.config/nuclei/keys/nuclei-user-private-key.pem \
 `./run-nuclei.sh` does this automatically when no keypair exists (skip with
 `--no-keygen`, point elsewhere with `--keys-dir DIR`).
 
+#### The one-block rescue (no prompts at all)
+
+If the prompts keep failing, stop answering them. Create the keypair with openssl and sign in
+one go — `X` is the template you want to sign:
+
+```bash
+mkdir -p ~/.config/nuclei/keys && chmod 700 ~/.config/nuclei/keys
+openssl ecparam -name prime256v1 -genkey -noout \
+  -out ~/.config/nuclei/keys/nuclei-user-private-key.pem
+openssl req -new -x509 -key ~/.config/nuclei/keys/nuclei-user-private-key.pem \
+  -subj "/CN=$USER" -days 1460 -sha256 -out ~/.config/nuclei/keys/nuclei-user.crt
+chmod 600 ~/.config/nuclei/keys/*
+head -1 ~/.config/nuclei/keys/nuclei-user-private-key.pem   # expect: BEGIN EC PRIVATE KEY
+./make-signing-keys.sh --diag                               # optional triage report
+nuclei -sign -t X.yaml                                      # no prompts
+grep -n '^# digest:' X.yaml
+```
+
+If `nuclei -sign` still prints `Generating new key-pair`, nuclei is not looking where the keys
+were written — `--diag` prints `HOME`, `XDG_CONFIG_HOME`, the resolved keys directory, whether
+each file exists and parses, and whether `/root/.config/nuclei/keys` exists (the signature of
+an earlier `sudo nuclei`). For a HOME-less or read-only setup, point nuclei at the files
+directly instead of installing them:
+
+```bash
+NUCLEI_USER_CERTIFICATE=~/.config/nuclei/keys/nuclei-user.crt \
+NUCLEI_USER_PRIVATE_KEY=~/.config/nuclei/keys/nuclei-user-private-key.pem \
+nuclei -sign -t X.yaml
+```
+
 #### "passphrase did not match try again", repeatedly
 
 That `FTL` fires **before** anything is written, so the next `nuclei -sign` asks the same
