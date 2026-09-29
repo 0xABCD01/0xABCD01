@@ -28,6 +28,8 @@ lab/
 ├── test-upstream-app.sh build the published app and run both templates on it
 ├── compare-payload.sh  hash the template payload against exploit.py
 ├── check-dorks.sh      prove the FOFA body markers are in real Next.js HTML
+├── test-standard-ports.sh  run both templates against :80 and :443
+├── tls-proxy.py        TLS terminator used by test-standard-ports.sh
 └── tools/
     ├── nuclei-shim.mjs offline runner for nuclei JS-protocol templates
     ├── http-fetch.mjs  one-shot HTTP helper used by the shim
@@ -355,6 +357,10 @@ brings it back.
 | 4444 | `./start.sh` | OOB listener for the lab runs |
 | 4445 | `./test-upstream-app.sh` | OOB listener for the upstream test |
 | 3011 | `./check-dorks.sh` | scratch app, only while the check runs |
+| 80 | `./test-standard-ports.sh` | vulnerable app, plain HTTP (root - privileged port) |
+| 443 | `./test-standard-ports.sh` | `tls-proxy.py`, TLS front end (root) |
+| 8080 | `./test-standard-ports.sh` | backend behind the TLS terminator |
+| 4452 | `./test-standard-ports.sh` | its own OOB listener, so the shim's new-line count is exact |
 
 Everything binds `0.0.0.0`, so the ports also work through a forwarded host - except for the
 two OOB listeners: those are raw TCP sinks, not web servers, so an HTTP request to them
@@ -371,6 +377,48 @@ for port in 3002 4445; do
   done
 done
 ```
+
+### Standard ports (80 and 443)
+
+`./test-standard-ports.sh` runs the templates against the ports real targets actually use:
+plain HTTP on `:80`, and HTTPS on `:443` with `tls-proxy.py` terminating TLS in front of a
+second instance (that is what "listening on 443" means for `next start`, which speaks HTTP).
+Both binds are privileged, so it wants passwordless sudo; each host is exploited for real,
+so both app instances die - that is the point.
+
+```bash
+$ ./test-standard-ports.sh
+=== http://127.0.0.1:80 (the default HTTP port) ===
+  PASS vulnerable app answers on :80
+  PASS detection matches the plain-HTTP target on :80
+  PASS exploit matched on :80
+  PASS callback from the :80 chain
+  PASS the :80 worker was replaced
+
+=== https://127.0.0.1:443 (TLS in front of :8080) ===
+  PASS TLS front end serves https://127.0.0.1:443
+  PASS detection matches the https:// target on :443
+  PASS detection matches "https://127.0.0.1" without a port (implicit 443)
+  PASS detection falls back to https for a bare host "127.0.0.1"
+  PASS --tls-verify rejects the self-signed certificate, as it should
+  PASS exploit matched on :443 (payload delivered through TLS)
+  PASS callback from the :443 chain
+  PASS the backend behind :443 was replaced
+
+  summary: 13 passed, 0 failed
+```
+
+Two details that matter with real hosts:
+
+* **Certificates.** nuclei's HTTP transport sets `InsecureSkipVerify: true`
+  (`pkg/protocols/http/httpclientpool/clientpool.go`), so self-signed, expired or
+  mismatched certificates scan normally. The shim follows that default; `--tls-verify`
+  restores verification (which is why the negative check above exists). TLS changes nothing
+  about the exploit: a successful chain replaces the worker and the connection dies on both
+  sides of the terminator.
+* **No explicit port.** `https://host` and a bare `host` both work - the template maps port
+  80 to `http://`, port 443 to `https://`, and otherwise tries both schemes. Use
+  `-var base=https://host:port` if the OG route lives somewhere unexpected.
 
 ### Reading the command output
 

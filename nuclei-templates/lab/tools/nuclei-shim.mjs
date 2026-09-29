@@ -35,6 +35,10 @@
 //                        after the run satisfy interactsh_protocol matchers
 //                        (lab stand-in for a real interactsh correlation)
 //   --no-precondition    skip the pre-condition gate
+//   --tls-verify         verify TLS certificates. Off by default to match
+//                        nuclei, whose transport sets InsecureSkipVerify: true
+//                        (pkg/protocols/http/httpclientpool/clientpool.go), so
+//                        self-signed HTTPS targets scan normally.
 //   --quiet              only print the verdict
 //
 // Exit codes: 0 = matched, 3 = not matched, 1 = error.
@@ -71,7 +75,7 @@ const EXIT_ERROR = 1
 
 // ------------------------------------------------------------------ CLI parsing
 function parseArgs(argv) {
-  const opts = { vars: {}, oobLog: '', printResponse: false, printRequest: false, precondition: true, quiet: false, dumpRequests: '' }
+  const opts = { vars: {}, oobLog: '', printResponse: false, printRequest: false, precondition: true, quiet: false, dumpRequests: '', tlsVerify: false }
   const positional = []
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
@@ -90,6 +94,11 @@ function parseArgs(argv) {
       opts.precondition = false
     } else if (arg === '--dump-requests') {
       opts.dumpRequests = argv[++i] || ''
+    } else if (arg === '--tls-verify') {
+      // nuclei's transport sets InsecureSkipVerify: true (pkg/protocols/http/
+      // httpclientpool/clientpool.go), so self-signed targets scan fine. The
+      // shim's fetcher follows that default; this flag restores verification.
+      opts.tlsVerify = true
     } else if (arg === '--quiet') {
       opts.quiet = true
     } else if (arg === '-h' || arg === '--help') {
@@ -169,7 +178,14 @@ function makeHttpModule() {
     }
 
     const payload = JSON.stringify({ method, url: String(URL), headers, body: Body === undefined || Body === null ? null : String(Body), timeoutMs })
-    const run = spawnSync(process.execPath, [FETCHER], { input: payload, encoding: 'utf8', maxBuffer: 1 << 28 })
+    const run = spawnSync(process.execPath, [FETCHER], {
+      input: payload,
+      encoding: 'utf8',
+      maxBuffer: 1 << 28,
+      env: Object.assign({}, process.env, opts.tlsVerify
+        ? { NODE_TLS_REJECT_UNAUTHORIZED: '1' }
+        : { NODE_TLS_REJECT_UNAUTHORIZED: '0', NODE_NO_WARNINGS: '1' })
+    })
     if (run.status !== 0 || !run.stdout) {
       throw new Error(`connection failed: ${(run.stderr || 'request helper crashed').trim().slice(0, 200)}`)
     }
