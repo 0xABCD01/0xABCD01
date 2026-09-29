@@ -1,0 +1,12 @@
+{
+  "name": "cve-2026-94545-lab-tools",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Offline harness for the CVE-2026-94545 nuclei templates (JS protocol shim, schema validation, payload builder)",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "yaml": "^2.8.1"
+  }
+}
