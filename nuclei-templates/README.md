@@ -187,6 +187,8 @@ nuclei" in `lab/README.md` for the same checks with the real tool).
 | 72-byte command | refused with the 71-byte limit message, no request sent |
 | Everything after a restart | target serves again, detection matches again |
 | **Suite total** | **26 passed, 0 failed** |
+| Manual scan, real nuclei v3.11.1 (signed template) against a containerised build | `[CVE-2026-94545-rce] [javascript] [critical] 127.0.0.1:3000` — 1 match, 8.8 s, interactsh callback |
+| Lab app fidelity vs EQSTLab/CVE-2026-94545@main | `lab/check-upstream.sh`: dependencies, runtime pin, both request shapes and the `<title>` sink all identical |
 
 Structural checks (`lab/tools/validate.mjs`): YAML parses, both templates validate against
 `nuclei-jsonschema.json` (vendored from the nuclei repository), and every JS block passes a

