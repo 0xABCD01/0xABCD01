@@ -56,15 +56,16 @@ echo "reference builder: $SRC/exploit.py"
 echo "template:          $TEMPLATE"
 
 # --------------------------------------------------------------- dummy target
-# The template needs something that answers HTTP before it will build and send
-# the payload; it never has to be vulnerable for this comparison.
+# The template only delivers after a request shape answers 200 with an image
+# content type (what a real renderer does), so this dummy speaks exactly that.
+# It never has to be vulnerable - the bytes are compared, not executed.
 PORT=$(( (RANDOM % 2000) + 23000 ))
-python3 -m http.server --bind 127.0.0.1 "$PORT" >/dev/null 2>&1 &
+python3 "$LAB_DIR/tools/dummy-og.py" --port "$PORT" >/dev/null 2>&1 &
 SERVER_PID=$!
 trap 'kill $SERVER_PID 2>/dev/null' EXIT
 sleep 0.7
-if ! curl -s -o /dev/null -m 3 "http://127.0.0.1:$PORT/"; then
-  echo "could not start the dummy target on :$PORT" >&2
+if [ "$(curl -s -o /dev/null -m 3 -w '%{http_code} %{content_type}' "http://127.0.0.1:$PORT/api/og?value=nuclei")" != "200 image/png" ]; then
+  echo "could not start the dummy OG route on :$PORT" >&2
   exit 1
 fi
 
@@ -91,8 +92,11 @@ for cmd in "${COMMANDS[@]}"; do
   node "$SHIM" "$TEMPLATE" "127.0.0.1:$PORT" --var safecheck=false --var "cmd=$cmd" \
     --dump-requests "$dump" --quiet >/dev/null 2>&1
 
-  body="$(ls "$dump"/*POST.bin 2>/dev/null | head -1)"
-  if [ -z "$body" ]; then
+  # Several POST bodies can be dumped: the reachability probe (a few bytes), the
+  # XInclude probe/control pair (~1.6 KB each) and finally the payload (~25 KB).
+  # The payload is the largest one - pick by size, not by order.
+  body="$(ls -S "$dump"/*POST.bin 2>/dev/null | head -1)"
+  if [ -z "$body" ] || [ "$(stat -c%s "$body")" -lt 10000 ]; then
     printf '%-6s %-46s %s\n' "$i" "$(printf '%.44s' "$cmd")" 'template produced no payload'
     failures=$((failures + 1))
     continue
@@ -100,6 +104,7 @@ for cmd in "${COMMANDS[@]}"; do
 
   ref_hash="$(sha256sum "$ref" | cut -d' ' -f1)"
   tpl_hash="$(sha256sum "$body" | cut -d' ' -f1)"
+  tpl_size="$(stat -c%s "$body")"
   if [ "$ref_hash" = "$tpl_hash" ]; then
     result="identical"
   else
@@ -107,7 +112,7 @@ for cmd in "${COMMANDS[@]}"; do
     failures=$((failures + 1))
   fi
   printf '%-6s %-46s %-20s %-20s %s (%s B)\n' "$i" "$(printf '%.44s' "$cmd")" \
-    "${ref_hash:0:16}" "${tpl_hash:0:16}" "$result" "$(stat -c%s "$ref")"
+    "${ref_hash:0:16}" "${tpl_hash:0:16}" "$result" "$tpl_size"
 done
 
 echo

