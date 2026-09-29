@@ -345,6 +345,33 @@ then `docker run -d -p 3000:3000 cve-2026-94545`):
 If the target's worker is replaced by the exploit, `./start.sh --restart vulnerable`
 brings it back.
 
+### Ports
+
+| Port | Owner | Serves |
+| --- | --- | --- |
+| 3000 | `./start.sh` | vulnerable build (Next.js 16.3.5) |
+| 3001 | `./start.sh` | patched build (Next.js 16.3.6) |
+| 3002 | `./test-upstream-app.sh` | the upstream app, left running after the test |
+| 4444 | `./start.sh` | OOB listener for the lab runs |
+| 4445 | `./test-upstream-app.sh` | OOB listener for the upstream test |
+| 3011 | `./check-dorks.sh` | scratch app, only while the check runs |
+
+Everything binds `0.0.0.0`, so the ports also work through a forwarded host - except for the
+two OOB listeners: those are raw TCP sinks, not web servers, so an HTTP request to them
+(e.g. from a browser) is simply logged and answered with nothing.
+
+`./stop.sh` covers the lab (3000/3001/4444). The upstream test leaves its app running on
+purpose (so you can poke at it) and the dork check removes its own scratch app; to stop the
+upstream pair:
+
+```bash
+for port in 3002 4445; do
+  for pid in $(ss -ltnpH "sport = :$port" | grep -oE 'pid=[0-9]+' | cut -d= -f2 | sort -u); do
+    kill "$pid"
+  done
+done
+```
+
 ### Reading the command output
 
 Interactsh proves execution (DNS + TCP interaction), but it is a correlation service, not a
