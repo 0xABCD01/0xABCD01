@@ -1,6 +1,7 @@
 # runtime + installed apps (recreated by ./setup.sh)
 .runtime/
 run/
+.signed/
 tools/node_modules/
 logs/
 pids/

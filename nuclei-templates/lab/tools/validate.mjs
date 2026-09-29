@@ -15,9 +15,23 @@ import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 
 const require = createRequire(import.meta.url)
-const YAML = require('yaml')
-const Ajv = require('ajv/dist/2020')  // the nuclei schema declares draft 2020-12
-const addFormats = require('ajv-formats')
+
+// node_modules is gitignored (and excluded from workspace snapshots), so give a
+// usable error instead of "Cannot find module 'yaml'".
+function harnessRequire(name) {
+  try {
+    return require(name)
+  } catch (err) {
+    if (err && err.code === 'MODULE_NOT_FOUND') {
+      console.error(`harness dependency "${name}" is missing - run: cd lab/tools && npm install`)
+      process.exit(1)
+    }
+    throw err
+  }
+}
+const YAML = harnessRequire('yaml')
+const Ajv = harnessRequire('ajv/dist/2020')  // the nuclei schema declares draft 2020-12
+const addFormats = harnessRequire('ajv-formats')
 
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const TEMPLATE_DIR = path.resolve(HERE, '..', '..')
