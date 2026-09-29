@@ -27,6 +27,7 @@ lab/
 ├── check-upstream.sh   diff lab/app against the advisory's published app
 ├── test-upstream-app.sh build the published app and run both templates on it
 ├── compare-payload.sh  hash the template payload against exploit.py
+├── check-dorks.sh      prove the FOFA body markers are in real Next.js HTML
 └── tools/
     ├── nuclei-shim.mjs offline runner for nuclei JS-protocol templates
     ├── http-fetch.mjs  one-shot HTTP helper used by the shim
@@ -100,6 +101,27 @@ $ ./test-upstream-app.sh --repo /path/to/EQSTLab-clone --skip-build
 The detection numbers are identical to the lab replica (probe 2,522,895 B, ratio 114.8), which
 is what "the lab is the same target" is supposed to mean. Options: `--port`, `--oob-port`,
 `--repo DIR|URL`, `--skip-build`.
+
+### The FOFA markers are in the HTML, not in a blog post
+
+The metadata of both templates advertises `body="opengraph-image"` and
+`body="self.__next_f.push"`; `check-dorks.sh` builds a throwaway Next.js 16.3.5 app with the
+`opengraph-image` file convention and greps the response:
+
+```bash
+$ ./check-dorks.sh
+  meta tags the app emitted:
+    <meta property="og:image" content="http://localhost:3000/opengraph-image?f646ebd5e48d3a15"/>
+    <meta property="og:image:type" content="image/png"/>
+  PASS body="opengraph-image" is present in the HTML
+  PASS body="self.__next_f.push" is present in the HTML
+  PASS the /opengraph-image route serves an image  (image/png, 7124 bytes)
+  NOTE body="/api/og" only appears when the app links the route - expected to be absent here
+  summary: 3 passed, 0 failed
+```
+
+It refuses to run if something already owns the port, so a stale server cannot make the
+checks pass by accident.
 
 ### The payload is byte-identical to the reference builder
 

