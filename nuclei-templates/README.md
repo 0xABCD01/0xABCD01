@@ -101,6 +101,11 @@ format the signer reads (SEC1 EC key + self-signed x509 cert), and `nuclei -sign
 anything:
 
 ```bash
+# keypair + signature in one prompt-free step (repeatable, idempotent)
+./lab/make-signing-keys.sh --sign CVE-2026-94545.yaml
+
+# or the individual steps
+./lab/make-signing-keys.sh --check      # is a usable keypair present? creates nothing
 ./lab/make-signing-keys.sh              # writes ~/.config/nuclei/keys/{nuclei-user.crt,nuclei-user-private-key.pem}
 nuclei -sign -t CVE-2026-94545.yaml     # single pass, no prompts
 grep -n '^# digest:' CVE-2026-94545.yaml

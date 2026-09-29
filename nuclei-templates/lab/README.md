@@ -132,7 +132,11 @@ The prompts are the fragile part of this workflow, so the reliable route is to p
 keypair in the exact format the signer reads and never let nuclei generate one:
 
 ```bash
+./make-signing-keys.sh --check      # report an existing pair, create nothing (exit 1 if none)
 ./make-signing-keys.sh              # no prompts; ~/.config/nuclei/keys by default
+./make-signing-keys.sh --sign CVE-2026-94545.yaml   # keys if needed, then sign + verify
+
+# or step by step
 nuclei -sign -t CVE-2026-94545.yaml # one pass, nothing to type
 grep -n '^# digest:' CVE-2026-94545.yaml
 
@@ -145,7 +149,9 @@ openssl req -new -x509 -key ~/.config/nuclei/keys/nuclei-user-private-key.pem \
 ```
 
 `./run-nuclei.sh` does this automatically when no keypair exists (skip with
-`--no-keygen`, point elsewhere with `--keys-dir DIR`). Formats are not arbitrary: the private
+`--no-keygen`, point elsewhere with `--keys-dir DIR`). More options: `--check`
+(report only), `--sign FILE` (create, sign, verify — repeatable), `--no-create`,
+`--force` (replace an unusable pair), `--name` (certificate CN), `--print-env`. Formats are not arbitrary: the private
 key has to be SEC1 (`BEGIN EC PRIVATE KEY`) because nuclei parses it with
 `x509.ParseECPrivateKey`, and the certificate needs a CN or `ParseUserCert` refuses it.
 
