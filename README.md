@@ -1,16 +1,24 @@
 <p align="center">
   <img
     src="./assets/profile-banner.svg"
-    alt="Abstract geometric banner in navy, cream, lavender, sage, and gold"
+    alt="A constellation graph in navy, cream, lavender, sage, and gold, with the handle set in monospace"
     width="100%"
   >
+</p>
+
+<p align="center">
+  <img src="./assets/roles.svg" alt="Areas of work: bug bounty, pentest, OSINT" width="410">
 </p>
 
 # Hafiar
 
 Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand.
 
-## Research
+<p align="center">
+  <img src="./assets/divider.svg" alt="" width="560">
+</p>
+
+## <img src="./assets/icon-research.svg" width="20" height="20" align="left" alt=""> Research
 
 | Advisory | What it is | Score |
 |---|---|---|
@@ -20,7 +28,7 @@ Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabili
 
 The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all three core advisories that 11.4.9 shipped with, including the two stored XSS issues. Every proof of concept runs against a local container, never a third-party host.
 
-## Tools
+## <img src="./assets/icon-tools.svg" width="20" height="20" align="left" alt=""> Tools
 
 | Repository | What it does |
 |---|---|
@@ -30,12 +38,16 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | [cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager) | Self-hosted file manager with encryption at rest, per-file permissions, and access logs. |
 | [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
-## Currently
+## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
 
 - Building reproductions for Drupal 11.4.x advisories, one repository per release.
 - Turning the parts of pentesting I repeat by hand into small tools.
 
-## Contact
+## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
 
 - X: [@VortexXzy](https://x.com/VortexXzy)
 - Bug reports and questions: open an issue on the relevant repository.
+
+<p align="center">
+  <img src="./assets/mark.svg" alt="" width="52">
+</p>

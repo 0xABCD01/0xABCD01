@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 44" role="img" aria-labelledby="t d"><title>Section divider</title><desc>A thin horizontal rule broken by a small constellation cluster.</desc>  <g opacity="0.85">
+    <line x1="40" y1="22" x2="286" y2="22" stroke="#b8935a" stroke-width="1.2" opacity="0.4" />
+    <line x1="434" y1="22" x2="680" y2="22" stroke="#b8935a" stroke-width="1.2" opacity="0.4" />
+    <circle cx="40" cy="22" r="2" fill="#b8935a" opacity="0.5" />
+    <circle cx="680" cy="22" r="2" fill="#b8935a" opacity="0.5" />
+  </g>
+  <g>
+    <line x1="300" y1="14" x2="360" y2="22" stroke="#b8935a" stroke-width="1.6" opacity="0.7" stroke-linecap="round"/>
+    <line x1="360" y1="22" x2="424" y2="13" stroke="#b8935a" stroke-width="1.6" opacity="0.7" stroke-linecap="round"/>
+    <line x1="360" y1="22" x2="330" y2="31" stroke="#b8935a" stroke-width="1.4" opacity="0.6" stroke-linecap="round"/>
+    <line x1="424" y1="13" x2="444" y2="26" stroke="#b8935a" stroke-width="1.2" opacity="0.55" stroke-linecap="round"/>
+    <circle cx="300" cy="14" r="3" fill="#a9b9a4" opacity="0.9"/>
+    <circle cx="360" cy="22" r="5" fill="#c3a36a" opacity="1.0"/>
+    <circle cx="424" cy="13" r="4" fill="#c9c3d9" opacity="0.95"/>
+    <circle cx="330" cy="31" r="2.6" fill="#a9b9a4" opacity="0.8"/>
+    <circle cx="444" cy="26" r="2.4" fill="#c3a36a" opacity="0.7"/>
+  </g>
+  <path d="M 276 19.0 C 276 21.0 277.0 22 279.0 22 C 277.0 22 276 23.0 276 25.0 C 276 23.0 275.0 22 273.0 22 C 275.0 22 276 21.0 276 19.0 Z" fill="#b8935a" opacity="0.6"/>
+  <path d="M 468 19.0 C 468 21.0 469.0 22 471.0 22 C 469.0 22 468 23.0 468 25.0 C 468 23.0 467.0 22 465.0 22 C 467.0 22 468 21.0 468 19.0 Z" fill="#b8935a" opacity="0.6"/>
+</svg>

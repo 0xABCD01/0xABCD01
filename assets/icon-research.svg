@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" role="img" aria-labelledby="t d"><title>Research icon</title><desc>A small rounded chip with a gold glyph.</desc>  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18253d" />
+      <stop offset="1" stop-color="#24262b" />
+    </linearGradient>
+  </defs>
+  <rect x="0.75" y="0.75" width="26.5" height="26.5" rx="8" fill="url(#bg)" stroke="#c3a36a" stroke-opacity="0.45" stroke-width="1.5" />
+    <g stroke="#c3a36a" stroke-width="1.5" fill="none" opacity="0.95" stroke-linecap="round">
+    <path d="M7.5 19.5 L14 8 L20.5 19.5" />
+    <path d="M10.5 19.5 L14 14 L17.5 19.5" />
+  </g>
+  <circle cx="14" cy="8" r="2.4" fill="#c3a36a" opacity="1.0"/>
+  <circle cx="7.5" cy="19.5" r="1.9" fill="#a9b9a4" opacity="1.0"/>
+  <circle cx="20.5" cy="19.5" r="1.9" fill="#a9b9a4" opacity="1.0"/>
+  <circle cx="14" cy="14" r="1.7" fill="#c9c3d9" opacity="1.0"/>
+
+</svg>

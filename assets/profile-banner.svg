@@ -1,7 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" role="img" aria-labelledby="title desc">
-  <title id="title">Abstract profile banner</title>
-  <desc id="desc">A calm editorial composition of navy, cream, lavender, sage, and gold shapes.</desc>
-  <defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" role="img" aria-labelledby="t d"><title>0xABCD01 profile banner</title><desc>A constellation graph in navy, cream, lavender, sage, and gold, with the handle set in monospace.</desc>  <defs>
     <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#18253d" />
       <stop offset="1" stop-color="#24262b" />
@@ -11,36 +8,50 @@
       <stop offset="1" stop-color="#e8e0d5" />
     </linearGradient>
     <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.5" fill="#f8f1e6" opacity="0.18" />
+      <circle cx="2" cy="2" r="1.5" fill="#f8f1e6" opacity="0.16" />
     </pattern>
   </defs>
 
   <rect width="1600" height="420" rx="28" fill="url(#wash)" />
   <rect x="930" y="0" width="670" height="420" fill="url(#dots)" opacity="0.5" />
 
+  <!-- cave mouth -->
   <path d="M1010 420C1010 185 1160 48 1374 48c115 0 174 38 226 92v280z" fill="url(#cream)" opacity="0.96" />
   <path d="M1118 420c0-157 101-268 247-268 86 0 153 37 235 111v157z" fill="#c9c3d9" opacity="0.75" />
   <path d="M1244 420c0-94 63-166 147-166 79 0 147 62 209 143v23z" fill="#a9b9a4" opacity="0.82" />
 
-  <path d="M106 332c176-172 334-222 520-156 122 43 202 41 302-25" fill="none" stroke="#c3a36a" stroke-width="3" opacity="0.9" />
-  <path d="M106 350c176-172 334-222 520-156 122 43 202 41 302-25" fill="none" stroke="#c9c3d9" stroke-width="1.5" opacity="0.58" />
-  <path d="M101 98h286" stroke="#f8f1e6" stroke-width="2" opacity="0.75" />
-  <path d="M101 112h156" stroke="#a9b9a4" stroke-width="2" opacity="0.8" />
-
-  <circle cx="246" cy="266" r="10" fill="#c3a36a" />
-  <circle cx="520" cy="182" r="7" fill="#a9b9a4" />
-  <circle cx="808" cy="151" r="9" fill="#c9c3d9" />
-  <circle cx="1090" cy="92" r="7" fill="#c3a36a" />
-  <circle cx="1340" cy="246" r="8" fill="#18253d" opacity="0.7" />
-
-  <g fill="none" stroke="#f8f1e6" stroke-width="2" opacity="0.7">
-    <path d="M246 266l274-84 288-31" />
-    <path d="M808 151l282-59" />
+  <!-- constellation: the graph that connects targets to findings -->
+  <g>
+    <line x1="106" y1="332" x2="626" y2="176" stroke="#c3a36a" stroke-width="3" opacity="0.9" stroke-linecap="round"/>
+    <line x1="106" y1="332" x2="306" y2="178" stroke="#c3a36a" stroke-width="1.5" opacity="0.55" stroke-linecap="round"/>
+    <line x1="626" y1="176" x2="628" y2="145" stroke="#f8f1e6" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+    <line x1="626" y1="176" x2="909" y2="151" stroke="#f8f1e6" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+    <line x1="909" y1="151" x2="1090" y2="92" stroke="#c3a36a" stroke-width="1.5" opacity="0.58" stroke-linecap="round"/>
+    <line x1="306" y1="178" x2="246" y2="266" stroke="#f8f1e6" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+    <line x1="246" y1="266" x2="306" y2="178" stroke="#f8f1e6" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+    <line x1="1340" y1="246" x2="1400" y2="300" stroke="#c3a36a" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+    <circle cx="106" cy="332" r="4" fill="#c3a36a" opacity="0.95"/>
+    <circle cx="246" cy="266" r="10" fill="#c3a36a" opacity="1.0"/>
+    <circle cx="306" cy="178" r="7" fill="#a9b9a4" opacity="1.0"/>
+    <circle cx="626" cy="176" r="9" fill="#c9c3d9" opacity="1.0"/>
+    <circle cx="628" cy="145" r="4" fill="#f8f1e6" opacity="0.8"/>
+    <circle cx="909" cy="151" r="9" fill="#c9c3d9" opacity="1.0"/>
+    <circle cx="1090" cy="92" r="7" fill="#c3a36a" opacity="1.0"/>
+    <circle cx="1340" cy="246" r="8" fill="#18253d" opacity="0.7"/>
+    <circle cx="1400" cy="300" r="4" fill="#a9b9a4" opacity="0.85"/>
   </g>
 
-  <g fill="#f8f1e6" opacity="0.8">
-    <path d="M690 72l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" />
-    <path d="M890 278l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" />
-    <path d="M1460 92l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" />
+  <!-- handle, set in the same monospace the tools use -->
+  <g font-family="'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace">
+    <text x="101" y="112" font-size="21" letter-spacing="6.5" fill="#f8f1e6" opacity="0.82">0xABCD01</text>
+    <line x1="101" y1="130" x2="392" y2="130" stroke="#f8f1e6" stroke-width="1.5" opacity="0.3" />
+    <line x1="101" y1="142" x2="256" y2="142" stroke="#a9b9a4" stroke-width="1.5" opacity="0.4" />
   </g>
+
+  <!-- sparkles -->
+  <path d="M 690 66.0 C 690 70.0 692.0 72 696.0 72 C 692.0 72 690 74.0 690 78.0 C 690 74.0 688.0 72 684.0 72 C 688.0 72 690 70.0 690 66.0 Z" fill="#f8f1e6" opacity="0.8"/>
+  <path d="M 890 272.9 C 890 276.3 891.7 278 895.1 278 C 891.7 278 890 279.7 890 283.1 C 890 279.7 888.3 278 884.9 278 C 888.3 278 890 276.3 890 272.9 Z" fill="#f8f1e6" opacity="0.75"/>
+  <path d="M 1460 86.9 C 1460 90.3 1461.7 92 1465.1 92 C 1461.7 92 1460 93.7 1460 97.1 C 1460 93.7 1458.3 92 1454.9 92 C 1458.3 92 1460 90.3 1460 86.9 Z" fill="#f8f1e6" opacity="0.8"/>
+  <path d="M 1206 115.8 C 1206 118.6 1207.4 120 1210.2 120 C 1207.4 120 1206 121.4 1206 124.2 C 1206 121.4 1204.6 120 1201.8 120 C 1204.6 120 1206 118.6 1206 115.8 Z" fill="#c3a36a" opacity="0.55"/>
+  <path d="M 1330 326.1 C 1330 328.7 1331.3 330 1333.9 330 C 1331.3 330 1330 331.3 1330 333.9 C 1330 331.3 1328.7 330 1326.1 330 C 1328.7 330 1330 328.7 1330 326.1 Z" fill="#c3a36a" opacity="0.45"/>
 </svg>
