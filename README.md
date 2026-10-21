@@ -30,26 +30,6 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | [cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager) | Self-hosted file manager with encryption at rest, per-file permissions, and access logs. |
 | [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
-## Writing standards
-
-Security work gets read by humans, so the prose has to survive next to the proof of concept. I run my own writing through these three before it ships.
-
-| Skill | Installs | What it does |
-|---|---|---|
-| [![stop-slop](https://skills.sh/b/hardikpandya/stop-slop)](https://skills.sh/hardikpandya/stop-slop) | 17.6K | Strips filler and flattens formulaic rhythm. |
-| [![no-ai-slop](https://skills.sh/b/petergyang/no-ai-slop)](https://skills.sh/petergyang/no-ai-slop/no-ai-slop) | 27.6K | Edits a draft against twenty named patterns without sanding off the original voice. |
-| [![humanizer](https://skills.sh/b/blader/humanizer)](https://skills.sh/blader/humanizer) | 10.1K | Works from the Wikipedia list of AI tells and runs a draft, audit, and rewrite loop. |
-
-All three are MIT. Install them straight into a Codex skills directory:
-
-```sh
-npx skills add hardikpandya/stop-slop
-npx skills add https://github.com/petergyang/no-ai-slop --skill no-ai-slop
-npx skills add blader/humanizer
-```
-
-The same discipline drives [codex-skills](https://github.com/0xABCD01/codex-skills). A prompt that names the steps stops the model from improvising around them.
-
 ## Currently
 
 - Building reproductions for Drupal 11.4.x advisories, one repository per release.
