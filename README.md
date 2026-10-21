@@ -6,86 +6,54 @@
   >
 </p>
 
-# Hi, I'm 0xABCD01
+# Hafiar
 
-**Building developer tools and self-hosted software, with an interest in application security.**
+Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand.
 
-> Useful tools for the sharp edges of software.
+## Research
 
-I like useful tools, readable code, and edge cases that refuse to stay quiet.
+| Advisory | What it is | Score |
+|---|---|---|
+| [CVE-2026-41089](https://github.com/0xABCD01/CVE-2026-41089) | Netlogon CLDAP stack buffer overflow. One unauthenticated UDP packet to a domain controller. | CVSS 9.8, CWE-121 |
+| [CVE-2026-48866](https://github.com/0xABCD01/CVE-2026-48866) | Gravity Forms path traversal into arbitrary file deletion. | CVSS 9.6, CWE-22 |
+| [SA-CORE-2026-014](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) | Drupal `field_ui` render-array callback. RCE once a contributed module is in play. | Drupal 11.4.9, fixed in 11.4.10 |
 
-## What I'm building
+The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all three core advisories that 11.4.9 shipped with, including the two stored XSS issues. Every proof of concept runs against a local container, never a third-party host.
 
-**[test-amnesty](https://github.com/0xABCD01/test-amnesty)**  
-Compares original and edited pytest tests against the same implementation to surface changes that weaken regression detection.
+## Tools
 
-**[cachelint](https://github.com/0xABCD01/cachelint)**  
-A zero-dependency Dockerfile analyzer that predicts cache invalidation and suggests a faster layer order.
+| Repository | What it does |
+|---|---|
+| [test-amnesty](https://github.com/0xABCD01/test-amnesty) | Compares an edited pytest file against the original and catches tests that were weakened to pass. |
+| [cachelint](https://github.com/0xABCD01/cachelint) | Predicts which Dockerfile layer busts the build cache and suggests a faster order. Published on PyPI. |
+| [codex-skills](https://github.com/0xABCD01/codex-skills) | Workflow prompts for Codex CLI. Each one pins exact commands so the model cannot skip a step. |
+| [cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager) | Self-hosted file manager with encryption at rest, per-file permissions, and access logs. |
+| [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
-**[cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager)**  
-A self-hosted cloud storage project exploring encryption, permissions, and audit trails.
+## Writing standards
 
-**[codex-skills](https://github.com/0xABCD01/codex-skills)**  
-A collection of workflow prompts for Codex CLI, covering fixes, tests, refactors, migrations, and reviews.
+Security work gets read by humans, so the prose has to survive next to the proof of concept. I run my own writing through these three before it ships.
 
-## About me
+[![stop-slop](https://skills.sh/b/hardikpandya/stop-slop)](https://skills.sh/hardikpandya/stop-slop)
+[![no-ai-slop](https://skills.sh/b/petergyang/no-ai-slop)](https://skills.sh/petergyang/no-ai-slop/no-ai-slop)
+[![humanizer](https://skills.sh/b/blader/humanizer)](https://skills.sh/blader/humanizer)
 
-I work across developer tooling, self-hosted software, and application security research.
+```sh
+npx skills add hardikpandya/stop-slop
+npx skills add https://github.com/petergyang/no-ai-slop --skill no-ai-slop
+npx skills add blader/humanizer
+```
 
-My public repositories focus on test quality, Docker build behavior, and systems where permissions and data handling deserve a closer look.
+`stop-slop` strips filler and flattens formulaic rhythm. `no-ai-slop` edits a draft against twenty named patterns without sanding off the original voice. `humanizer` works from the Wikipedia list of AI tells and runs a draft, audit, and rewrite loop. All three are MIT.
 
-## Current focus
+The same discipline drives [codex-skills](https://github.com/0xABCD01/codex-skills). A prompt that names the steps stops the model from improvising around them.
 
-- Making weakened tests easier to detect.
-- Making Docker build behavior easier to reason about.
-- Exploring self-hosted software with explicit access controls and audit trails.
-- Writing technical work with reproducible examples and clear limitations.
+## Currently
 
-## Tools I use
-
-`Python` | `TypeScript` | `FastAPI` | `Next.js` | `Docker` | `pytest` | `GitHub Actions`
-
-## Related research
-
-- [CVE-2026-41089](https://github.com/0xABCD01/CVE-2026-41089): Netlogon and CLDAP vulnerability research with a proof of concept.
-- [CVE-2026-48866](https://github.com/0xABCD01/CVE-2026-48866): Gravity Forms path-traversal research with a proof of concept.
-
-Research repositories should be read together with their references, affected-version notes, disclosure context, and authorized-testing scope.
-
-## Learning
-
-Areas I keep exploring:
-
-- Application security and authorization design.
-- Test quality and evidence-driven development.
-- Containerized systems and CI/CD reliability.
-- Privacy, access control, and auditability.
-
-## GitHub activity
-
-I keep this profile lightweight and let GitHub's native contribution graph do the talking.
-
-The projects above are the clearest snapshot of my public work.
-
-## Fun facts
-
-- I read README files as part of the product.
-- I like tools that show their evidence.
-- One clear command beats ten decorative badges.
+- Building reproductions for Drupal 11.4.x advisories, one repository per release.
+- Turning the parts of pentesting I repeat by hand into small tools.
 
 ## Contact
 
 - X: [@VortexXzy](https://x.com/VortexXzy)
-- Project questions: open an issue in the relevant repository.
-
-<!-- Optional: add one verified professional contact before publishing.
-- Email: [YOUR EMAIL]
-- Portfolio: [YOUR PORTFOLIO LINK]
-- LinkedIn: [YOUR LINKEDIN URL]
--->
-
----
-
-Thanks for stopping by.
-
-A thoughtful issue, review, or focused pull request is always welcome.
+- Bug reports and questions: open an issue on the relevant repository.
