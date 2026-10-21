@@ -1,9 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 40" role="img" aria-labelledby="t d"><title>Constellation mark</title><desc>Three linked nodes with a small sparkle.</desc>  <line x1="6" y1="20" x2="26" y2="9" stroke="#b8935a" stroke-width="1.5" opacity="0.7" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 40" role="img" aria-labelledby="t d"><title>Constellation mark</title><desc>Three linked nodes with a small sparkle, blinking gently.</desc>  <style>
+  @keyframes mblink {
+    0%, 100% { opacity: 0.3; }
+    50%      { opacity: 1; }
+  }
+  .m-a { animation: mblink 3.4s ease-in-out infinite; }
+  .m-b { animation: mblink 4.2s ease-in-out 0.8s infinite; }
+  .m-c { animation: mblink 3.8s ease-in-out 1.6s infinite; }
+  .m-d { animation: mblink 4.6s ease-in-out 0.4s infinite; }
+  </style>
+  <line x1="6" y1="20" x2="26" y2="9" stroke="#b8935a" stroke-width="1.5" opacity="0.7" stroke-linecap="round"/>
   <line x1="26" y1="9" x2="46" y2="18" stroke="#b8935a" stroke-width="1.5" opacity="0.7" stroke-linecap="round"/>
   <line x1="26" y1="9" x2="30" y2="30" stroke="#b8935a" stroke-width="1.2" opacity="0.55" stroke-linecap="round"/>
-  <circle cx="6" cy="20" r="2.6" fill="#a9b9a4" opacity="0.9"/>
-  <circle cx="26" cy="9" r="4.4" fill="#c3a36a" opacity="1.0"/>
-  <circle cx="46" cy="18" r="3.4" fill="#c9c3d9" opacity="0.95"/>
-  <circle cx="30" cy="30" r="2.2" fill="#a9b9a4" opacity="0.8"/>
-  <path d="M 50 29.3 C 50 31.1 50.9 32 52.7 32 C 50.9 32 50 32.9 50 34.7 C 50 32.9 49.1 32 47.3 32 C 49.1 32 50 31.1 50 29.3 Z" fill="#b8935a" opacity="0.6"/>
+  <circle class="m-a" cx="6" cy="20" r="2.6" fill="#a9b9a4" opacity="0.9"/>
+  <circle class="m-b" cx="26" cy="9" r="4.4" fill="#c3a36a" opacity="1"/>
+  <circle class="m-c" cx="46" cy="18" r="3.4" fill="#c9c3d9" opacity="0.95"/>
+  <circle class="m-d" cx="30" cy="30" r="2.2" fill="#a9b9a4" opacity="0.8"/>
+  <path class="m-a" d="M 50 29.3 C 50 31.1 50.9 32 52.7 32 C 50.9 32 50 32.9 50 34.7 C 50 32.9 49.1 32 47.3 32 C 49.1 32 50 31.1 50 29.3 Z" fill="#b8935a" opacity="0.6"/>
 </svg>

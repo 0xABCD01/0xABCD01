@@ -1,20 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 44" role="img" aria-labelledby="t d"><title>Section divider</title><desc>A thin horizontal rule broken by a small constellation cluster.</desc>  <g opacity="0.9">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 44" role="img" aria-labelledby="t d"><title>Section divider</title><desc>A thin horizontal rule broken by a small constellation cluster, with a pulse travelling outward from the centre.</desc>  <style>
+  @keyframes dtrace {
+    0%   { stroke-dashoffset: 0;    opacity: 0; }
+    10%  { opacity: 0.95; }
+    90%  { opacity: 0.95; }
+    100% { stroke-dashoffset: -246; opacity: 0; }
+  }
+  @keyframes dblink {
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 1; }
+  }
+  .dtrace { animation: dtrace 3.6s linear infinite; }
+  .d-a { animation: dblink 3.1s ease-in-out infinite; }
+  .d-b { animation: dblink 3.8s ease-in-out 0.7s infinite; }
+  .d-c { animation: dblink 4.4s ease-in-out 1.4s infinite; }
+  .d-d { animation: dblink 3.4s ease-in-out 2.1s infinite; }
+  .d-e { animation: dblink 4.0s ease-in-out 0.3s infinite; }
+  </style>
+  <g>
     <line x1="40" y1="22" x2="286" y2="22" stroke="#b8935a" stroke-width="1.3" opacity="0.62" />
     <line x1="434" y1="22" x2="680" y2="22" stroke="#b8935a" stroke-width="1.3" opacity="0.62" />
-    <circle cx="40" cy="22" r="2.4" fill="#b8935a" opacity="0.7" />
-    <circle cx="680" cy="22" r="2.4" fill="#b8935a" opacity="0.7" />
+    <circle cx="40" cy="22" r="2.4" fill="#b8935a" opacity="0.7" class="d-a" />
+    <circle cx="680" cy="22" r="2.4" fill="#b8935a" opacity="0.7" class="d-b" />
   </g>
   <g>
     <line x1="300" y1="14" x2="360" y2="22" stroke="#b8935a" stroke-width="1.8" opacity="0.85" stroke-linecap="round"/>
     <line x1="360" y1="22" x2="424" y2="13" stroke="#b8935a" stroke-width="1.8" opacity="0.85" stroke-linecap="round"/>
     <line x1="360" y1="22" x2="330" y2="31" stroke="#b8935a" stroke-width="1.5" opacity="0.7" stroke-linecap="round"/>
     <line x1="424" y1="13" x2="444" y2="26" stroke="#b8935a" stroke-width="1.3" opacity="0.65" stroke-linecap="round"/>
-    <circle cx="300" cy="14" r="3.2" fill="#a9b9a4" opacity="0.95"/>
-    <circle cx="360" cy="22" r="5.4" fill="#c3a36a" opacity="1.0"/>
-    <circle cx="424" cy="13" r="4.2" fill="#c9c3d9" opacity="0.98"/>
-    <circle cx="330" cy="31" r="2.8" fill="#a9b9a4" opacity="0.85"/>
-    <circle cx="444" cy="26" r="2.6" fill="#c3a36a" opacity="0.78"/>
+    <circle class="d-a" cx="300" cy="14" r="3.2" fill="#a9b9a4" opacity="0.95"/>
+    <circle class="d-b" cx="360" cy="22" r="5.4" fill="#c3a36a" opacity="1"/>
+    <circle class="d-c" cx="424" cy="13" r="4.2" fill="#c9c3d9" opacity="0.98"/>
+    <circle class="d-d" cx="330" cy="31" r="2.8" fill="#a9b9a4" opacity="0.85"/>
+    <circle class="d-e" cx="444" cy="26" r="2.6" fill="#c3a36a" opacity="0.78"/>
   </g>
-  <path d="M 276 18.7 C 276 20.9 277.1 22 279.3 22 C 277.1 22 276 23.1 276 25.3 C 276 23.1 274.9 22 272.7 22 C 274.9 22 276 20.9 276 18.7 Z" fill="#b8935a" opacity="0.7"/>
-  <path d="M 468 18.7 C 468 20.9 469.1 22 471.3 22 C 469.1 22 468 23.1 468 25.3 C 468 23.1 466.9 22 464.7 22 C 466.9 22 468 20.9 468 18.7 Z" fill="#b8935a" opacity="0.7"/>
+  <!-- a pulse leaving the centre in both directions -->
+  <line x1="286" y1="22" x2="40" y2="22" stroke="#c3a36a" stroke-width="2" stroke-linecap="round"
+        stroke-dasharray="12 234" opacity="0" class="dtrace" />
+  <path class="d-c" d="M 276 18.7 C 276 20.9 277.1 22 279.3 22 C 277.1 22 276 23.1 276 25.3 C 276 23.1 274.9 22 272.7 22 C 274.9 22 276 20.9 276 18.7 Z" fill="#b8935a" opacity="0.7"/>
+  <path class="d-d" d="M 468 18.7 C 468 20.9 469.1 22 471.3 22 C 469.1 22 468 23.1 468 25.3 C 468 23.1 466.9 22 464.7 22 C 466.9 22 468 20.9 468 18.7 Z" fill="#b8935a" opacity="0.7"/>
 </svg>
