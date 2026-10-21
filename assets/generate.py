@@ -126,25 +126,25 @@ def banner():
 
 def divider():
     """Horizontal rule with a small constellation cluster at its centre."""
-    body = f"""  <g opacity="0.85">
-    <line x1="40" y1="22" x2="286" y2="22" stroke="{GOLD_D}" stroke-width="1.2" opacity="0.4" />
-    <line x1="434" y1="22" x2="680" y2="22" stroke="{GOLD_D}" stroke-width="1.2" opacity="0.4" />
-    <circle cx="40" cy="22" r="2" fill="{GOLD_D}" opacity="0.5" />
-    <circle cx="680" cy="22" r="2" fill="{GOLD_D}" opacity="0.5" />
+    body = f"""  <g opacity="0.9">
+    <line x1="40" y1="22" x2="286" y2="22" stroke="{GOLD_D}" stroke-width="1.3" opacity="0.62" />
+    <line x1="434" y1="22" x2="680" y2="22" stroke="{GOLD_D}" stroke-width="1.3" opacity="0.62" />
+    <circle cx="40" cy="22" r="2.4" fill="{GOLD_D}" opacity="0.7" />
+    <circle cx="680" cy="22" r="2.4" fill="{GOLD_D}" opacity="0.7" />
   </g>
   <g>
-    {link(300, 14, 360, 22, GOLD_D, 1.6, 0.7)}
-    {link(360, 22, 424, 13, GOLD_D, 1.6, 0.7)}
-    {link(360, 22, 330, 31, GOLD_D, 1.4, 0.6)}
-    {link(424, 13, 444, 26, GOLD_D, 1.2, 0.55)}
-    {node(300, 14, 3, SAGE, 0.9)}
-    {node(360, 22, 5, GOLD)}
-    {node(424, 13, 4, LAV, 0.95)}
-    {node(330, 31, 2.6, SAGE, 0.8)}
-    {node(444, 26, 2.4, GOLD, 0.7)}
+    {link(300, 14, 360, 22, GOLD_D, 1.8, 0.85)}
+    {link(360, 22, 424, 13, GOLD_D, 1.8, 0.85)}
+    {link(360, 22, 330, 31, GOLD_D, 1.5, 0.7)}
+    {link(424, 13, 444, 26, GOLD_D, 1.3, 0.65)}
+    {node(300, 14, 3.2, SAGE, 0.95)}
+    {node(360, 22, 5.4, GOLD)}
+    {node(424, 13, 4.2, LAV, 0.98)}
+    {node(330, 31, 2.8, SAGE, 0.85)}
+    {node(444, 26, 2.6, GOLD, 0.78)}
   </g>
-  {sparkle(276, 22, 0.5, GOLD_D, 0.6)}
-  {sparkle(468, 22, 0.5, GOLD_D, 0.6)}
+  {sparkle(276, 22, 0.55, GOLD_D, 0.7)}
+  {sparkle(468, 22, 0.55, GOLD_D, 0.7)}
 """
     return svg(
         720,
