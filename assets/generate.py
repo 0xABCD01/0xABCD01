@@ -32,6 +32,8 @@ GOLD_D = "#b8935a"  # darker gold, stays legible on a light background
 MONO = "'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace"
 
 # The graph the bug walks. Straight segments between nodes.
+# The terminal line lives in the bottom-left corner, well below the lowest
+# node, so the bug never walks through the text.
 WALK = [(106, 332), (246, 266), (306, 178), (626, 176), (909, 151), (1090, 92)]
 WALK_D = "M" + " L".join(f"{x} {y}" for x, y in WALK)
 
@@ -75,7 +77,7 @@ BANNER_CSS = """
     0%   { stroke-dashoffset: 0;    opacity: 0; }
     6%   { opacity: 0.9; }
     88%  { opacity: 0.9; }
-    100% { stroke-dashoffset: -1055; opacity: 0; }
+    100% { stroke-dashoffset: -1056; opacity: 0; }
   }
   @keyframes twinkle {
     0%, 100% { opacity: 0.32; }
@@ -179,7 +181,7 @@ def banner():
       <circle cx="2" cy="2" r="1.5" fill="{CREAM}" opacity="0.16" />
     </pattern>
     <clipPath id="typer">
-      <rect class="typer-mask" x="99" y="161" width="226" height="24" />
+      <rect class="typer-mask" x="99" y="373" width="226" height="24" />
     </clipPath>
   </defs>
 
@@ -195,6 +197,7 @@ def banner():
   <g>
     {link(106, 332, 626, 176, GOLD, 3, 0.9)}
     {link(106, 332, 306, 178, GOLD, 1.5, 0.55)}
+    {link(430, 250, 246, 266, GOLD, 1.5, 0.5)}
     {link(626, 176, 628, 145, CREAM, 2, 0.7)}
     {link(626, 176, 909, 151, CREAM, 2, 0.7)}
     {link(909, 151, 1090, 92, GOLD, 1.5, 0.58)}
@@ -204,12 +207,13 @@ def banner():
 
   <!-- a trace running the links -->
   <path d="{WALK_D}" fill="none" stroke="{CREAM}" stroke-width="2.6" stroke-linecap="round"
-        stroke-dasharray="16 1039" opacity="0" class="trace" />
+        stroke-dasharray="16 1040" opacity="0" class="trace" />
 
   <g>
     {node(106, 332, 4, GOLD, 0.95, "tw-a")}
     {node(246, 266, 10, GOLD, 1, "tw-b")}
     {node(306, 178, 7, SAGE, 1, "tw-c")}
+    {node(430, 250, 5, GOLD, 1, "tw-f")}
     {node(626, 176, 9, LAV, 1, "tw-d")}
     {node(628, 145, 4, CREAM, 0.8, "tw-e")}
     {node(909, 151, 9, LAV, 1, "tw-f")}
@@ -235,11 +239,11 @@ def banner():
   <!-- a terminal line, typing itself -->
   <g class="term-fade" font-family="{MONO}">
     <g clip-path="url(#typer)">
-      <text x="101" y="180" font-size="16" fill="{GOLD}">$ ./recon --subs --live</text>
+      <text x="101" y="392" font-size="16" fill="{GOLD}">$ ./recon --subs --live</text>
     </g>
     <!-- the cursor rides the typing edge -->
     <g clip-path="url(#typer)">
-      <rect class="cursor" x="316" y="166" width="10" height="18" fill="{GOLD}" opacity="0.9" />
+      <rect class="cursor" x="316" y="378" width="10" height="18" fill="{GOLD}" opacity="0.9" />
     </g>
   </g>
 

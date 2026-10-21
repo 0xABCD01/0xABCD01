@@ -3,7 +3,7 @@
     0%   { stroke-dashoffset: 0;    opacity: 0; }
     6%   { opacity: 0.9; }
     88%  { opacity: 0.9; }
-    100% { stroke-dashoffset: -1055; opacity: 0; }
+    100% { stroke-dashoffset: -1056; opacity: 0; }
   }
   @keyframes twinkle {
     0%, 100% { opacity: 0.32; }
@@ -91,7 +91,7 @@
       <circle cx="2" cy="2" r="1.5" fill="#f8f1e6" opacity="0.16" />
     </pattern>
     <clipPath id="typer">
-      <rect class="typer-mask" x="99" y="161" width="226" height="24" />
+      <rect class="typer-mask" x="99" y="373" width="226" height="24" />
     </clipPath>
   </defs>
 
@@ -107,6 +107,7 @@
   <g>
     <line x1="106" y1="332" x2="626" y2="176" stroke="#c3a36a" stroke-width="3" opacity="0.9" stroke-linecap="round"/>
     <line x1="106" y1="332" x2="306" y2="178" stroke="#c3a36a" stroke-width="1.5" opacity="0.55" stroke-linecap="round"/>
+    <line x1="430" y1="250" x2="246" y2="266" stroke="#c3a36a" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
     <line x1="626" y1="176" x2="628" y2="145" stroke="#f8f1e6" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
     <line x1="626" y1="176" x2="909" y2="151" stroke="#f8f1e6" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
     <line x1="909" y1="151" x2="1090" y2="92" stroke="#c3a36a" stroke-width="1.5" opacity="0.58" stroke-linecap="round"/>
@@ -116,12 +117,13 @@
 
   <!-- a trace running the links -->
   <path d="M106 332 L246 266 L306 178 L626 176 L909 151 L1090 92" fill="none" stroke="#f8f1e6" stroke-width="2.6" stroke-linecap="round"
-        stroke-dasharray="16 1039" opacity="0" class="trace" />
+        stroke-dasharray="16 1040" opacity="0" class="trace" />
 
   <g>
     <circle class="tw-a" cx="106" cy="332" r="4" fill="#c3a36a" opacity="0.95"/>
     <circle class="tw-b" cx="246" cy="266" r="10" fill="#c3a36a" opacity="1"/>
     <circle class="tw-c" cx="306" cy="178" r="7" fill="#a9b9a4" opacity="1"/>
+    <circle class="tw-f" cx="430" cy="250" r="5" fill="#c3a36a" opacity="1"/>
     <circle class="tw-d" cx="626" cy="176" r="9" fill="#c9c3d9" opacity="1"/>
     <circle class="tw-e" cx="628" cy="145" r="4" fill="#f8f1e6" opacity="0.8"/>
     <circle class="tw-f" cx="909" cy="151" r="9" fill="#c9c3d9" opacity="1"/>
@@ -157,11 +159,11 @@
   <!-- a terminal line, typing itself -->
   <g class="term-fade" font-family="'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace">
     <g clip-path="url(#typer)">
-      <text x="101" y="180" font-size="16" fill="#c3a36a">$ ./recon --subs --live</text>
+      <text x="101" y="392" font-size="16" fill="#c3a36a">$ ./recon --subs --live</text>
     </g>
     <!-- the cursor rides the typing edge -->
     <g clip-path="url(#typer)">
-      <rect class="cursor" x="316" y="166" width="10" height="18" fill="#c3a36a" opacity="0.9" />
+      <rect class="cursor" x="316" y="378" width="10" height="18" fill="#c3a36a" opacity="0.9" />
     </g>
   </g>
 
