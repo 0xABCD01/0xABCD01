@@ -30,8 +30,6 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-Fixes written after auditing the code, each with a reproduction first.
-
 | Project | Contribution | Status |
 |---|---|---|
 | symfony/symfony | [Strip the byte order mark at the start of a YAML stream](https://github.com/symfony/symfony/pull/67735) | Merged |
@@ -56,7 +54,6 @@ Fixes written after auditing the code, each with a reproduction first.
 
 - Building reproductions for Drupal 11.4.x advisories, one repository per release.
 - Turning the parts of pentesting I repeat by hand into small tools.
-- Auditing the libraries behind the security tools I use; the fixes go upstream as pull requests.
 
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
 
