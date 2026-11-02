@@ -12,7 +12,7 @@
 
 # Hafiar
 
-Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand.
+Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand. I also audit open-source libraries and send the fixes upstream.
 
 <p align="center">
   <img src="./assets/divider.svg" alt="" width="560">
@@ -28,6 +28,20 @@ Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabili
 
 The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all three core advisories that 11.4.9 shipped with, including the two stored XSS issues. Every proof of concept runs against a local container, never a third-party host.
 
+## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
+
+Fixes written after auditing the code, each with a reproduction first.
+
+| Project | Contribution | Status |
+|---|---|---|
+| symfony/symfony | [Strip the byte order mark at the start of a YAML stream](https://github.com/symfony/symfony/pull/67735) | Merged |
+| symfony/symfony | [Skip empty lines when decoding CSV in the Serializer](https://github.com/symfony/symfony/pull/67752) | Merged |
+| symfony/symfony | [Fix Glob patterns whose bracket expression contains a slash](https://github.com/symfony/symfony/pull/67785) | Open |
+| projectdiscovery/dsl | [Return errors instead of panicking on negative repeat counts and substr starts](https://github.com/projectdiscovery/dsl/pull/368) | Open |
+| WordPress/sqlite-database-integration | [Quote SQLite identifiers in LOCK TABLES, SHOW TABLES, and compound-PK indexes](https://github.com/WordPress/sqlite-database-integration/pull/599) | Open |
+| WordPress/sqlite-database-integration | [Split MySQL Proxy result packets at the maximum packet length](https://github.com/WordPress/sqlite-database-integration/pull/601) | Open |
+| WordPress/sqlite-database-integration | [Pass workflow values via env in release workflows](https://github.com/WordPress/sqlite-database-integration/pull/604) | Open |
+
 ## <img src="./assets/icon-tools.svg" width="20" height="20" align="left" alt=""> Tools
 
 | Repository | What it does |
@@ -42,6 +56,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 - Building reproductions for Drupal 11.4.x advisories, one repository per release.
 - Turning the parts of pentesting I repeat by hand into small tools.
+- Auditing the libraries behind the security tools I use; the fixes go upstream as pull requests.
 
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
 

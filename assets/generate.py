@@ -411,6 +411,19 @@ def icon_tools():
     return badge(glyph, "Tools icon", 0.8)
 
 
+def icon_code():
+    glyph = f"""  <g stroke="{GOLD}" stroke-width="1.5" fill="none" opacity="0.95" stroke-linecap="round">
+    <path d="M8.5 9.8 V14.2" />
+    <path d="M17.5 9.8 C17.5 13 8.5 11.8 8.5 13.6" />
+  </g>
+  {node(8.5, 7.5, 2.3, GOLD)}
+  {node(17.5, 7.5, 2.3, SAGE)}
+  {node(8.5, 16.5, 2.3, LAV)}
+  {sparkle(19.5, 17.5, 0.5, LAV, 0.9)}
+"""
+    return badge(glyph, "Open source icon", 1.6)
+
+
 def icon_now():
     glyph = f"""  <g stroke="{GOLD}" stroke-width="1.6" fill="none" opacity="0.95" stroke-linecap="round">
     <circle cx="14" cy="14" r="8.2" />
@@ -508,6 +521,7 @@ def main():
     write("mark.svg", mark())
     write("icon-research.svg", icon_research())
     write("icon-tools.svg", icon_tools())
+    write("icon-code.svg", icon_code())
     write("icon-now.svg", icon_now())
     write("icon-contact.svg", icon_contact())
     write("roles.svg", role_strip())
