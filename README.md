@@ -15,7 +15,7 @@
 Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand. I also audit open-source libraries and send the fixes upstream.
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Breaking+things+locally%2C+politely.;Sending+the+fixes+upstream.;Currently+hunting+a+first+CVE." alt="Breaking things locally, politely. Sending the fixes upstream. Currently hunting a first CVE.">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Breaking+things+locally%2C+politely.;Sending+the+fixes+upstream.;Reading+changelogs+so+you+don%27t+have+to." alt="Breaking things locally, politely. Sending the fixes upstream. Reading changelogs so you don't have to.">
 </p>
 
 <p align="center">
@@ -77,7 +77,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 ## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
 
 - Building reproductions for Drupal 11.4.x advisories, one repository per release.
-- Hunting a first CVE in fresh open-source releases. Five reports are sitting with vendors and maintainers right now.
+- Auditing fresh open-source releases. Five reports are sitting with vendors and maintainers right now.
 - Turning the parts of pentesting I repeat by hand into small tools.
 
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
