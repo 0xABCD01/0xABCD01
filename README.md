@@ -48,8 +48,8 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | WordPress/sqlite-database-integration | [Pass workflow values via env in release workflows](https://github.com/WordPress/sqlite-database-integration/pull/604) | Open |
 
 <p align="center">
-  <img height="180" src="https://github-readme-stats.vercel.app/api?username=0xABCD01&show_icons=true&include_all_commits=true&count_private=true&bg_color=FBF3E4&title_color=20304D&text_color=3A3A3A&icon_color=C9962E&border_color=E4D6B8" alt="GitHub statistics for 0xABCD01">
-  <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=0xABCD01&layout=compact&bg_color=FBF3E4&title_color=20304D&text_color=3A3A3A&border_color=E4D6B8" alt="Most used languages">
+  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
+  <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=0xABCD01" alt="Top languages by repository">
 </p>
 
 <p align="center">
