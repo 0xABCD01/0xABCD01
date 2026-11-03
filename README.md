@@ -15,6 +15,10 @@
 Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand. I also audit open-source libraries and send the fixes upstream.
 
 <p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Breaking+things+locally%2C+politely.;Sending+the+fixes+upstream.;Currently+hunting+a+first+CVE." alt="Breaking things locally, politely. Sending the fixes upstream. Currently hunting a first CVE.">
+</p>
+
+<p align="center">
   <img src="./assets/divider.svg" alt="" width="560">
 </p>
 
@@ -43,6 +47,23 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | WordPress/sqlite-database-integration | [Split MySQL Proxy result packets at the maximum packet length](https://github.com/WordPress/sqlite-database-integration/pull/601) | Open |
 | WordPress/sqlite-database-integration | [Pass workflow values via env in release workflows](https://github.com/WordPress/sqlite-database-integration/pull/604) | Open |
 
+<p align="center">
+  <img height="180" src="https://github-readme-stats.vercel.app/api?username=0xABCD01&show_icons=true&include_all_commits=true&count_private=true&bg_color=FBF3E4&title_color=20304D&text_color=3A3A3A&icon_color=C9962E&border_color=E4D6B8" alt="GitHub statistics for 0xABCD01">
+  <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=0xABCD01&layout=compact&bg_color=FBF3E4&title_color=20304D&text_color=3A3A3A&border_color=E4D6B8" alt="Most used languages">
+</p>
+
+<p align="center">
+  <img src="https://streak-stats.demolab.com?user=0xABCD01&background=FBF3E4&stroke=E4D6B8&ring=C9962E&fire=C9962E&currStreakLabel=20304D&sideLabels=3A3A3A&currStreakNum=20304D&sideNums=20304D&dates=6B6B6B" alt="Contribution streak">
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake.svg">
+    <img alt="A snake eating its way through the contribution graph" src="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake.svg">
+  </picture>
+</p>
+
 ## <img src="./assets/icon-tools.svg" width="20" height="20" align="left" alt=""> Tools
 
 | Repository | What it does |
@@ -56,6 +77,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 ## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
 
 - Building reproductions for Drupal 11.4.x advisories, one repository per release.
+- Hunting a first CVE in fresh open-source releases. Five reports are sitting with vendors and maintainers right now.
 - Turning the parts of pentesting I repeat by hand into small tools.
 
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
