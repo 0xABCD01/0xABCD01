@@ -41,8 +41,8 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | symfony/symfony | [Fix Glob patterns whose bracket expression contains a slash](https://github.com/symfony/symfony/pull/67785) | Merged |
 | projectdiscovery/dsl | [Return errors instead of panicking on negative repeat counts and substr starts](https://github.com/projectdiscovery/dsl/pull/368) | Merged |
 | projectdiscovery/nuclei | [Bump govaluate and antchfx/xpath past two template panics](https://github.com/projectdiscovery/nuclei/pull/7998) | Merged |
-| projectdiscovery/nuclei | [Add a regression test for the govaluate string concatenation bug](https://github.com/projectdiscovery/nuclei/pull/8013) | Open |
-| symfony/ux | [Let LiveComponent collections contain null items during (de)hydration](https://github.com/symfony/ux/pull/4194) | Open |
+| projectdiscovery/nuclei | [Add a regression test for the govaluate string concatenation bug](https://github.com/projectdiscovery/nuclei/pull/8013) | Merged |
+| symfony/ux | [Let LiveComponent collections contain null items during (de)hydration](https://github.com/symfony/ux/pull/4194) | Merged |
 | WordPress/sqlite-database-integration | [Quote SQLite identifiers in LOCK TABLES, SHOW TABLES, and compound-PK indexes](https://github.com/WordPress/sqlite-database-integration/pull/599) | Merged |
 | WordPress/sqlite-database-integration | [Split MySQL Proxy result packets at the maximum packet length](https://github.com/WordPress/sqlite-database-integration/pull/601) | Open |
 | WordPress/sqlite-database-integration | [Pass workflow values via env in release workflows](https://github.com/WordPress/sqlite-database-integration/pull/604) | Open |
