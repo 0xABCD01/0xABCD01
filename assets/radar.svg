@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="An animated radar: a gold sweep beam rotates and contact blips light up as it passes them">
+  <defs>
+    <linearGradient id="beam" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#c3a36a" stop-opacity="0.05"/>
+      <stop offset="1" stop-color="#c3a36a" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+  <!-- scope rings and crosshairs -->
+  <g fill="none">
+    <circle cx="100" cy="100" r="90" stroke="#b8935a" stroke-width="1.6" opacity="0.85"/>
+    <circle cx="100" cy="100" r="64" stroke="#c9c3d9" stroke-width="1" opacity="0.55"/>
+    <circle cx="100" cy="100" r="38" stroke="#a9b9a4" stroke-width="1" stroke-dasharray="4 5" opacity="0.7"/>
+    <line x1="100" y1="8" x2="100" y2="192" stroke="#b8935a" stroke-width="0.7" opacity="0.35"/>
+    <line x1="8" y1="100" x2="192" y2="100" stroke="#b8935a" stroke-width="0.7" opacity="0.35"/>
+  </g>
+
+  <!-- trailing afterglow wedge -->
+  <path d="M100,100 L100,10 A90,90 0 0 1 142,26 Z" fill="#c3a36a" opacity="0.10">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="5s" begin="-0.45s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- main sweep beam -->
+  <path d="M100,100 L100,10 A90,90 0 0 1 163,37 Z" fill="url(#beam)">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="5s" repeatCount="indefinite"/>
+  </path>
+  <line x1="100" y1="100" x2="100" y2="10" stroke="#c3a36a" stroke-width="2" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="5s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- blips: each flashes as the beam reaches its bearing, then fades until the next pass -->
+  <g fill="#c3a36a">
+    <circle cx="150" cy="70" r="3.4" opacity="0">
+      <animate attributeName="opacity" values="0;1;0.2;0" keyTimes="0;0.05;0.55;1" dur="5s" begin="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="150" cy="70" r="3.4" fill="none" stroke="#c3a36a" opacity="0">
+      <animate attributeName="r" values="3.4;12" dur="5s" begin="0.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0;0" keyTimes="0;0.25;1" dur="5s" begin="0.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <g fill="#c9c3d9">
+    <circle cx="128" cy="142" r="3" opacity="0">
+      <animate attributeName="opacity" values="0;1;0.2;0" keyTimes="0;0.05;0.55;1" dur="5s" begin="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="128" cy="142" r="3" fill="none" stroke="#c9c3d9" opacity="0">
+      <animate attributeName="r" values="3;11" dur="5s" begin="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0;0" keyTimes="0;0.25;1" dur="5s" begin="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <g fill="#a9b9a4">
+    <circle cx="62" cy="128" r="3.2" opacity="0">
+      <animate attributeName="opacity" values="0;1;0.2;0" keyTimes="0;0.05;0.55;1" dur="5s" begin="3.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="62" cy="128" r="3.2" fill="none" stroke="#a9b9a4" opacity="0">
+      <animate attributeName="r" values="3.2;12" dur="5s" begin="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0;0" keyTimes="0;0.25;1" dur="5s" begin="3.2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <g fill="#c3a36a">
+    <circle cx="74" cy="58" r="2.8" opacity="0">
+      <animate attributeName="opacity" values="0;1;0.2;0" keyTimes="0;0.05;0.55;1" dur="5s" begin="4.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="74" cy="58" r="2.8" fill="none" stroke="#c3a36a" opacity="0">
+      <animate attributeName="r" values="2.8;10" dur="5s" begin="4.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0;0" keyTimes="0;0.25;1" dur="5s" begin="4.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- hub -->
+  <circle cx="100" cy="100" r="4" fill="#c3a36a">
+    <animate attributeName="opacity" values="1;0.45;1" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

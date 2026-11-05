@@ -22,6 +22,10 @@ Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabili
   <img src="./assets/divider.svg" alt="" width="560">
 </p>
 
+<p align="center">
+  <img src="./assets/radar.svg" alt="An animated radar sweep with contacts lighting up as the beam passes them" width="180">
+</p>
+
 ## <img src="./assets/icon-research.svg" width="20" height="20" align="left" alt=""> Research
 
 | Advisory | What it is | Score |
