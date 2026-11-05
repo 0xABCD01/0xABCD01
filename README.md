@@ -46,6 +46,15 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | WordPress/sqlite-database-integration | [Quote SQLite identifiers in LOCK TABLES, SHOW TABLES, and compound-PK indexes](https://github.com/WordPress/sqlite-database-integration/pull/599) | Merged |
 | WordPress/sqlite-database-integration | [Split MySQL Proxy result packets at the maximum packet length](https://github.com/WordPress/sqlite-database-integration/pull/601) | Open |
 | WordPress/sqlite-database-integration | [Pass workflow values via env in release workflows](https://github.com/WordPress/sqlite-database-integration/pull/604) | Open |
+| pypi/warehouse | [Fix footer color contrast and landmark coverage](https://github.com/pypi/warehouse/pull/20882) | Open |
+| pypi/warehouse | [Make search-button focus visible and stop the classifier filter trapping keyboard focus](https://github.com/pypi/warehouse/pull/20884) | Open |
+| pypi/inspector | [Normalize archive member names so bad directory entries are browsable](https://github.com/pypi/inspector/pull/336) | Open |
+| Panniantong/agent-reach | [Treat an all-NOT_FOUND live test as a stale sample, not a broken channel](https://github.com/Panniantong/agent-reach/pull/909) | Open |
+| huggingface/transformers | [Fix CLAP loss double-counting the text-to-audio direction](https://github.com/huggingface/transformers/pull/50319) | Open |
+| dwisiswant0/apkleaks | [Stop the IP address pattern truncating the last octet](https://github.com/dwisiswant0/apkleaks/pull/107) | Open |
+| dwisiswant0/apkleaks | [Stop the CTF flag pattern matching plain CSS rules](https://github.com/dwisiswant0/apkleaks/pull/108) | Open |
+| thedotmack/claude-mem | [Keep the doc_type filter out of the semantic search fallback query](https://github.com/thedotmack/claude-mem/pull/5355) | Open |
+| thedotmack/claude-mem | [Park queued messages at the process hard cap instead of discarding them](https://github.com/thedotmack/claude-mem/pull/5388) | Open |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
