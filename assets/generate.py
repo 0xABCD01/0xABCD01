@@ -19,7 +19,7 @@ and the SVG geometry properties are animated, so the motion stays cheap.
 
 import os
 
-ASSETS = "/tmp/opencode/profrepo/assets"
+ASSETS = os.path.dirname(os.path.abspath(__file__))
 
 NAVY_1 = "#18253d"
 NAVY_2 = "#24262b"
@@ -308,6 +308,8 @@ def divider():
   <!-- a pulse leaving the centre in both directions -->
   <line x1="286" y1="22" x2="40" y2="22" stroke="{GOLD}" stroke-width="2" stroke-linecap="round"
         stroke-dasharray="12 234" opacity="0" class="dtrace" />
+  <line x1="434" y1="22" x2="680" y2="22" stroke="{GOLD}" stroke-width="2" stroke-linecap="round"
+        stroke-dasharray="12 234" opacity="0" class="dtrace" style="animation-delay:1.8s" />
   {sparkle(276, 22, 0.55, GOLD_D, 0.7, "d-c")}
   {sparkle(468, 22, 0.55, GOLD_D, 0.7, "d-d")}
 """
@@ -328,10 +330,18 @@ MARK_CSS = """
     0%, 100% { opacity: 0.3; }
     50%      { opacity: 1; }
   }
+  @keyframes morbit {
+    to { transform: rotate(360deg); }
+  }
   .m-a { animation: mblink 3.4s ease-in-out infinite; }
   .m-b { animation: mblink 4.2s ease-in-out 0.8s infinite; }
   .m-c { animation: mblink 3.8s ease-in-out 1.6s infinite; }
   .m-d { animation: mblink 4.6s ease-in-out 0.4s infinite; }
+  .m-orbit {
+    transform-box: view-box;
+    transform-origin: 27px 19px;
+    animation: morbit 9s linear infinite;
+  }
 """
 
 
@@ -345,6 +355,11 @@ def mark():
   {node(46, 18, 3.4, LAV, 0.95, "m-c")}
   {node(30, 30, 2.2, SAGE, 0.8, "m-d")}
   {sparkle(50, 32, 0.45, GOLD_D, 0.6, "m-a")}
+  <!-- two small satellites circling the cluster -->
+  <g class="m-orbit">
+    <circle cx="27" cy="1" r="1.7" fill="{GOLD}" opacity="0.85" />
+    <circle cx="27" cy="37" r="1.3" fill="{SAGE}" opacity="0.8" />
+  </g>
 """
     return svg(
         58,
@@ -505,6 +520,120 @@ def role_strip():
     )
 
 
+# ---------------------------------------------------------- signal pulse ----
+
+PULSE_CSS = """
+  @keyframes psend {
+    0%   { stroke-dashoffset: 0;    opacity: 0; }
+    5%   { opacity: 0.95; }
+    92%  { opacity: 0.95; }
+    100% { stroke-dashoffset: -1000; opacity: 0; }
+  }
+  @keyframes pblink {
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 1; }
+  }
+  .psend { animation: psend 4.6s linear infinite; }
+  .p-a { animation: pblink 3.1s ease-in-out infinite; }
+  .p-b { animation: pblink 3.8s ease-in-out 0.9s infinite; }
+  .p-c { animation: pblink 4.4s ease-in-out 1.8s infinite; }
+"""
+
+# One heartbeat per half: flat, spike up, dip below, back to flat.
+PULSE_D = (
+    "M0 26 H196 l9 -15 l11 30 l9 -15 H452 l9 -15 l11 30 l9 -15 H720"
+)
+
+
+def pulse():
+    body = f"""  <style>{PULSE_CSS}  </style>
+  <path d="{PULSE_D}" fill="none" stroke="{GOLD_D}" stroke-width="1.3" opacity="0.55"
+        stroke-linejoin="round" stroke-linecap="round" />
+  <!-- a bright segment travelling the line, normalised by pathLength -->
+  <path d="{PULSE_D}" fill="none" stroke="{GOLD}" stroke-width="2.2" opacity="0"
+        stroke-linejoin="round" stroke-linecap="round"
+        pathLength="1000" stroke-dasharray="34 966" class="psend" />
+  {node(196, 26, 2.6, SAGE, 0.9, "p-a")}
+  {node(452, 26, 2.6, LAV, 0.95, "p-b")}
+  {node(720, 26, 2.4, GOLD_D, 0.8, "p-c")}
+  {sparkle(330, 12, 0.5, GOLD_D, 0.65, "p-b")}
+  {sparkle(590, 40, 0.5, GOLD_D, 0.6, "p-c")}
+"""
+    return svg(
+        720,
+        52,
+        body,
+        "Signal pulse divider",
+        "A thin signal line with two heartbeat spikes; a bright pulse travels "
+        "along it from left to right.",
+    )
+
+
+# ------------------------------------------------------------------ waves ----
+
+WAVE_CSS = """
+  @keyframes wdrift-a {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-360px); }
+  }
+  @keyframes wdrift-b {
+    from { transform: translateX(-360px); }
+    to   { transform: translateX(0); }
+  }
+  @keyframes wtwinkle {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 1; }
+  }
+  .wv-a { animation: wdrift-a 15s linear infinite; }
+  .wv-b { animation: wdrift-b 10.5s linear infinite; }
+  .wv-c { animation: wdrift-a 7s linear infinite; }
+  .wv-t1 { animation: wtwinkle 4.2s ease-in-out infinite; }
+  .wv-t2 { animation: wtwinkle 5.3s ease-in-out 1.3s infinite; }
+  .wv-t3 { animation: wtwinkle 4.8s ease-in-out 2.2s infinite; }
+"""
+
+
+def wave_path(base_y, amp):
+    """One sine wave, period 360 (crest half + trough half, so the slope is
+    continuous at every join), drawn past both edges of a 720-wide viewBox
+    so a 360px translate loops seamlessly."""
+    seg = []
+    x = -360
+    while x < 1080:
+        seg.append(f"C {x + 45} {base_y - amp} {x + 135} {base_y - amp} {x + 180} {base_y}")
+        seg.append(f"C {x + 225} {base_y + amp} {x + 315} {base_y + amp} {x + 360} {base_y}")
+        x += 360
+    d = f"M-360 {base_y} " + " ".join(seg)
+    return d + " L1080 84 L-360 84 Z"
+
+
+def waves():
+    body = f"""  <style>{WAVE_CSS}  </style>
+  <g class="wv-a">
+    <path d="{wave_path(38, 13)}" fill="{SAGE}" opacity="0.28" />
+  </g>
+  <g class="wv-b">
+    <path d="{wave_path(48, 11)}" fill="{LAV}" opacity="0.32" />
+  </g>
+  <g class="wv-c">
+    <path d="{wave_path(58, 9)}" fill="{GOLD}" opacity="0.38" />
+  </g>
+  {node(150, 30, 2.6, GOLD_D, 0.85, "wv-t1")}
+  {node(388, 22, 2.2, SAGE, 0.9, "wv-t2")}
+  {node(612, 32, 2.6, LAV, 0.9, "wv-t3")}
+  {sparkle(268, 16, 0.5, GOLD_D, 0.7, "wv-t2")}
+  {sparkle(512, 14, 0.45, GOLD_D, 0.65, "wv-t3")}
+"""
+    return svg(
+        720,
+        84,
+        body,
+        "Closing waves",
+        "Three layered waves in sage, lavender, and gold drifting past each "
+        "other, with small nodes twinkling above them.",
+    )
+
+
 # ----------------------------------------------------------------- write ----
 
 def write(name, content):
@@ -525,6 +654,8 @@ def main():
     write("icon-now.svg", icon_now())
     write("icon-contact.svg", icon_contact())
     write("roles.svg", role_strip())
+    write("pulse.svg", pulse())
+    write("waves.svg", waves())
 
 
 if __name__ == "__main__":

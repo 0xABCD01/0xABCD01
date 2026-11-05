@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 52" role="img" aria-labelledby="t d"><title>Signal pulse divider</title><desc>A thin signal line with two heartbeat spikes; a bright pulse travels along it from left to right.</desc>  <style>
+  @keyframes psend {
+    0%   { stroke-dashoffset: 0;    opacity: 0; }
+    5%   { opacity: 0.95; }
+    92%  { opacity: 0.95; }
+    100% { stroke-dashoffset: -1000; opacity: 0; }
+  }
+  @keyframes pblink {
+    0%, 100% { opacity: 0.45; }
+    50%      { opacity: 1; }
+  }
+  .psend { animation: psend 4.6s linear infinite; }
+  .p-a { animation: pblink 3.1s ease-in-out infinite; }
+  .p-b { animation: pblink 3.8s ease-in-out 0.9s infinite; }
+  .p-c { animation: pblink 4.4s ease-in-out 1.8s infinite; }
+  </style>
+  <path d="M0 26 H196 l9 -15 l11 30 l9 -15 H452 l9 -15 l11 30 l9 -15 H720" fill="none" stroke="#b8935a" stroke-width="1.3" opacity="0.55"
+        stroke-linejoin="round" stroke-linecap="round" />
+  <!-- a bright segment travelling the line, normalised by pathLength -->
+  <path d="M0 26 H196 l9 -15 l11 30 l9 -15 H452 l9 -15 l11 30 l9 -15 H720" fill="none" stroke="#c3a36a" stroke-width="2.2" opacity="0"
+        stroke-linejoin="round" stroke-linecap="round"
+        pathLength="1000" stroke-dasharray="34 966" class="psend" />
+  <circle class="p-a" cx="196" cy="26" r="2.6" fill="#a9b9a4" opacity="0.9"/>
+  <circle class="p-b" cx="452" cy="26" r="2.6" fill="#c9c3d9" opacity="0.95"/>
+  <circle class="p-c" cx="720" cy="26" r="2.4" fill="#b8935a" opacity="0.8"/>
+  <path class="p-b" d="M 330 9.0 C 330 11.0 331.0 12 333.0 12 C 331.0 12 330 13.0 330 15.0 C 330 13.0 329.0 12 327.0 12 C 329.0 12 330 11.0 330 9.0 Z" fill="#b8935a" opacity="0.65"/>
+  <path class="p-c" d="M 590 37.0 C 590 39.0 591.0 40 593.0 40 C 591.0 40 590 41.0 590 43.0 C 590 41.0 589.0 40 587.0 40 C 589.0 40 590 39.0 590 37.0 Z" fill="#b8935a" opacity="0.6"/>
+</svg>

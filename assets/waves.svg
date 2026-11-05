@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 84" role="img" aria-labelledby="t d"><title>Closing waves</title><desc>Three layered waves in sage, lavender, and gold drifting past each other, with small nodes twinkling above them.</desc>  <style>
+  @keyframes wdrift-a {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-360px); }
+  }
+  @keyframes wdrift-b {
+    from { transform: translateX(-360px); }
+    to   { transform: translateX(0); }
+  }
+  @keyframes wtwinkle {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 1; }
+  }
+  .wv-a { animation: wdrift-a 15s linear infinite; }
+  .wv-b { animation: wdrift-b 10.5s linear infinite; }
+  .wv-c { animation: wdrift-a 7s linear infinite; }
+  .wv-t1 { animation: wtwinkle 4.2s ease-in-out infinite; }
+  .wv-t2 { animation: wtwinkle 5.3s ease-in-out 1.3s infinite; }
+  .wv-t3 { animation: wtwinkle 4.8s ease-in-out 2.2s infinite; }
+  </style>
+  <g class="wv-a">
+    <path d="M-360 38 C -315 25 -225 25 -180 38 C -135 51 -45 51 0 38 C 45 25 135 25 180 38 C 225 51 315 51 360 38 C 405 25 495 25 540 38 C 585 51 675 51 720 38 C 765 25 855 25 900 38 C 945 51 1035 51 1080 38 L1080 84 L-360 84 Z" fill="#a9b9a4" opacity="0.28" />
+  </g>
+  <g class="wv-b">
+    <path d="M-360 48 C -315 37 -225 37 -180 48 C -135 59 -45 59 0 48 C 45 37 135 37 180 48 C 225 59 315 59 360 48 C 405 37 495 37 540 48 C 585 59 675 59 720 48 C 765 37 855 37 900 48 C 945 59 1035 59 1080 48 L1080 84 L-360 84 Z" fill="#c9c3d9" opacity="0.32" />
+  </g>
+  <g class="wv-c">
+    <path d="M-360 58 C -315 49 -225 49 -180 58 C -135 67 -45 67 0 58 C 45 49 135 49 180 58 C 225 67 315 67 360 58 C 405 49 495 49 540 58 C 585 67 675 67 720 58 C 765 49 855 49 900 58 C 945 67 1035 67 1080 58 L1080 84 L-360 84 Z" fill="#c3a36a" opacity="0.38" />
+  </g>
+  <circle class="wv-t1" cx="150" cy="30" r="2.6" fill="#b8935a" opacity="0.85"/>
+  <circle class="wv-t2" cx="388" cy="22" r="2.2" fill="#a9b9a4" opacity="0.9"/>
+  <circle class="wv-t3" cx="612" cy="32" r="2.6" fill="#c9c3d9" opacity="0.9"/>
+  <path class="wv-t2" d="M 268 13.0 C 268 15.0 269.0 16 271.0 16 C 269.0 16 268 17.0 268 19.0 C 268 17.0 267.0 16 265.0 16 C 267.0 16 268 15.0 268 13.0 Z" fill="#b8935a" opacity="0.7"/>
+  <path class="wv-t3" d="M 512 11.3 C 512 13.1 512.9 14 514.7 14 C 512.9 14 512 14.9 512 16.7 C 512 14.9 511.1 14 509.3 14 C 511.1 14 512 13.1 512 11.3 Z" fill="#b8935a" opacity="0.65"/>
+</svg>

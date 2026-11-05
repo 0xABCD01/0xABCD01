@@ -95,6 +95,10 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | [cloud-file-manager](https://github.com/0xABCD01/cloud-file-manager) | Self-hosted file manager with encryption at rest, per-file permissions, and access logs. |
 | [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
+<p align="center">
+  <img src="./assets/pulse.svg" alt="An animated signal line with two heartbeat spikes, a bright pulse travelling along it" width="560">
+</p>
+
 ## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
 
 - Building reproductions for Drupal 11.4.x advisories, one repository per release.
@@ -112,4 +116,8 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 <p align="center">
   <img src="./assets/mark.svg" alt="" width="52">
+</p>
+
+<p align="center">
+  <img src="./assets/waves.svg" alt="Three layered waves in sage, lavender, and gold drifting past each other" width="100%">
 </p>

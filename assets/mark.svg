@@ -3,10 +3,18 @@
     0%, 100% { opacity: 0.3; }
     50%      { opacity: 1; }
   }
+  @keyframes morbit {
+    to { transform: rotate(360deg); }
+  }
   .m-a { animation: mblink 3.4s ease-in-out infinite; }
   .m-b { animation: mblink 4.2s ease-in-out 0.8s infinite; }
   .m-c { animation: mblink 3.8s ease-in-out 1.6s infinite; }
   .m-d { animation: mblink 4.6s ease-in-out 0.4s infinite; }
+  .m-orbit {
+    transform-box: view-box;
+    transform-origin: 27px 19px;
+    animation: morbit 9s linear infinite;
+  }
   </style>
   <line x1="6" y1="20" x2="26" y2="9" stroke="#b8935a" stroke-width="1.5" opacity="0.7" stroke-linecap="round"/>
   <line x1="26" y1="9" x2="46" y2="18" stroke="#b8935a" stroke-width="1.5" opacity="0.7" stroke-linecap="round"/>
@@ -16,4 +24,9 @@
   <circle class="m-c" cx="46" cy="18" r="3.4" fill="#c9c3d9" opacity="0.95"/>
   <circle class="m-d" cx="30" cy="30" r="2.2" fill="#a9b9a4" opacity="0.8"/>
   <path class="m-a" d="M 50 29.3 C 50 31.1 50.9 32 52.7 32 C 50.9 32 50 32.9 50 34.7 C 50 32.9 49.1 32 47.3 32 C 49.1 32 50 31.1 50 29.3 Z" fill="#b8935a" opacity="0.6"/>
+  <!-- two small satellites circling the cluster -->
+  <g class="m-orbit">
+    <circle cx="27" cy="1" r="1.7" fill="#c3a36a" opacity="0.85" />
+    <circle cx="27" cy="37" r="1.3" fill="#a9b9a4" opacity="0.8" />
+  </g>
 </svg>
