@@ -89,6 +89,10 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 - Auditing fresh open-source releases. Five reports are sitting with vendors and maintainers right now.
 - Turning the parts of pentesting I repeat by hand into small tools.
 
+<p align="center">
+  <img src="./assets/constellation.svg" alt="An animated constellation: stars twinkle while a line draws itself between them, and a shooting star crosses now and then" width="100%">
+</p>
+
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
 
 - X: [@VortexXzy](https://x.com/VortexXzy)
