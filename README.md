@@ -65,6 +65,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Persist SessionStart toggles and accept zero context counts via POST /api/settings](https://github.com/thedotmack/claude-mem/pull/5393) | Merged |
 | thedotmack/claude-mem | [Discard a stalled session's buffered work once its resumes are spent](https://github.com/thedotmack/claude-mem/pull/5414) | Merged |
 | thedotmack/claude-mem | [Keep context reads working when the WAL index cannot be established](https://github.com/thedotmack/claude-mem/pull/5432) | Merged |
+| thedotmack/claude-mem | [Run the My Work refresh on the configured provider's agent first](https://github.com/thedotmack/claude-mem/pull/5436) | Merged |
 | apache/httpd | [Bind mod_authn_socache cache keys to the authentication domain](https://github.com/apache/httpd/pull/930) | Open |
 | ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) | Open |
 | ClickHouse/ClickHouse | [Honor glob excludes and not_exists_ok in praktika path traversal for job digests](https://github.com/ClickHouse/ClickHouse/pull/129595) | Open |
