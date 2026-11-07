@@ -70,7 +70,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) | Open |
 | ClickHouse/ClickHouse | [Honor glob excludes and not_exists_ok in praktika path traversal for job digests](https://github.com/ClickHouse/ClickHouse/pull/129595) | Open |
 | caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) | Open |
-| thedotmack/claude-mem | [Ship better-auth in the plugin install and create its auth tables](https://github.com/thedotmack/claude-mem/pull/5455) | Open |
+| thedotmack/claude-mem | [Ship better-auth in the plugin install and create its auth tables](https://github.com/thedotmack/claude-mem/pull/5455) | Merged |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
