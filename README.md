@@ -69,7 +69,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | apache/httpd | [Bind mod_authn_socache cache keys to the authentication domain](https://github.com/apache/httpd/pull/930) | Open |
 | ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) | Open |
 | ClickHouse/ClickHouse | [Honor glob excludes and not_exists_ok in praktika path traversal for job digests](https://github.com/ClickHouse/ClickHouse/pull/129595) | Open |
-| caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) | Open |
+| caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) | Merged |
 | thedotmack/claude-mem | [Ship better-auth in the plugin install and create its auth tables](https://github.com/thedotmack/claude-mem/pull/5455) | Merged |
 | micropython/micropython | [Support converting int subclass instances to float](https://github.com/micropython/micropython/pull/19904) | Open |
 | charmbracelet/x | [Stop the ANSI decoder panicking on sequences with more than 32 parameters](https://github.com/charmbracelet/x/pull/1040) | Open |
