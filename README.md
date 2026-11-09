@@ -74,6 +74,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | micropython/micropython | [Support converting int subclass instances to float](https://github.com/micropython/micropython/pull/19904) | Open |
 | charmbracelet/x | [Stop the ANSI decoder panicking on sequences with more than 32 parameters](https://github.com/charmbracelet/x/pull/1040) | Open |
 | composer/composer | [Use recorded install paths when building the plugin runtime autoloader](https://github.com/composer/composer/pull/13250) | Open |
+| sherlock-project/sherlock | [Stop usernames escaping the output folder in result filenames](https://github.com/sherlock-project/sherlock/pull/3211) | Open |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
