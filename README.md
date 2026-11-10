@@ -72,7 +72,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) | Merged |
 | caddyserver/caddy | [Fail fast at provision time when a client auth verify mode has no trust pool](https://github.com/caddyserver/caddy/pull/8403) | Open |
 | thedotmack/claude-mem | [Ship better-auth in the plugin install and create its auth tables](https://github.com/thedotmack/claude-mem/pull/5455) | Merged |
-| thedotmack/claude-mem | [Fall back to the system locale for My Work focus areas when the text language setting is empty](https://github.com/thedotmack/claude-mem/pull/5669) | Open |
+| thedotmack/claude-mem | [Fall back to the system locale for My Work focus areas when the text language setting is empty](https://github.com/thedotmack/claude-mem/pull/5669) | Merged |
 | thedotmack/claude-mem | [Migrate stale PreToolUse/PreInvocation hooks in place on Antigravity](https://github.com/thedotmack/claude-mem/pull/5670) | Merged |
 | micropython/micropython | [Support converting int subclass instances to float](https://github.com/micropython/micropython/pull/19904) | Open |
 | charmbracelet/x | [Stop the ANSI decoder panicking on sequences with more than 32 parameters](https://github.com/charmbracelet/x/pull/1040) | Open |
