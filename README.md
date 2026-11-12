@@ -80,6 +80,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) | Open |
 | thedotmack/claude-mem | [Drop unverifiable quotes from a fresh save instead of refusing it whole](https://github.com/thedotmack/claude-mem/pull/5992) | Merged |
 | thedotmack/claude-mem | [Enforce mode filters on server context rows](https://github.com/thedotmack/claude-mem/pull/5993) | Merged |
+| vimeo/psalm | [Stop a nullsafe call compared to a bool literal narrowing its receiver to null](https://github.com/vimeo/psalm/pull/13602) | Open |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
