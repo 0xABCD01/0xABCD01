@@ -84,8 +84,6 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) | Open |
 | thedotmack/claude-mem | [Make MCP save_memory honor CLAUDE_MEM_EXCLUDED_PROJECTS like the HTTP save path](https://github.com/thedotmack/claude-mem/pull/6166) | Open |
 | thedotmack/claude-mem | [Run a corrupt-collection drop once per collection at a time in Chroma sync](https://github.com/thedotmack/claude-mem/pull/6167) | Open |
-| thedotmack/claude-mem | [Apply CLAUDE_MEM_EXCLUDED_PROJECTS to MCP save_memory](https://github.com/thedotmack/claude-mem/pull/6166) | Open |
-| thedotmack/claude-mem | [Run a corrupt-collection drop once per collection at a time](https://github.com/thedotmack/claude-mem/pull/6167) | Open |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
