@@ -80,7 +80,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) | Open |
 | thedotmack/claude-mem | [Drop unverifiable quotes from a fresh save instead of refusing it whole](https://github.com/thedotmack/claude-mem/pull/5992) | Merged |
 | thedotmack/claude-mem | [Enforce mode filters on server context rows](https://github.com/thedotmack/claude-mem/pull/5993) | Merged |
-| vimeo/psalm | [Stop a nullsafe call compared to a bool literal narrowing its receiver to null](https://github.com/vimeo/psalm/pull/13602) | Open |
+| vimeo/psalm | [Stop a nullsafe call compared to a bool literal narrowing its receiver to null](https://github.com/vimeo/psalm/pull/13602) | Merged |
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) | Open |
 | thedotmack/claude-mem | [Make MCP save_memory honor CLAUDE_MEM_EXCLUDED_PROJECTS like the HTTP save path](https://github.com/thedotmack/claude-mem/pull/6166) | Open |
 | thedotmack/claude-mem | [Run a corrupt-collection drop once per collection at a time in Chroma sync](https://github.com/thedotmack/claude-mem/pull/6167) | Open |
