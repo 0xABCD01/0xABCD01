@@ -38,9 +38,9 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-43 pull requests across 24 projects: **23 merged**, **20 open**.
+42 pull requests across 24 projects: **24 merged**, **19 open**.
 
-### Merged (23)
+### Merged (24)
 
 | Project | Contribution |
 |---|---|
@@ -67,8 +67,9 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) |
 | vimeo/psalm | [Stop a nullsafe call compared to a bool literal narrowing its receiver to null](https://github.com/vimeo/psalm/pull/13602) |
 | thedotmack/claude-mem | [Name the run's language in the goals step's questions too](https://github.com/thedotmack/claude-mem/pull/6187) |
+| ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) |
 
-### Open (20)
+### Open (19)
 
 | Project | Contribution |
 |---|---|
@@ -84,7 +85,6 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | anthropics/claude-quickstarts | [Continue paused server-tool turns instead of returning them unfinished](https://github.com/anthropics/claude-quickstarts/pull/533) |
 | anomalyco/opencode | [Do not reuse an unmigrated V1 session ID on create](https://github.com/anomalyco/opencode/pull/62014) |
 | apache/httpd | [Bind mod_authn_socache cache keys to the authentication domain](https://github.com/apache/httpd/pull/930) |
-| ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) |
 | ClickHouse/ClickHouse | [Honor glob excludes and not_exists_ok in praktika path traversal for job digests](https://github.com/ClickHouse/ClickHouse/pull/129595) |
 | micropython/micropython | [Support converting int subclass instances to float](https://github.com/micropython/micropython/pull/19904) |
 | charmbracelet/x | [Stop the ANSI decoder panicking on sequences with more than 32 parameters](https://github.com/charmbracelet/x/pull/1040) |
