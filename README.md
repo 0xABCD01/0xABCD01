@@ -106,6 +106,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 | Repository | What it does |
 |---|---|
+| [agentlure](https://github.com/0xABCD01/agentlure) | Detonates MCP servers and agent skills against fake credentials in a sandbox, so a poisoned tool shows itself before you install it. |
 | [test-amnesty](https://github.com/0xABCD01/test-amnesty) | Compares an edited pytest file against the original and catches tests that were weakened to pass. |
 | [cachelint](https://github.com/0xABCD01/cachelint) | Predicts which Dockerfile layer busts the build cache and suggests a faster order. |
 | [codex-skills](https://github.com/0xABCD01/codex-skills) | Workflow prompts for Codex CLI. Each one pins exact commands so the model cannot skip a step. |
