@@ -38,52 +38,61 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-| Project | Contribution | Status |
-|---|---|---|
-| symfony/symfony | [Strip the byte order mark at the start of a YAML stream](https://github.com/symfony/symfony/pull/67735) | Merged |
-| symfony/symfony | [Skip empty lines when decoding CSV in the Serializer](https://github.com/symfony/symfony/pull/67752) | Merged |
-| symfony/symfony | [Fix Glob patterns whose bracket expression contains a slash](https://github.com/symfony/symfony/pull/67785) | Merged |
-| projectdiscovery/dsl | [Return errors instead of panicking on negative repeat counts and substr starts](https://github.com/projectdiscovery/dsl/pull/368) | Merged |
-| projectdiscovery/nuclei | [Bump govaluate and antchfx/xpath past two template panics](https://github.com/projectdiscovery/nuclei/pull/7998) | Merged |
-| projectdiscovery/nuclei | [Add a regression test for the govaluate string concatenation bug](https://github.com/projectdiscovery/nuclei/pull/8013) | Merged |
-| symfony/ux | [Let LiveComponent collections contain null items during (de)hydration](https://github.com/symfony/ux/pull/4194) | Merged |
-| WordPress/sqlite-database-integration | [Quote SQLite identifiers in LOCK TABLES, SHOW TABLES, and compound-PK indexes](https://github.com/WordPress/sqlite-database-integration/pull/599) | Merged |
-| WordPress/sqlite-database-integration | [Split MySQL Proxy result packets at the maximum packet length](https://github.com/WordPress/sqlite-database-integration/pull/601) | Open |
-| WordPress/sqlite-database-integration | [Pass workflow values via env in release workflows](https://github.com/WordPress/sqlite-database-integration/pull/604) | Open |
-| pypi/warehouse | [Fix footer color contrast and landmark coverage](https://github.com/pypi/warehouse/pull/20882) | Open |
-| pypi/warehouse | [Make search-button focus visible and stop the classifier filter trapping keyboard focus](https://github.com/pypi/warehouse/pull/20884) | Open |
-| pypi/inspector | [Normalize archive member names so bad directory entries are browsable](https://github.com/pypi/inspector/pull/336) | Open |
-| Panniantong/agent-reach | [Treat an all-NOT_FOUND live test as a stale sample, not a broken channel](https://github.com/Panniantong/agent-reach/pull/909) | Open |
-| huggingface/transformers | [Fix CLAP loss double-counting the text-to-audio direction](https://github.com/huggingface/transformers/pull/50319) | Open |
-| dwisiswant0/apkleaks | [Stop the IP address pattern truncating the last octet](https://github.com/dwisiswant0/apkleaks/pull/107) | Open |
-| dwisiswant0/apkleaks | [Stop the CTF flag pattern matching plain CSS rules](https://github.com/dwisiswant0/apkleaks/pull/108) | Open |
-| thedotmack/claude-mem | [Keep the doc_type filter out of the semantic search fallback query](https://github.com/thedotmack/claude-mem/pull/5355) | Merged |
-| thedotmack/claude-mem | [Park queued messages at the process hard cap instead of discarding them](https://github.com/thedotmack/claude-mem/pull/5388) | Merged |
-| openai/codex-security | [Recheck empty targets before a resumed scan's first dispatch](https://github.com/openai/codex-security/pull/2346) | Merged |
-| anthropics/claude-quickstarts | [Continue paused server-tool turns instead of returning them unfinished](https://github.com/anthropics/claude-quickstarts/pull/533) | Open |
-| anomalyco/opencode | [Do not reuse an unmigrated V1 session ID on create](https://github.com/anomalyco/opencode/pull/62014) | Open |
-| thedotmack/claude-mem | [Persist SessionStart toggles and accept zero context counts via POST /api/settings](https://github.com/thedotmack/claude-mem/pull/5393) | Merged |
-| thedotmack/claude-mem | [Discard a stalled session's buffered work once its resumes are spent](https://github.com/thedotmack/claude-mem/pull/5414) | Merged |
-| thedotmack/claude-mem | [Keep context reads working when the WAL index cannot be established](https://github.com/thedotmack/claude-mem/pull/5432) | Merged |
-| thedotmack/claude-mem | [Run the My Work refresh on the configured provider's agent first](https://github.com/thedotmack/claude-mem/pull/5436) | Merged |
-| apache/httpd | [Bind mod_authn_socache cache keys to the authentication domain](https://github.com/apache/httpd/pull/930) | Open |
-| ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) | Open |
-| ClickHouse/ClickHouse | [Honor glob excludes and not_exists_ok in praktika path traversal for job digests](https://github.com/ClickHouse/ClickHouse/pull/129595) | Open |
-| caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) | Merged |
-| thedotmack/claude-mem | [Ship better-auth in the plugin install and create its auth tables](https://github.com/thedotmack/claude-mem/pull/5455) | Merged |
-| thedotmack/claude-mem | [Fall back to the system locale for My Work focus areas when the text language setting is empty](https://github.com/thedotmack/claude-mem/pull/5669) | Merged |
-| thedotmack/claude-mem | [Migrate stale PreToolUse/PreInvocation hooks in place on Antigravity](https://github.com/thedotmack/claude-mem/pull/5670) | Merged |
-| micropython/micropython | [Support converting int subclass instances to float](https://github.com/micropython/micropython/pull/19904) | Open |
-| charmbracelet/x | [Stop the ANSI decoder panicking on sequences with more than 32 parameters](https://github.com/charmbracelet/x/pull/1040) | Open |
-| composer/composer | [Use recorded install paths when building the plugin runtime autoloader](https://github.com/composer/composer/pull/13250) | Open |
-| sherlock-project/sherlock | [Stop usernames escaping the output folder in result filenames](https://github.com/sherlock-project/sherlock/pull/3211) | Open |
-| google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) | Open |
-| thedotmack/claude-mem | [Drop unverifiable quotes from a fresh save instead of refusing it whole](https://github.com/thedotmack/claude-mem/pull/5992) | Merged |
-| thedotmack/claude-mem | [Enforce mode filters on server context rows](https://github.com/thedotmack/claude-mem/pull/5993) | Merged |
-| vimeo/psalm | [Stop a nullsafe call compared to a bool literal narrowing its receiver to null](https://github.com/vimeo/psalm/pull/13602) | Merged |
-| elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) | Open |
-| thedotmack/claude-mem | [Make MCP save_memory honor CLAUDE_MEM_EXCLUDED_PROJECTS like the HTTP save path](https://github.com/thedotmack/claude-mem/pull/6166) | Open |
-| thedotmack/claude-mem | [Run a corrupt-collection drop once per collection at a time in Chroma sync](https://github.com/thedotmack/claude-mem/pull/6167) | Open |
+44 pull requests across 24 projects: **22 merged**, **22 open**.
+
+### Merged (22)
+
+| Project | Contribution |
+|---|---|
+| symfony/symfony | [Strip the byte order mark at the start of a YAML stream](https://github.com/symfony/symfony/pull/67735) |
+| symfony/symfony | [Skip empty lines when decoding CSV in the Serializer](https://github.com/symfony/symfony/pull/67752) |
+| symfony/symfony | [Fix Glob patterns whose bracket expression contains a slash](https://github.com/symfony/symfony/pull/67785) |
+| projectdiscovery/dsl | [Return errors instead of panicking on negative repeat counts and substr starts](https://github.com/projectdiscovery/dsl/pull/368) |
+| projectdiscovery/nuclei | [Bump govaluate and antchfx/xpath past two template panics](https://github.com/projectdiscovery/nuclei/pull/7998) |
+| projectdiscovery/nuclei | [Add a regression test for the govaluate string concatenation bug](https://github.com/projectdiscovery/nuclei/pull/8013) |
+| symfony/ux | [Let LiveComponent collections contain null items during (de)hydration](https://github.com/symfony/ux/pull/4194) |
+| WordPress/sqlite-database-integration | [Quote SQLite identifiers in LOCK TABLES, SHOW TABLES, and compound-PK indexes](https://github.com/WordPress/sqlite-database-integration/pull/599) |
+| thedotmack/claude-mem | [Keep the doc_type filter out of the semantic search fallback query](https://github.com/thedotmack/claude-mem/pull/5355) |
+| thedotmack/claude-mem | [Park queued messages at the process hard cap instead of discarding them](https://github.com/thedotmack/claude-mem/pull/5388) |
+| thedotmack/claude-mem | [Persist SessionStart toggles and accept zero context counts via POST /api/settings](https://github.com/thedotmack/claude-mem/pull/5393) |
+| thedotmack/claude-mem | [Discard a stalled session's buffered work once its resumes are spent](https://github.com/thedotmack/claude-mem/pull/5414) |
+| thedotmack/claude-mem | [Keep context reads working when the WAL index cannot be established](https://github.com/thedotmack/claude-mem/pull/5432) |
+| thedotmack/claude-mem | [Run the My Work refresh on the configured provider's agent first](https://github.com/thedotmack/claude-mem/pull/5436) |
+| thedotmack/claude-mem | [Ship better-auth in the plugin install and create its auth tables](https://github.com/thedotmack/claude-mem/pull/5455) |
+| thedotmack/claude-mem | [Fall back to the system locale for My Work focus areas when the text language setting is empty](https://github.com/thedotmack/claude-mem/pull/5669) |
+| thedotmack/claude-mem | [Migrate stale PreToolUse/PreInvocation hooks in place on Antigravity](https://github.com/thedotmack/claude-mem/pull/5670) |
+| thedotmack/claude-mem | [Drop unverifiable quotes from a fresh save instead of refusing it whole](https://github.com/thedotmack/claude-mem/pull/5992) |
+| thedotmack/claude-mem | [Enforce mode filters on server context rows](https://github.com/thedotmack/claude-mem/pull/5993) |
+| openai/codex-security | [Recheck empty targets before a resumed scan's first dispatch](https://github.com/openai/codex-security/pull/2346) |
+| caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) |
+| vimeo/psalm | [Stop a nullsafe call compared to a bool literal narrowing its receiver to null](https://github.com/vimeo/psalm/pull/13602) |
+
+### Open (22)
+
+| Project | Contribution |
+|---|---|
+| WordPress/sqlite-database-integration | [Split MySQL Proxy result packets at the maximum packet length](https://github.com/WordPress/sqlite-database-integration/pull/601) |
+| WordPress/sqlite-database-integration | [Pass workflow values via env in release workflows](https://github.com/WordPress/sqlite-database-integration/pull/604) |
+| pypi/warehouse | [Fix footer color contrast and landmark coverage](https://github.com/pypi/warehouse/pull/20882) |
+| pypi/warehouse | [Make search-button focus visible and stop the classifier filter trapping keyboard focus](https://github.com/pypi/warehouse/pull/20884) |
+| pypi/inspector | [Normalize archive member names so bad directory entries are browsable](https://github.com/pypi/inspector/pull/336) |
+| Panniantong/agent-reach | [Treat an all-NOT_FOUND live test as a stale sample, not a broken channel](https://github.com/Panniantong/agent-reach/pull/909) |
+| huggingface/transformers | [Fix CLAP loss double-counting the text-to-audio direction](https://github.com/huggingface/transformers/pull/50319) |
+| dwisiswant0/apkleaks | [Stop the IP address pattern truncating the last octet](https://github.com/dwisiswant0/apkleaks/pull/107) |
+| dwisiswant0/apkleaks | [Stop the CTF flag pattern matching plain CSS rules](https://github.com/dwisiswant0/apkleaks/pull/108) |
+| anthropics/claude-quickstarts | [Continue paused server-tool turns instead of returning them unfinished](https://github.com/anthropics/claude-quickstarts/pull/533) |
+| anomalyco/opencode | [Do not reuse an unmigrated V1 session ID on create](https://github.com/anomalyco/opencode/pull/62014) |
+| apache/httpd | [Bind mod_authn_socache cache keys to the authentication domain](https://github.com/apache/httpd/pull/930) |
+| ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) |
+| ClickHouse/ClickHouse | [Honor glob excludes and not_exists_ok in praktika path traversal for job digests](https://github.com/ClickHouse/ClickHouse/pull/129595) |
+| micropython/micropython | [Support converting int subclass instances to float](https://github.com/micropython/micropython/pull/19904) |
+| charmbracelet/x | [Stop the ANSI decoder panicking on sequences with more than 32 parameters](https://github.com/charmbracelet/x/pull/1040) |
+| composer/composer | [Use recorded install paths when building the plugin runtime autoloader](https://github.com/composer/composer/pull/13250) |
+| sherlock-project/sherlock | [Stop usernames escaping the output folder in result filenames](https://github.com/sherlock-project/sherlock/pull/3211) |
+| google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) |
+| elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
+| thedotmack/claude-mem | [Make MCP save_memory honor CLAUDE_MEM_EXCLUDED_PROJECTS like the HTTP save path](https://github.com/thedotmack/claude-mem/pull/6166) |
+| thedotmack/claude-mem | [Run a corrupt-collection drop once per collection at a time in Chroma sync](https://github.com/thedotmack/claude-mem/pull/6167) |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
