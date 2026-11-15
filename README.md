@@ -38,7 +38,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-45 pull requests across 24 projects: **22 merged**, **23 open**.
+46 pull requests across 24 projects: **22 merged**, **24 open**.
 
 ### Merged (22)
 
@@ -67,7 +67,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | caddyserver/caddy | [Reject Caddyfile site blocks with unbalanced braces](https://github.com/caddyserver/caddy/pull/8375) |
 | vimeo/psalm | [Stop a nullsafe call compared to a bool literal narrowing its receiver to null](https://github.com/vimeo/psalm/pull/13602) |
 
-### Open (23)
+### Open (24)
 
 | Project | Contribution |
 |---|---|
@@ -94,6 +94,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Make MCP save_memory honor CLAUDE_MEM_EXCLUDED_PROJECTS like the HTTP save path](https://github.com/thedotmack/claude-mem/pull/6166) |
 | thedotmack/claude-mem | [Run a corrupt-collection drop once per collection at a time in Chroma sync](https://github.com/thedotmack/claude-mem/pull/6167) |
 | thedotmack/claude-mem | [Await the folder CLAUDE.md mirror update before the response settles](https://github.com/thedotmack/claude-mem/pull/6184) |
+| thedotmack/claude-mem | [Name the run's language in the goals step's questions too](https://github.com/thedotmack/claude-mem/pull/6187) |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
