@@ -38,7 +38,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-46 pull requests across 24 projects: **22 merged**, **24 open**.
+44 pull requests across 24 projects: **22 merged**, **22 open**.
 
 ### Merged (22)
 
@@ -92,8 +92,6 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) |
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
 | thedotmack/claude-mem | [Make MCP save_memory honor CLAUDE_MEM_EXCLUDED_PROJECTS like the HTTP save path](https://github.com/thedotmack/claude-mem/pull/6166) |
-| thedotmack/claude-mem | [Run a corrupt-collection drop once per collection at a time in Chroma sync](https://github.com/thedotmack/claude-mem/pull/6167) |
-| thedotmack/claude-mem | [Await the folder CLAUDE.md mirror update before the response settles](https://github.com/thedotmack/claude-mem/pull/6184) |
 | thedotmack/claude-mem | [Name the run's language in the goals step's questions too](https://github.com/thedotmack/claude-mem/pull/6187) |
 
 <p align="center">
