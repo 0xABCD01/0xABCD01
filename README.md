@@ -38,7 +38,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-42 pull requests across 24 projects: **24 merged**, **19 open**.
+43 pull requests across 24 projects: **24 merged**, **20 open**.
 
 ### Merged (24)
 
@@ -69,7 +69,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Name the run's language in the goals step's questions too](https://github.com/thedotmack/claude-mem/pull/6187) |
 | ClickHouse/ClickHouse | [Make equal ClickHouseVersion objects hash equal so set and dict lookups dedupe them](https://github.com/ClickHouse/ClickHouse/pull/129594) |
 
-### Open (19)
+### Open (20)
 
 | Project | Contribution |
 |---|---|
@@ -92,6 +92,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | sherlock-project/sherlock | [Stop usernames escaping the output folder in result filenames](https://github.com/sherlock-project/sherlock/pull/3211) |
 | google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) |
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
+| thedotmack/claude-mem | [Log failed folder CLAUDE.md updates and retry them on the next observation](https://github.com/thedotmack/claude-mem/pull/6208) |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
