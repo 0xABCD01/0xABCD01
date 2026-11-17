@@ -40,7 +40,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 46 pull requests across 23 projects: **25 merged**, **21 open**.
 
-### Merged (27)
+### Merged (28)
 
 | Project | Contribution |
 |---|---|
@@ -71,8 +71,9 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | ClickHouse/ClickHouse | [Honor glob excludes and not_exists_ok in praktika path traversal for job digests](https://github.com/ClickHouse/ClickHouse/pull/129595) |
 | thedotmack/claude-mem | [Write the My Work build story in parts so it stays under the question budget](https://github.com/thedotmack/claude-mem/pull/6279) |
 | thedotmack/claude-mem | [Finish setup locally when the prompt history exceeds the hosted upload cap](https://github.com/thedotmack/claude-mem/pull/6280) |
+| thedotmack/claude-mem | [Log failed folder CLAUDE.md updates and retry them on the next observation](https://github.com/thedotmack/claude-mem/pull/6208) |
 
-### Open (18)
+### Open (17)
 
 | Project | Contribution |
 |---|---|
@@ -93,7 +94,6 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | sherlock-project/sherlock | [Stop usernames escaping the output folder in result filenames](https://github.com/sherlock-project/sherlock/pull/3211) |
 | google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) |
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
-| thedotmack/claude-mem | [Log failed folder CLAUDE.md updates and retry them on the next observation](https://github.com/thedotmack/claude-mem/pull/6208) |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
