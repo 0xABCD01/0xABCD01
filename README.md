@@ -38,7 +38,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-48 pull requests across 25 projects: **29 merged**, **19 open**.
+47 pull requests across 24 projects: **29 merged**, **18 open**.
 
 ### Merged (29)
 
@@ -91,7 +91,6 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | anomalyco/opencode | [Do not reuse an unmigrated V1 session ID on create](https://github.com/anomalyco/opencode/pull/62014) |
 | micropython/micropython | [Support converting int subclass instances to float](https://github.com/micropython/micropython/pull/19904) |
 | charmbracelet/x | [Stop the ANSI decoder panicking on sequences with more than 32 parameters](https://github.com/charmbracelet/x/pull/1040) |
-| composer/composer | [Use recorded install paths when building the plugin runtime autoloader](https://github.com/composer/composer/pull/13250) |
 | sherlock-project/sherlock | [Stop usernames escaping the output folder in result filenames](https://github.com/sherlock-project/sherlock/pull/3211) |
 | google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) |
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
