@@ -38,7 +38,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-47 pull requests across 24 projects: **29 merged**, **18 open**.
+48 pull requests across 25 projects: **29 merged**, **19 open**.
 
 ### Merged (29)
 
@@ -74,7 +74,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Log failed folder CLAUDE.md updates and retry them on the next observation](https://github.com/thedotmack/claude-mem/pull/6208) |
 | thedotmack/claude-mem | [Detect the legacy shell alias in install/update/doctor and warn when the worker runs outside the resolved plugin root](https://github.com/thedotmack/claude-mem/pull/6300) |
 
-### Open (18)
+### Open (19)
 
 | Project | Contribution |
 |---|---|
@@ -96,6 +96,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | google/go-containerregistry | [Write cached layers via a temporary file so concurrent readers never see a partial layer](https://github.com/google/go-containerregistry/pull/2505) |
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
 | caddyserver/certmagic | [Wait for an in-flight managed certificate load before failing a handshake](https://github.com/caddyserver/certmagic/pull/429) |
+| PHP-CS-Fixer/PHP-CS-Fixer | [Run BracesFixer after MethodArgumentSpaceFixer so ensure_fully_multiline signatures converge in one run](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/9950) |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
