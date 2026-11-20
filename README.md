@@ -38,7 +38,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-47 pull requests across 24 projects: **29 merged**, **18 open**.
+48 pull requests across 24 projects: **29 merged**, **19 open**.
 
 ### Merged (29)
 
@@ -96,6 +96,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
 | caddyserver/certmagic | [Wait for an in-flight managed certificate load before failing a handshake](https://github.com/caddyserver/certmagic/pull/429) |
 | PHP-CS-Fixer/PHP-CS-Fixer | [Run BracesFixer after MethodArgumentSpaceFixer so ensure_fully_multiline signatures converge in one run](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/9950) |
+| thedotmack/claude-mem | [Stop the cache sweep pruning a version folder whose recorded Claude process is still alive](https://github.com/thedotmack/claude-mem/pull/6352) |
 
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
