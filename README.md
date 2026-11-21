@@ -14,6 +14,8 @@
 
 Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand. I also audit open-source libraries and send the fixes upstream.
 
+Personal site: [0xabcd01.github.io](https://0xabcd01.github.io)
+
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Breaking+things+locally%2C+politely.;Sending+the+fixes+upstream.;Reading+changelogs+so+you+don%27t+have+to." alt="Breaking things locally, politely. Sending the fixes upstream. Reading changelogs so you don't have to.">
 </p>
