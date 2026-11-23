@@ -40,9 +40,9 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-49 pull requests across 25 projects: **30 merged**, **19 open**.
+52 pull requests across 28 projects: **31 merged**, **21 open**.
 
-### Merged (30)
+### Merged (31)
 
 | Project | Contribution |
 |---|---|
@@ -76,8 +76,9 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Log failed folder CLAUDE.md updates and retry them on the next observation](https://github.com/thedotmack/claude-mem/pull/6208) |
 | thedotmack/claude-mem | [Detect the legacy shell alias in install/update/doctor and warn when the worker runs outside the resolved plugin root](https://github.com/thedotmack/claude-mem/pull/6300) |
 | thedotmack/claude-mem | [Stop the cache sweep pruning a version folder whose recorded Claude process is still alive](https://github.com/thedotmack/claude-mem/pull/6352) |
+| grafana/loki | [Drain the pattern aggregation buffer on Stop so buffered patterns survive shutdown](https://github.com/grafana/loki/pull/26663) |
 
-### Open (19)
+### Open (21)
 
 | Project | Contribution |
 |---|---|
@@ -100,6 +101,8 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | caddyserver/certmagic | [Wait for an in-flight managed certificate load before failing a handshake](https://github.com/caddyserver/certmagic/pull/429) |
 | PHP-CS-Fixer/PHP-CS-Fixer | [Run BracesFixer after MethodArgumentSpaceFixer so ensure_fully_multiline signatures converge in one run](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/9950) |
 | anthropics/claude-code-action | [Publish the github_token output as soon as the token is set up](https://github.com/anthropics/claude-code-action/pull/2116) |
+| projectdiscovery/nuclei-templates | [Add an active-probe template for CVE-2026-129289, PHP-FPM request smuggling via an unread request body](https://github.com/projectdiscovery/nuclei-templates/pull/18049) |
+| DataDog/helm-charts | [Use the OpenMetrics V2 check config for datadog-operator metrics](https://github.com/DataDog/helm-charts/pull/3096) |
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=0xABCD01" alt="Top languages by repository">
