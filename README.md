@@ -10,11 +10,15 @@
   <img src="./assets/roles.svg" alt="Areas of work: bug bounty, pentest, OSINT" width="410">
 </p>
 
+<img src="./assets/christmas-tree.svg" align="right" width="168" alt="A small animated Christmas tree with a gold star, twinkling ornaments, and gifts at its base">
+
 # Hafiar
 
 Bug hunter, pentester, and OSINT investigator. I reproduce published vulnerabilities, run authorized engagements, and build the tools I would otherwise write by hand. I also audit open-source libraries and send the fixes upstream.
 
 Personal site: [0xabcd01.github.io](https://0xabcd01.github.io)
+
+<br clear="right">
 
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Breaking+things+locally%2C+politely.;Sending+the+fixes+upstream.;Reading+changelogs+so+you+don%27t+have+to." alt="Breaking things locally, politely. Sending the fixes upstream. Reading changelogs so you don't have to.">

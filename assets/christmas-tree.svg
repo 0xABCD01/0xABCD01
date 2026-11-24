@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 260" role="img" aria-labelledby="t d"><title>Christmas tree</title><desc>A small Christmas tree in sage green with a gold star, twinkling ornaments and lights, gifts at its base, and snow drifting past. The tree leans slightly and sways.</desc>
+  <style>
+    @keyframes sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+    @keyframes halo { 0%, 100% { opacity: 0.16; } 50% { opacity: 0.38; } }
+    @keyframes twinkle { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+    @keyframes blink { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+    @keyframes fall { 0% { transform: translate(0, -14px); opacity: 0; } 8% { opacity: 0.95; } 92% { opacity: 0.95; } 100% { transform: translate(-10px, 274px); opacity: 0; } }
+    @keyframes fall2 { 0% { transform: translate(0, -14px); opacity: 0; } 8% { opacity: 0.9; } 92% { opacity: 0.9; } 100% { transform: translate(9px, 274px); opacity: 0; } }
+    .sway { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 5.5s ease-in-out infinite; }
+    .star { transform-box: fill-box; transform-origin: 50% 50%; animation: pulse 2.8s ease-in-out infinite; }
+    .halo { animation: halo 2.8s ease-in-out infinite; }
+    .tw { animation: twinkle 3.2s ease-in-out infinite; }
+    .tw2 { animation-delay: 0.9s; } .tw3 { animation-delay: 1.7s; } .tw4 { animation-delay: 2.4s; }
+    .bl { animation: blink 2.2s ease-in-out infinite; }
+    .bl2 { animation-delay: 0.6s; } .bl3 { animation-delay: 1.2s; } .bl4 { animation-delay: 1.7s; }
+    .snow { animation: fall 9s linear infinite; }
+    .snow2 { animation: fall2 11s linear infinite; }
+    .s1 { animation-delay: -1.5s; } .s2 { animation-delay: -4s; } .s3 { animation-delay: -6.5s; }
+    .s4 { animation-delay: -2.8s; } .s5 { animation-delay: -8s; } .s6 { animation-delay: -5.2s; }
+    .s7 { animation-delay: -9.5s; } .s8 { animation-delay: -3.4s; }
+  </style>
+
+  <!-- falling snow -->
+  <g fill="#c9c3d9">
+    <circle class="snow s1" cx="20" cy="0" r="2.6"/>
+    <circle class="snow2 s2" cx="52" cy="0" r="2"/>
+    <circle class="snow s3" cx="84" cy="0" r="2.9"/>
+    <circle class="snow2 s4" cx="140" cy="0" r="2.1"/>
+    <circle class="snow s5" cx="172" cy="0" r="2.7"/>
+    <circle class="snow2 s6" cx="202" cy="0" r="2"/>
+    <circle class="snow s7" cx="104" cy="0" r="1.8" fill="#e3def0"/>
+    <circle class="snow2 s8" cx="158" cy="0" r="1.8" fill="#e3def0"/>
+  </g>
+
+  <!-- sparkles -->
+  <path class="tw tw2" d="M34 52 C34 55 35 56 38 56 C35 56 34 57 34 60 C34 57 33 56 30 56 C33 56 34 55 34 52 Z" fill="#c3a36a"/>
+  <path class="tw tw4" d="M190 84 C190 87 191 88 194 88 C191 88 190 89 190 92 C190 89 189 88 186 88 C189 88 190 87 190 84 Z" fill="#c9c3d9"/>
+  <path class="tw tw3" d="M180 30 C180 32.4 180.8 33.2 183.2 33.2 C180.8 33.2 180 34 180 36.4 C180 34 179.2 33.2 176.8 33.2 C179.2 33.2 180 32.4 180 30 Z" fill="#c3a36a"/>
+
+  <!-- snow mound -->
+  <ellipse cx="110" cy="241" rx="88" ry="10" fill="#c9c3d9" opacity="0.45"/>
+
+  <!-- gifts -->
+  <g>
+    <rect x="50" y="215" width="27" height="18" rx="2" fill="#20304d"/>
+    <rect x="61.5" y="215" width="4" height="18" fill="#c3a36a"/>
+    <rect x="50" y="222" width="27" height="4" fill="#c3a36a"/>
+    <circle cx="60" cy="212" r="3" fill="none" stroke="#c3a36a" stroke-width="1.8"/>
+    <circle cx="67" cy="212" r="3" fill="none" stroke="#c3a36a" stroke-width="1.8"/>
+    <rect x="143" y="219" width="25" height="15" rx="2" fill="#c9c3d9"/>
+    <rect x="153.5" y="219" width="4" height="15" fill="#20304d"/>
+    <rect x="143" y="225.5" width="25" height="4" fill="#20304d"/>
+  </g>
+
+  <!-- the tree, leaning a little, swaying -->
+  <g transform="rotate(-4 110 238)">
+    <g class="sway">
+      <!-- star -->
+      <circle class="halo" cx="110" cy="27" r="14" fill="#c3a36a" opacity="0.25"/>
+      <polygon class="star" points="110,15 112.8,23.2 121.5,23.4 114.6,28.5 117.2,37 110,31.8 102.8,37 105.4,28.5 98.5,23.4 107.2,23.2" fill="#c3a36a" stroke="#b8935a" stroke-width="1"/>
+
+      <!-- tiers -->
+      <path d="M78 97 Q84 62 110 40 Q136 62 142 97 Q131.5 105 121 97 Q110.5 105 100 97 Q89.5 105 78 97 Z" fill="#a9b9a4"/>
+      <path d="M62 147 Q72 100 110 84 Q148 100 158 147 Q146 155 134 147 Q122 155 110 147 Q98 155 86 147 Q74 155 62 147 Z" fill="#93a98e"/>
+      <path d="M46 197 Q58 146 110 130 Q162 146 174 197 Q158 205 142 197 Q126 205 110 197 Q94 205 78 197 Q62 205 46 197 Z" fill="#7d9577"/>
+
+      <!-- snow resting on the branches -->
+      <g fill="#f8f1e6">
+        <circle cx="98" cy="58" r="2.4" opacity="0.9"/>
+        <circle cx="116" cy="52" r="2" opacity="0.85"/>
+        <circle cx="88" cy="112" r="2.4" opacity="0.9"/>
+        <circle cx="128" cy="106" r="2" opacity="0.85"/>
+        <circle cx="76" cy="160" r="2.5" opacity="0.9"/>
+        <circle cx="140" cy="156" r="2.2" opacity="0.85"/>
+        <circle cx="104" cy="146" r="1.9" opacity="0.8"/>
+      </g>
+
+      <!-- garlands -->
+      <path d="M74 128 Q110 143 146 128" fill="none" stroke="#c3a36a" stroke-width="2" stroke-dasharray="5 4" opacity="0.85"/>
+      <path d="M60 176 Q110 193 160 176" fill="none" stroke="#c3a36a" stroke-width="2" stroke-dasharray="5 4" opacity="0.85"/>
+
+      <!-- lights on the garlands -->
+      <g>
+        <circle class="bl" cx="88" cy="134" r="1.9" fill="#c3a36a"/>
+        <circle class="bl bl2" cx="110" cy="138" r="1.9" fill="#f8f1e6"/>
+        <circle class="bl bl3" cx="132" cy="134" r="1.9" fill="#c3a36a"/>
+        <circle class="bl bl4" cx="80" cy="182" r="1.9" fill="#f8f1e6"/>
+        <circle class="bl bl2" cx="110" cy="189" r="1.9" fill="#c3a36a"/>
+        <circle class="bl bl3" cx="140" cy="182" r="1.9" fill="#f8f1e6"/>
+      </g>
+
+      <!-- ornaments -->
+      <g stroke="#20304d" stroke-opacity="0.22" stroke-width="0.8">
+        <circle class="tw" cx="96" cy="78" r="4.2" fill="#c3a36a"/>
+        <circle class="tw tw2" cx="124" cy="80" r="4.2" fill="#c9c3d9"/>
+        <circle class="tw tw3" cx="84" cy="124" r="4.4" fill="#f8f1e6"/>
+        <circle class="tw tw4" cx="136" cy="122" r="4.4" fill="#c9c3d9"/>
+        <circle class="tw tw2" cx="72" cy="178" r="4.4" fill="#c9c3d9"/>
+        <circle class="tw tw3" cx="96" cy="186" r="4.2" fill="#c3a36a"/>
+        <circle class="tw tw4" cx="124" cy="186" r="4.2" fill="#f8f1e6"/>
+        <circle class="tw" cx="148" cy="178" r="4.4" fill="#c3a36a"/>
+      </g>
+
+      <!-- trunk and pot -->
+      <rect x="102" y="197" width="16" height="16" rx="3" fill="#b8935a"/>
+      <path d="M94 213 L126 213 L122 237 L98 237 Z" fill="#20304d"/>
+      <rect x="91" y="209" width="38" height="7" rx="3.5" fill="#c3a36a"/>
+    </g>
+  </g>
+</svg>
