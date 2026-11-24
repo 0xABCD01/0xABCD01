@@ -40,7 +40,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-52 pull requests across 28 projects: **31 merged**, **21 open**.
+52 pull requests across 27 projects: **31 merged**, **21 open**.
 
 ### Merged (31)
 
@@ -100,9 +100,14 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | elastic/beats | [Report queue filled.pct as 0 when the queue has no finite limit](https://github.com/elastic/beats/pull/54652) |
 | caddyserver/certmagic | [Wait for an in-flight managed certificate load before failing a handshake](https://github.com/caddyserver/certmagic/pull/429) |
 | PHP-CS-Fixer/PHP-CS-Fixer | [Run BracesFixer after MethodArgumentSpaceFixer so ensure_fully_multiline signatures converge in one run](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/pull/9950) |
-| anthropics/claude-code-action | [Publish the github_token output as soon as the token is set up](https://github.com/anthropics/claude-code-action/pull/2116) |
 | projectdiscovery/nuclei-templates | [Add an active-probe template for CVE-2026-129289, PHP-FPM request smuggling via an unread request body](https://github.com/projectdiscovery/nuclei-templates/pull/18049) |
 | DataDog/helm-charts | [Use the OpenMetrics V2 check config for datadog-operator metrics](https://github.com/DataDog/helm-charts/pull/3096) |
+| thedotmack/claude-mem | [Keep truncated My Work answers for diagnosis, fix the limit error's advice, and let focus skip a request](https://github.com/thedotmack/claude-mem/pull/6441) |
+
+<p align="center">
+  <img src="./assets/bug-walk.svg" alt="A small bug walking a dotted path" width="560">
+</p>
+
 <p align="center">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=0xABCD01" alt="GitHub statistics for 0xABCD01">
   <img height="180" src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=0xABCD01" alt="Top languages by repository">
@@ -110,6 +115,10 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 <p align="center">
   <img src="https://streak-stats.demolab.com?user=0xABCD01&background=FBF3E4&stroke=E4D6B8&ring=C9962E&fire=C9962E&currStreakLabel=20304D&sideLabels=3A3A3A&currStreakNum=20304D&sideNums=20304D&dates=6B6B6B" alt="Contribution streak">
+</p>
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=0xABCD01&bg_color=FBF3E4&color=20304D&line=C9962E&point=B8935A&area=true&hide_border=true" alt="Contribution activity graph for 0xABCD01" width="820">
 </p>
 
 <p align="center">
@@ -151,9 +160,17 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 - Bug reports and questions: open an issue on the relevant repository.
 
 <p align="center">
+  <img src="https://readme-jokes.vercel.app/api?theme=default" alt="A random programming joke">
+</p>
+
+<p align="center">
   <img src="./assets/mark.svg" alt="" width="52">
 </p>
 
 <p align="center">
   <img src="./assets/waves.svg" alt="Three layered waves in sage, lavender, and gold drifting past each other" width="100%">
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=0xABCD01&style=flat-square&color=B8935A" alt="Profile view counter">
 </p>
