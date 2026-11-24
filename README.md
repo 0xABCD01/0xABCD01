@@ -10,7 +10,7 @@
   <img src="./assets/roles.svg" alt="Areas of work: bug bounty, pentest, OSINT" width="410">
 </p>
 
-<img src="./assets/christmas-tree.svg" align="right" width="252" alt="A glowing animated Christmas tree with a shining gold star, twinkling ornaments, and gifts at its base">
+<img src="./assets/shooting-star.svg" align="right" width="252" alt="A night-sky panel with a crescent moon and twinkling stars, while meteors streak across leaving glowing trails">
 
 # Hafiar
 
