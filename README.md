@@ -40,7 +40,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-52 pull requests across 27 projects: **31 merged**, **21 open**.
+60 pull requests across 34 projects: **31 merged**, **29 open**.
 
 ### Merged (31)
 
@@ -78,7 +78,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Stop the cache sweep pruning a version folder whose recorded Claude process is still alive](https://github.com/thedotmack/claude-mem/pull/6352) |
 | grafana/loki | [Drain the pattern aggregation buffer on Stop so buffered patterns survive shutdown](https://github.com/grafana/loki/pull/26663) |
 
-### Open (21)
+### Open (29)
 
 | Project | Contribution |
 |---|---|
@@ -103,6 +103,14 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | projectdiscovery/nuclei-templates | [Add an active-probe template for CVE-2026-129289, PHP-FPM request smuggling via an unread request body](https://github.com/projectdiscovery/nuclei-templates/pull/18049) |
 | DataDog/helm-charts | [Use the OpenMetrics V2 check config for datadog-operator metrics](https://github.com/DataDog/helm-charts/pull/3096) |
 | thedotmack/claude-mem | [Keep truncated My Work answers for diagnosis, fix the limit error's advice, and let focus skip a request](https://github.com/thedotmack/claude-mem/pull/6441) |
+| openai/tiktoken | [Stop redact.py skipping tracked files with non-ASCII names](https://github.com/openai/tiktoken/pull/646) |
+| anthropics/claude-quickstarts | [Return the real error from the customer-support chat route and show it in the chat UI](https://github.com/anthropics/claude-quickstarts/pull/568) |
+| cloudflare/cloudflared | [Keep the service token file when a Linux service install fails](https://github.com/cloudflare/cloudflared/pull/1806) |
+| cloudflare/pingora | [Preserve HTTP version and reason phrase in HeaderSerde round-trips](https://github.com/cloudflare/pingora/pull/1146) |
+| NVIDIA/NVSentinel | [Classify NICs by PCI address so RDMA renames cannot swap roles](https://github.com/NVIDIA/NVSentinel/pull/2522) |
+| google/adk-go | [Replay empty-text thinking blocks as thinking instead of redacted_thinking](https://github.com/google/adk-go/pull/2488) |
+| google/xmc | [Persist STOPPED when a deleting JobSet's stored execution is STOPPING](https://github.com/google/xmc/pull/1764) |
+| GoogleCloudPlatform/k8s-aibom | [Require the verifier module by version and drop the root replace directive](https://github.com/GoogleCloudPlatform/k8s-aibom/pull/422) |
 
 <p align="center">
   <img src="./assets/bug-walk.svg" alt="A small bug walking a dotted path" width="560">
