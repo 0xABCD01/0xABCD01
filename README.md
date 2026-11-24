@@ -40,7 +40,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-60 pull requests across 34 projects: **31 merged**, **29 open**.
+61 pull requests across 34 projects: **31 merged**, **30 open**.
 
 ### Merged (31)
 
@@ -78,7 +78,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Stop the cache sweep pruning a version folder whose recorded Claude process is still alive](https://github.com/thedotmack/claude-mem/pull/6352) |
 | grafana/loki | [Drain the pattern aggregation buffer on Stop so buffered patterns survive shutdown](https://github.com/grafana/loki/pull/26663) |
 
-### Open (29)
+### Open (30)
 
 | Project | Contribution |
 |---|---|
@@ -111,6 +111,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | google/adk-go | [Replay empty-text thinking blocks as thinking instead of redacted_thinking](https://github.com/google/adk-go/pull/2488) |
 | google/xmc | [Persist STOPPED when a deleting JobSet's stored execution is STOPPING](https://github.com/google/xmc/pull/1764) |
 | GoogleCloudPlatform/k8s-aibom | [Require the verifier module by version and drop the root replace directive](https://github.com/GoogleCloudPlatform/k8s-aibom/pull/422) |
+| anthropics/claude-quickstarts | [Detect Web Component radios in browser snapshots and refuse clicks on disabled elements](https://github.com/anthropics/claude-quickstarts/pull/569) |
 
 <p align="center">
   <img src="./assets/bug-walk.svg" alt="A small bug walking a dotted path" width="560">
