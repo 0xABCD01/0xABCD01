@@ -44,7 +44,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 ## <img src="./assets/icon-code.svg" width="20" height="20" align="left" alt=""> Open source
 
-62 pull requests across 34 projects: **31 merged**, **31 open**.
+86 pull requests across 52 projects: **31 merged**, **55 open**.
 
 ### Merged (31)
 
@@ -82,7 +82,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | thedotmack/claude-mem | [Stop the cache sweep pruning a version folder whose recorded Claude process is still alive](https://github.com/thedotmack/claude-mem/pull/6352) |
 | grafana/loki | [Drain the pattern aggregation buffer on Stop so buffered patterns survive shutdown](https://github.com/grafana/loki/pull/26663) |
 
-### Open (31)
+### Open (55)
 
 | Project | Contribution |
 |---|---|
@@ -117,6 +117,30 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | GoogleCloudPlatform/k8s-aibom | [Require the verifier module by version and drop the root replace directive](https://github.com/GoogleCloudPlatform/k8s-aibom/pull/422) |
 | anthropics/claude-quickstarts | [Detect Web Component radios in browser snapshots and refuse clicks on disabled elements](https://github.com/anthropics/claude-quickstarts/pull/569) |
 | cloudflare/pingora | [Flush HTTP/1 Content-Length bodies after each write](https://github.com/cloudflare/pingora/pull/1147) |
+| salesforce/sfdx-lwc-jest | [Resolve 'lwc' to the CommonJS build of @lwc/engine-dom in the Jest resolver](https://github.com/salesforce/sfdx-lwc-jest/pull/529) |
+| grab/cursor-talk-to-figma-mcp | [Reject WebSocket upgrades from untrusted origins](https://github.com/grab/cursor-talk-to-figma-mcp/pull/202) |
+| oracle/karpenter-provider-oci | [Stop placement fan-out on 429 throttling errors](https://github.com/oracle/karpenter-provider-oci/pull/121) |
+| SAP/abap-cleaner | [Stop the unused-parameters rule flagging parameters assigned via ASSIGN COMPONENT](https://github.com/SAP/abap-cleaner/pull/613) |
+| IBM/mcp-context-forge | [Skip SSRF and DNS validation for oauth_config.token_issuer](https://github.com/IBM/mcp-context-forge/pull/7683) |
+| siemens/ix | [Skip the menu overflow indicator update when the menu is not rendered yet](https://github.com/siemens/ix/pull/3027) |
+| datastax/astra-db-ts | [Fix UUID.getTimestamp() overflowing to 1969/1970 for v1 UUIDs](https://github.com/datastax/astra-db-ts/pull/144) |
+| alphagov/smart-answers | [Fix Child Benefit tax calculator rounding to match ITEPA 2003 s. 681C](https://github.com/alphagov/smart-answers/pull/7878) |
+| bbc/typescript-docs-verifier | [Fix CodeBlockExtractor misparsing of ignore comments, inner fences, and TSX casing](https://github.com/bbc/typescript-docs-verifier/pull/45) |
+| atlassian/openapi-request-validator | [Fix $ref/$dynamicRef resolution and draft-4 identifiers in schema conversion](https://github.com/atlassian/openapi-request-validator/pull/47) |
+| guardian/prosemirror-invisibles | [Fix package entry points to match the emitted build files](https://github.com/guardian/prosemirror-invisibles/pull/103) |
+| facebookresearch/exca | [Keep input order for inline MapInfra computation when cluster is None](https://github.com/facebookresearch/exca/pull/372) |
+| meta-pytorch/data | [Stop FileLister rejecting a checkpoint at the end of a listing](https://github.com/meta-pytorch/data/pull/1579) |
+| meta-pytorch/data | [Fix StatefulDataLoader resume divergence when the sampler and loader share a generator](https://github.com/meta-pytorch/data/pull/1580) |
+| Telefonica/mistica-web | [Stop Image rendering the SSR inline script on the client](https://github.com/Telefonica/mistica-web/pull/1828) |
+| facebookresearch/fairseq2 | [Drop null list rows consistently in parquet list filters](https://github.com/facebookresearch/fairseq2/pull/1533) |
+| meta/lexical | [Remove locally deleted types from the collab-v2 Yjs mapping](https://github.com/meta/lexical/pull/9984) |
+| grab/cursor-talk-to-figma-mcp | [Prevent log injection through channel names](https://github.com/grab/cursor-talk-to-figma-mcp/pull/203) |
+| raystack/frontier | [Set a connection deadline before the SMTP greeting is read](https://github.com/raystack/frontier/pull/2063) |
+| raystack/frontier | [Stop creating a product removing a shared feature from its other products](https://github.com/raystack/frontier/pull/2064) |
+| Telefonica/mistica-web | [Render the Placeholder svg as block so it obeys the declared height](https://github.com/Telefonica/mistica-web/pull/1830) |
+| raystack/frontier | [Support all RQL schema fields in SearchOrganizations filters](https://github.com/raystack/frontier/pull/2065) |
+| raystack/frontier | [Purge the project or group row when its create rolls back](https://github.com/raystack/frontier/pull/2066) |
+| raystack/apsara | [Start text filters on contains in data-view filter chips](https://github.com/raystack/apsara/pull/1025) |
 
 <p align="center">
   <img src="./assets/bug-walk.svg" alt="A small bug walking a dotted path" width="560">
