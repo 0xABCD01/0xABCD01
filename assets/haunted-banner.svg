@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 420" role="img" aria-labelledby="t d"><title id="t">0xABCD01 haunted banner</title><desc id="d">A haunted night banner: a glowing full moon, bats, a flickering haunted house, a cute floating ghost, and a lightning flash, over the handle 0xABCD01.</desc><style>
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}} .tw{animation:tw 3.4s ease-in-out infinite}
+@keyframes moonglow{0%,100%{opacity:.35}50%{opacity:.7}} .mg{animation:moonglow 5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}} .bob{animation:bob 3.6s ease-in-out infinite}
+@keyframes fly1{0%{transform:translate(-180px,0)}100%{transform:translate(1780px,-46px)}} .fly1{animation:fly1 17s linear infinite}
+@keyframes fly2{0%{transform:translate(-140px,0)}100%{transform:translate(1740px,30px)}} .fly2{animation:fly2 23s linear infinite;animation-delay:-9s}
+@keyframes flick{0%,100%{opacity:1}8%{opacity:.25}12%{opacity:1}46%{opacity:1}50%{opacity:.35}54%{opacity:1}78%{opacity:.5}82%{opacity:1}} .fl{animation:flick 4.2s linear infinite}
+@keyframes flick2{0%,100%{opacity:.9}30%{opacity:.2}36%{opacity:.95}64%{opacity:.4}70%{opacity:.9}} .fl2{animation:flick2 5.1s linear infinite}
+@keyframes flash{0%,60%,66%,100%{opacity:0}62%,64%{opacity:.55}} .flash{animation:flash 9s linear infinite}
+@keyframes bolt{0%,60%,66%,100%{opacity:0}62%,64%{opacity:.95}} .bolt{animation:bolt 9s linear infinite}
+@keyframes typeout{0%{transform:scaleX(0)}55%,100%{transform:scaleX(1)}} .ty{transform-origin:88px 0;animation:typeout 7s steps(26) infinite}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}} .sway{transform-origin:top center;animation:sway 4.5s ease-in-out infinite}
+</style>
+<rect width="1600" height="420" fill="#16213a"/>
+<rect class="flash" width="1600" height="420" fill="#e8ecff" opacity="0"/>
+<circle class="mg" cx="1420" cy="88" r="86" fill="#f6e3b4"/>
+<circle cx="1420" cy="88" r="58" fill="#f6e3b4"/>
+<circle cx="1400" cy="72" r="9" fill="#ecd29a"/><circle cx="1440" cy="104" r="6" fill="#ecd29a"/>
+<circle class="tw" style="animation-delay:0.0s" cx="90" cy="60" r="2.6" fill="#f8f1e6"/><circle class="tw" style="animation-delay:0.7s" cx="210" cy="120" r="1.8" fill="#f8f1e6"/><circle class="tw" style="animation-delay:1.4s" cx="360" cy="48" r="2.2" fill="#f8f1e6"/><circle class="tw" style="animation-delay:2.1s" cx="520" cy="96" r="1.6" fill="#f8f1e6"/><circle class="tw" style="animation-delay:2.8s" cx="700" cy="52" r="2.4" fill="#f8f1e6"/><circle class="tw" style="animation-delay:3.5s" cx="880" cy="110" r="1.7" fill="#f8f1e6"/><circle class="tw" style="animation-delay:4.2s" cx="1020" cy="44" r="2.1" fill="#f8f1e6"/><circle class="tw" style="animation-delay:4.9s" cx="640" cy="150" r="1.5" fill="#f8f1e6"/><circle class="tw" style="animation-delay:5.6s" cx="150" cy="210" r="1.6" fill="#f8f1e6"/><circle class="tw" style="animation-delay:6.3s" cx="980" cy="170" r="1.8" fill="#f8f1e6"/><circle class="tw" style="animation-delay:7.0s" cx="420" cy="170" r="1.5" fill="#f8f1e6"/><circle class="tw" style="animation-delay:7.7s" cx="760" cy="190" r="1.4" fill="#f8f1e6"/>
+<g class="fly1"><path d="M0 84 q6.8999999999999995 -8.049999999999999 13.799999999999999 0 q3.4499999999999997 -5.75 6.8999999999999995 -5.75 q3.4499999999999997 0 6.8999999999999995 5.75 q6.8999999999999995 -8.049999999999999 13.799999999999999 0 q-6.8999999999999995 10.35 -13.799999999999999 3.4499999999999997 q-3.4499999999999997 -2.3 -6.8999999999999995 -3.4499999999999997 q-3.4499999999999997 1.15 -6.8999999999999995 3.4499999999999997 q-6.8999999999999995 -6.8999999999999995 -13.799999999999999 -3.4499999999999997 Z" fill="#1f2c4d"/></g>
+<g class="fly2"><path d="M0 150 q4.800000000000001 -5.6000000000000005 9.600000000000001 0 q2.4000000000000004 -4.0 4.800000000000001 -4.0 q2.4000000000000004 0 4.800000000000001 4.0 q4.800000000000001 -5.6000000000000005 9.600000000000001 0 q-4.800000000000001 7.2 -9.600000000000001 2.4000000000000004 q-2.4000000000000004 -1.6 -4.800000000000001 -2.4000000000000004 q-2.4000000000000004 0.8 -4.800000000000001 2.4000000000000004 q-4.800000000000001 -4.800000000000001 -9.600000000000001 -2.4000000000000004 Z" fill="#1f2c4d"/></g>
+<path class="bolt" opacity="0" d="M1046 30 L1018 84 L1038 84 L1006 142 L1058 76 L1036 76 L1062 30 Z" fill="#f6e3b4"/>
+
+<g>
+  <path d="M1150 420 L1150 250 L1235 190 L1320 250 L1320 420 Z" fill="#0d1526"/>
+  <path d="M1128 252 L1235 176 L1342 252 L1328 252 L1235 188 L1142 252 Z" fill="#1f2c4d"/>
+  <rect x="1218" y="150" width="34" height="52" fill="#0d1526"/>
+  <path d="M1210 152 L1235 128 L1260 152 Z" fill="#1f2c4d"/>
+  <rect class="fl" x="1227" y="162" width="16" height="20" rx="8" fill="#f2a65a"/>
+  <rect class="fl2" x="1172" y="282" width="26" height="34" rx="3" fill="#e07b39"/>
+  <rect class="fl" style="animation-delay:-2s" x="1272" y="282" width="26" height="34" rx="3" fill="#f2a65a"/>
+  <rect x="1222" y="330" width="26" height="90" rx="12" fill="#1f2c4d"/>
+  <circle cx="1241" cy="378" r="2.6" fill="#c3a36a"/>
+  <path d="M1150 420 L1320 420 L1360 420 L1105 420 Z" fill="#0d1526"/>
+</g>
+<path d="M0 420 L0 372 Q 300 338 620 366 T 1150 360 L1600 380 L1600 420 Z" fill="#0d1526"/>
+<g class="bob"><g transform="translate(1062 318) scale(1.25)"><path d="M0 -26 C -16 -26 -22 -12 -22 2 L -22 26 L -15 19 L -8 26 L 0 19 L 8 26 L 15 19 L 22 26 L 22 2 C 22 -12 16 -26 0 -26 Z" fill="#f4efe4"/><circle cx="-8" cy="-4" r="3.2" fill="#16213a"/><circle cx="8" cy="-4" r="3.2" fill="#16213a"/><ellipse cx="0" cy="5" rx="4" ry="5.5" fill="#16213a"/><circle cx="-14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/><circle cx="14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/></g></g>
+<g class="sway"><path d="M300 352 q5.4 -6.3 10.8 0 q2.7 -4.5 5.4 -4.5 q2.7 0 5.4 4.5 q5.4 -6.3 10.8 0 q-5.4 8.1 -10.8 2.7 q-2.7 -1.8 -5.4 -2.7 q-2.7 0.9 -5.4 2.7 q-5.4 -5.4 -10.8 -2.7 Z" fill="#0d1526"/></g>
+<text x="88" y="196" font-family="'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace" font-size="96" font-weight="700" fill="#f8f1e6">0xABCD01</text>
+<text x="92" y="252" font-family="'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace" font-size="27" letter-spacing="6" fill="#c3a36a">BUG BOUNTY · PENTEST · OSINT</text>
+<g><clipPath id="tc"><rect class="ty" x="88" y="286" width="560" height="40"/></clipPath>
+<text clip-path="url(#tc)" x="90" y="318" font-family="'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace" font-size="26" fill="#a9b9a4">$ boo. found your bug_</text></g>
+<circle cx="118" cy="368" r="4" fill="#e07b39"/><circle cx="170" cy="360" r="3" fill="#c9c3d9"/><circle cx="228" cy="370" r="3.4" fill="#c3a36a"/>
+<path d="M118 368 L170 360 L228 370" stroke="#c9c3d9" stroke-width="1.3" opacity="0.55" fill="none"/>
+</svg>

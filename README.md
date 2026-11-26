@@ -1,7 +1,7 @@
 <p align="center">
   <img
-    src="./assets/profile-banner.svg"
-    alt="A constellation graph in navy, cream, lavender, sage, and gold, with the handle set in monospace"
+    src="./assets/haunted-banner.svg"
+    alt="A haunted night banner: a glowing full moon, bats, a flickering haunted house, a cute floating ghost, and a lightning flash, over the handle 0xABCD01"
     width="100%"
   >
 </p>
@@ -10,7 +10,7 @@
   <img src="./assets/roles.svg" alt="Areas of work: bug bounty, pentest, OSINT" width="410">
 </p>
 
-<img src="./assets/shooting-star.svg" align="right" width="252" alt="A night-sky panel with a crescent moon and twinkling stars, while meteors streak across leaving glowing trails">
+<img src="./assets/haunted-house.svg" align="right" width="252" alt="A small haunted house: a ghost peeks from the attic window, a spider dangles from the roof, and the windows flicker">
 
 # Hafiar
 
@@ -21,15 +21,15 @@ Personal site: [0xabcd01.github.io](https://0xabcd01.github.io)
 <br clear="right">
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Breaking+things+locally%2C+politely.;Sending+the+fixes+upstream.;Reading+changelogs+so+you+don%27t+have+to." alt="Breaking things locally, politely. Sending the fixes upstream. Reading changelogs so you don't have to.">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Boo.+Found+your+bug.;Haunting+legacy+code%2C+politely.;The+ghost+in+the+machine+is+me." alt="Boo. Found your bug. Haunting legacy code, politely. The ghost in the machine is me.">
 </p>
 
 <p align="center">
-  <img src="./assets/divider.svg" alt="" width="560">
+  <img src="./assets/spider-divider.svg" alt="" width="560">
 </p>
 
 <p align="center">
-  <img src="./assets/radar.svg" alt="An animated radar sweep with contacts lighting up as the beam passes them" width="180">
+  <img src="./assets/spooky-eyes.svg" alt="Pairs of eyes blink in the dark and glance side to side while a small ghost bobs below them" width="180">
 </p>
 
 ## <img src="./assets/icon-research.svg" width="20" height="20" align="left" alt=""> Research
@@ -143,7 +143,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | raystack/apsara | [Start text filters on contains in data-view filter chips](https://github.com/raystack/apsara/pull/1025) |
 
 <p align="center">
-  <img src="./assets/bug-walk.svg" alt="A small bug walking a dotted path" width="560">
+  <img src="./assets/ghost-chase.svg" alt="A cute ghost chasing a bug along a dotted path, shouting BOO!" width="560">
 </p>
 
 <p align="center">
@@ -161,9 +161,9 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake.svg">
-    <img alt="A snake eating its way through the contribution graph" src="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/pacman-contribution-graph-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/pacman-contribution-graph.svg">
+    <img alt="Pac-Man eating his way through the contribution graph while ghosts chase him" src="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/pacman-contribution-graph.svg">
   </picture>
 </p>
 
@@ -179,7 +179,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
 <p align="center">
-  <img src="./assets/pulse.svg" alt="An animated signal line with two heartbeat spikes, a bright pulse travelling along it" width="560">
+  <img src="./assets/pumpkin-pulse.svg" alt="Three jack-o'-lanterns on a vine; their candle faces flicker and the middle one swaps between a grin and a scary face" width="560">
 </p>
 
 ## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
@@ -189,7 +189,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 - Turning the parts of pentesting I repeat by hand into small tools.
 
 <p align="center">
-  <img src="./assets/constellation.svg" alt="An animated constellation: stars twinkle while a line draws itself between them, and a shooting star crosses now and then" width="100%">
+  <img src="./assets/graveyard.svg" alt="A graveyard at night: a ghost rises from behind a tombstone marked BUGS, fog drifts, eyes blink in the dark, and a bat hangs from a dead tree" width="100%">
 </p>
 
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
@@ -206,7 +206,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 </p>
 
 <p align="center">
-  <img src="./assets/waves.svg" alt="Three layered waves in sage, lavender, and gold drifting past each other" width="100%">
+  <img src="./assets/fog.svg" alt="Layers of fog drift past each other while a small ghost glides through and a pair of eyes blinks from the mist" width="100%">
 </p>
 
 <p align="center">

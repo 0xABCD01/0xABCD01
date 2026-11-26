@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 190" role="img" aria-labelledby="t d"><title id="t">Haunted house</title><desc id="d">A small haunted house: a ghost peeks from the attic window, a spider dangles from the roof, windows flicker, and a bat crosses the moon.</desc><style>
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}} .tw{animation:tw 3.4s ease-in-out infinite}
+@keyframes peek{0%,18%{transform:translateY(26px);opacity:0}30%,62%{transform:translateY(0);opacity:1}76%,100%{transform:translateY(26px);opacity:0}} .peek{animation:peek 7s ease-in-out infinite}
+@keyframes dangle{0%,100%{transform:translateY(0)}50%{transform:translateY(30px)}} .dangle{animation:dangle 6s ease-in-out infinite}
+@keyframes flick{0%,100%{opacity:1}10%{opacity:.25}14%{opacity:1}52%{opacity:.35}58%{opacity:1}} .fl{animation:flick 4.4s linear infinite}
+@keyframes flyh{0%{transform:translate(-40px,0)}100%{transform:translate(300px,-14px)}} .flyh{animation:flyh 11s linear infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} .bob{animation:bob 3.6s ease-in-out infinite}
+</style>
+<rect width="260" height="190" rx="14" fill="#16213a"/>
+<circle cx="222" cy="34" r="17" fill="#f6e3b4"/><circle cx="215" cy="28" r="3.4" fill="#ecd29a"/>
+<circle class="tw" style="animation-delay:0.0s" cx="24" cy="26" r="1.7" fill="#f8f1e6"/><circle class="tw" style="animation-delay:0.7s" cx="58" cy="48" r="1.3" fill="#f8f1e6"/><circle class="tw" style="animation-delay:1.4s" cx="96" cy="22" r="1.5" fill="#f8f1e6"/><circle class="tw" style="animation-delay:2.1s" cx="150" cy="40" r="1.2" fill="#f8f1e6"/><circle class="tw" style="animation-delay:2.8s" cx="36" cy="84" r="1.2" fill="#f8f1e6"/>
+<g class="flyh"><path d="M0 58 q3.7199999999999998 -4.34 7.4399999999999995 0 q1.8599999999999999 -3.1 3.7199999999999998 -3.1 q1.8599999999999999 0 3.7199999999999998 3.1 q3.7199999999999998 -4.34 7.4399999999999995 0 q-3.7199999999999998 5.58 -7.4399999999999995 1.8599999999999999 q-1.8599999999999999 -1.24 -3.7199999999999998 -1.8599999999999999 q-1.8599999999999999 0.62 -3.7199999999999998 1.8599999999999999 q-3.7199999999999998 -3.7199999999999998 -7.4399999999999995 -1.8599999999999999 Z" fill="#1f2c4d"/></g>
+<path d="M52 178 L52 96 L130 44 L208 96 L208 178 Z" fill="#0d1526"/>
+<path d="M40 98 L130 36 L220 98 L208 98 L130 48 L52 98 Z" fill="#1f2c4d"/>
+<rect x="114" y="16" width="32" height="34" fill="#0d1526"/>
+<clipPath id="attic"><rect x="121" y="24" width="18" height="22" rx="8"/></clipPath>
+<rect x="121" y="24" width="18" height="22" rx="8" fill="#e07b39"/>
+<g clip-path="url(#attic)"><g class="peek"><g transform="translate(130 38) scale(0.34)"><path d="M0 -26 C -16 -26 -22 -12 -22 2 L -22 26 L -15 19 L -8 26 L 0 19 L 8 26 L 15 19 L 22 26 L 22 2 C 22 -12 16 -26 0 -26 Z" fill="#f4efe4"/><circle cx="-8" cy="-4" r="3.2" fill="#16213a"/><circle cx="8" cy="-4" r="3.2" fill="#16213a"/><ellipse cx="0" cy="5" rx="4" ry="5.5" fill="#16213a"/><circle cx="-14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/><circle cx="14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/></g></g></g>
+<rect class="fl" x="70" y="112" width="22" height="28" rx="3" fill="#f2a65a"/>
+<rect class="fl" style="animation-delay:-2.2s" x="168" y="112" width="22" height="28" rx="3" fill="#e07b39"/>
+<rect x="119" y="128" width="22" height="50" rx="10" fill="#1f2c4d"/><circle cx="135" cy="154" r="2" fill="#c3a36a"/>
+<g class="dangle"><line x1="206" y1="86" x2="206" y2="112" stroke="#c9c3d9" stroke-width="1.2"/>
+<g transform="translate(206 120)"><circle r="6.5" fill="#0d1526" stroke="#c9c3d9" stroke-width="1"/>
+<path d="M-5 -3 L-13 -8 M-6 0 L-14 0 M-5 3 L-12 8 M5 -3 L13 -8 M6 0 L14 0 M5 3 L12 8" stroke="#c9c3d9" stroke-width="1.3" fill="none"/>
+<circle cx="-2" cy="-1.6" r="1.1" fill="#f2a65a"/><circle cx="2" cy="-1.6" r="1.1" fill="#f2a65a"/></g></g>
+<g class="bob"><g transform="translate(34 158) scale(0.55)"><path d="M0 -26 C -16 -26 -22 -12 -22 2 L -22 26 L -15 19 L -8 26 L 0 19 L 8 26 L 15 19 L 22 26 L 22 2 C 22 -12 16 -26 0 -26 Z" fill="#f4efe4"/><circle cx="-8" cy="-4" r="3.2" fill="#16213a"/><circle cx="8" cy="-4" r="3.2" fill="#16213a"/><ellipse cx="0" cy="5" rx="4" ry="5.5" fill="#16213a"/><circle cx="-14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/><circle cx="14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/></g></g>
+<rect y="178" width="260" height="12" fill="#0d1526"/>
+</svg>

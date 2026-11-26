@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 64" role="img" aria-labelledby="t d"><title id="t">Spider divider</title><desc id="d">A divider line with a spider that drops down on its thread, grins, and climbs back up.</desc><style>
+@keyframes drop{0%,16%{transform:translateY(0)}46%,62%{transform:translateY(26px)}88%,100%{transform:translateY(0)}} .drop{animation:drop 8s ease-in-out infinite}
+@keyframes thread{0%,16%{transform:scaleY(1)}46%,62%{transform:scaleY(3.17)}88%,100%{transform:scaleY(1)}} .thread{transform-origin:360px 0;animation:thread 8s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}} .tw{animation:tw 3.2s ease-in-out infinite}
+</style>
+<line x1="8" y1="34" x2="330" y2="34" stroke="#c3a36a" stroke-width="1.6" opacity="0.75"/>
+<line x1="390" y1="34" x2="712" y2="34" stroke="#c3a36a" stroke-width="1.6" opacity="0.75"/>
+<circle class="tw" cx="352" cy="34" r="2.6" fill="#c9c3d9"/><circle class="tw" style="animation-delay:-1.4s" cx="368" cy="34" r="2.6" fill="#c9c3d9"/>
+<rect class="thread" x="359.4" y="0" width="1.4" height="12" fill="#c9c3d9"/>
+<g class="drop"><g transform="translate(360 12)">
+<path d="M-5 -3 L-14 -9 M-6 0 L-15 0 M-5 3 L-13 9 M5 -3 L14 -9 M6 0 L15 0 M5 3 L13 9" stroke="#f8f1e6" stroke-width="1.5" fill="none"/>
+<circle r="7.5" fill="#1f2c4d" stroke="#f8f1e6" stroke-width="1.2"/>
+<circle cx="-2.4" cy="-1.8" r="1.3" fill="#f2a65a"/><circle cx="2.4" cy="-1.8" r="1.3" fill="#f2a65a"/>
+<path d="M-3 3.4 Q 0 5.4 3 3.4" stroke="#f2a65a" stroke-width="1.2" fill="none"/></g></g>
+</svg>

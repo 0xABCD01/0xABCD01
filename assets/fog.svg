@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 84" role="img" aria-labelledby="t d"><title id="t">Rolling fog</title><desc id="d">Layers of fog drift past each other while a small ghost glides through and a pair of eyes blinks from the mist.</desc><style>
+@keyframes drift1{from{transform:translateX(0)}to{transform:translateX(-360px)}} .d1{animation:drift1 15s linear infinite}
+@keyframes drift2{from{transform:translateX(-360px)}to{transform:translateX(0)}} .d2{animation:drift2 21s linear infinite}
+@keyframes pass{0%{transform:translate(-70px,0)}100%{transform:translate(790px,-6px)}} .pass{animation:pass 16s linear infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}} .bob{animation:bob 2.8s ease-in-out infinite}
+@keyframes blink{0%,89%,100%{opacity:1}93%{opacity:0}} .blink{animation:blink 4.8s linear infinite}
+</style>
+<g class="pass"><g class="bob"><g transform="translate(0 34) scale(0.72)"><path d="M0 -26 C -16 -26 -22 -12 -22 2 L -22 26 L -15 19 L -8 26 L 0 19 L 8 26 L 15 19 L 22 26 L 22 2 C 22 -12 16 -26 0 -26 Z" fill="#f4efe4"/><circle cx="-8" cy="-4" r="3.2" fill="#16213a"/><circle cx="8" cy="-4" r="3.2" fill="#16213a"/><ellipse cx="0" cy="5" rx="4" ry="5.5" fill="#16213a"/><circle cx="-14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/><circle cx="14" cy="3" r="3.4" fill="#f2a65a" opacity="0.55"/></g></g></g>
+<g class="blink"><circle cx="520" cy="52" r="2.5" fill="#f2a65a"/><circle cx="532" cy="52" r="2.5" fill="#f2a65a"/></g>
+<g class="d1"><path d="M0 38 Q 90 22 180 38 T 360 38 T 540 38 T 720 38 T 900 38 T 1080 38 L1080 84 L0 84 Z" fill="#c9c3d9" opacity="0.35"/></g>
+<g class="d2"><path d="M0 56 Q 90 40 180 56 T 360 56 T 540 56 T 720 56 T 900 56 T 1080 56 L1080 84 L0 84 Z" fill="#a9b9a4" opacity="0.4"/></g>
+<g class="d1" style="animation-duration:24s"><path d="M0 72 Q 90 56 180 72 T 360 72 T 540 72 T 720 72 T 900 72 T 1080 72 L1080 84 L0 84 Z" fill="#c3a36a" opacity="0.35"/></g>
+</svg>
