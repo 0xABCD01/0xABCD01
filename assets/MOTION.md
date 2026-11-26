@@ -97,3 +97,19 @@ The user pushed the vibe further: "vibes api neraka yang membara"
   feet; the divider lines turn molten (pulsing ember); the wolf grows a
   **flame mane** and a flame tail-tip; a second rooftop catches fire;
   the closing strip gains falling **ash** over the smoke and embers.
+
+## v5.1 — realistic fire (same day)
+
+The user asked for the fire itself to look more realistic ("cari yang
+lebih realistis"). Researched first (dev.to's SVG fire work + layered
+CSS flame studies), then rebuilt `flame()` once — every scene inherits:
+
+- Irregular multi-tongue path instead of the symmetric teardrop; no two
+  tongues the same height.
+- Bottom-anchored radial gradient: white-hot core → gold → orange →
+  deep red edge (real flames are a white-to-orange-to-dark transition,
+  not flat yellow/orange).
+- `feTurbulence` + `feDisplacementMap` (fractalNoise 0.035/0.11, scale
+  13) tearing the flame edges, applied only at s >= 0.7 where it reads.
+- A blurred glow copy behind each flame, pulsing on its own slow cycle.
+- Smoke wisps rising and fading above the brazier and the hell gate.

@@ -31,7 +31,19 @@ SINE = "cubic-bezier(0.37,0,0.63,1)"
 SHARP = "cubic-bezier(0.4,0,0.2,1)"
 REDUCED = "@media (prefers-reduced-motion: reduce){*{animation:none!important}}"
 
-def svg(w, h, body, title, desc, style, defs=""):
+FIRE_DEFS = ('<radialGradient id="flameg" cx="50%" cy="92%" r="75%">'
+             '<stop offset="0%" stop-color="#fff6c8"/><stop offset="30%" stop-color="#ffd23e"/>'
+             '<stop offset="55%" stop-color="#ff7b00"/><stop offset="80%" stop-color="#e63e00"/>'
+             '<stop offset="100%" stop-color="#a31e00" stop-opacity="0.92"/></radialGradient>'
+             '<filter id="fdist" x="-30%" y="-30%" width="160%" height="160%">'
+             '<feTurbulence type="fractalNoise" baseFrequency="0.035 0.11" numOctaves="2" seed="7" result="n"/>'
+             '<feDisplacementMap in="SourceGraphic" in2="n" scale="13" xChannelSelector="R" yChannelSelector="G"/></filter>'
+             '<filter id="fsoft" x="-60%" y="-60%" width="220%" height="220%">'
+             '<feGaussianBlur stdDeviation="4"/></filter>')
+
+def svg(w, h, body, title, desc, style, defs=None):
+    if defs is None:
+        defs = FIRE_DEFS
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" role="img" '
             f'aria-labelledby="t d"><title id="t">{title}</title><desc id="d">{desc}</desc>'
             f'<defs>{defs}</defs><style>{style}{REDUCED}</style>{body}</svg>\n')
@@ -50,7 +62,8 @@ WATCH = ("@keyframes headturn{0%,38%,68%,100%{transform:translateX(0)}46%,60%{tr
          " .eyeglow{animation:eyeglow 11s " + SHARP + " infinite}"
          "@keyframes breathe{0%,100%{transform:scale(1,1)}50%{transform:scale(1.012,1.02)}}"
          " .breathe{transform-box:fill-box;transform-origin:bottom center;animation:breathe 5s " + SINE + " infinite}")
-FLICK = ("@keyframes flick{0%,100%{transform:scale(1,1) skewX(0deg)}28%{transform:scale(.95,1.12) skewX(2.5deg)}"
+FLICK = ("@keyframes glowf{0%,100%{opacity:.22}50%{opacity:.38}} .glowf{animation:glowf 2.3s " + SINE + " infinite}"
+         "@keyframes flick{0%,100%{transform:scale(1,1) skewX(0deg)}28%{transform:scale(.95,1.12) skewX(2.5deg)}"
          "57%{transform:scale(1.04,.93) skewX(-2deg)}79%{transform:scale(.98,1.07) skewX(1deg)}}"
          " .flick{transform-box:fill-box;transform-origin:bottom center;animation:flick 1.1s linear infinite}")
 EMBER_CSS = ("@keyframes emberrise{0%{transform:translate(0,0);opacity:0}10%{opacity:.95}"
@@ -63,11 +76,22 @@ def stars(points, op=0.45):
         out += f'<circle class="tw" style="animation-delay:{i*0.83:.2f}s" cx="{x}" cy="{y}" r="{r}" fill="{CREAM}" opacity="{op}"/>'
     return out
 
+FLAME_PATH = ("M0 0 C -13 -4 -16 -16 -11 -26 C -8 -32 -5 -30 -4 -37 C -2 -29 1 -31 2 -41 "
+              "C 3 -46 5 -49 6 -45 C 8 -37 13 -33 12 -25 C 15 -29 16 -18 12 -10 C 9 -4 5 0 0 0 Z")
+
 def flame(x, y, s=1.0, dur=1.1, delay=0.0):
-    p = "M0 0 C -11 -13 -7 -28 0 -42 C 7 -28 11 -13 0 0"
-    return (f'<g transform="translate({x} {y}) scale({s})"><g class="flick" style="animation-duration:{dur}s;animation-delay:{delay}s">'
-            f'<path d="{p}" fill="{EMBER}"/><path d="{p}" transform="scale(.66)" fill="{FLAME}"/>'
-            f'<path d="{p}" transform="scale(.38)" fill="{CORE}"/></g></g>')
+    """Realistic flame: irregular multi-tongue path, bottom-anchored radial
+    gradient (white-hot core -> gold -> orange -> deep red edge), a blurred
+    glow copy behind, and feTurbulence displacement tearing the edges on
+    flames big enough to read it (s >= 0.7)."""
+    dist = ' filter="url(#fdist)"' if s >= 0.7 else ''
+    return (f'<g transform="translate({x} {y}) scale({s})">'
+            f'<ellipse class="glowf" cx="0" cy="-8" rx="17" ry="21" fill="{EMBER}" filter="url(#fsoft)"/>'
+            f'<g{dist}><g class="flick" style="animation-duration:{dur}s;animation-delay:{delay}s">'
+            f'<path d="{FLAME_PATH}" fill="url(#flameg)"/>'
+            f'<path d="{FLAME_PATH}" transform="translate(-1 -1) scale(.68)" fill="{FLAME}" opacity="0.9"/>'
+            f'<path d="{FLAME_PATH}" transform="scale(.42)" fill="#ffeeb0" opacity="0.95"/>'
+            f'</g></g></g>')
 
 def embers(specs):
     out = ""
@@ -124,6 +148,7 @@ banner_style = TWINKLE + FLAP + WATCH + FLICK + EMBER_CSS + """
 @keyframes gl1{{0%,29%,35%,74%,80%,100%{{opacity:0;transform:translateX(0)}}31%,33%{{opacity:.9;transform:translateX(-6px)}}76%,78%{{opacity:.9;transform:translateX(-4px)}}}} .gl1{{animation:gl1 8s linear infinite}}
 @keyframes gl2{{0%,29%,35%,74%,80%,100%{{opacity:0;transform:translateX(0)}}31%,33%{{opacity:.75;transform:translateX(6px)}}76%,78%{{opacity:.75;transform:translateX(4px)}}}} .gl2{{animation:gl2 8s linear infinite}}
 @keyframes typeout{{0%{{transform:scaleX(0)}}55%,100%{{transform:scaleX(1)}}}} .ty{{transform-origin:88px 0;animation:typeout 7s steps(27) infinite}}
+@keyframes wisp{{0%{{transform:translate(0,0);opacity:0}}25%{{opacity:.35}}100%{{transform:translate(14px,-40px);opacity:0}}}} .wisp{{animation:wisp 8s {SINE} infinite}}
 """
 defs = (f'<radialGradient id="moong"><stop offset="0%" stop-color="{FLAME}"/><stop offset="70%" stop-color="{EMBER}"/>'
         f'<stop offset="100%" stop-color="#b34700"/></radialGradient>'
@@ -146,6 +171,8 @@ banner_body = f"""
 <path d="M1096 356 L1096 262 Q1158 224 1220 262 L1220 356 Z" fill="#0d0d12"/>
 <path d="M1108 356 L1108 268 Q1158 238 1208 268 L1208 356 Z" fill="url(#moong)" opacity="0.85"/>
 {flame(1132,356,0.8,1.0,-0.3)}{flame(1158,356,1.0,0.9,0.0)}{flame(1184,356,0.8,1.1,-0.6)}
+<ellipse class="wisp" opacity="0" cx="1150" cy="300" rx="20" ry="6" fill="#26262e"/>
+<ellipse class="wisp" opacity="0" style="animation-delay:-4s" cx="1172" cy="292" rx="15" ry="5" fill="#26262e"/>
 {watcher(1158,352,1.35)}
 <text class="gl1" opacity="0" x="88" y="196" font-family="{MONO}" font-size="96" font-weight="700" fill="{CREAM}" clip-path="url(#gslice)">0xABCD01</text>
 <text class="gl2" opacity="0" x="88" y="196" font-family="{MONO}" font-size="96" font-weight="700" fill="{EMBER}" clip-path="url(#gslice2)">0xABCD01</text>
@@ -160,11 +187,12 @@ banner_body = f"""
 {fire_row}
 """
 write("inferno-banner.svg", svg(1600, 420, banner_body, "0xABCD01 inferno banner",
-    "A black banner over a line of fire: an ember moon behind smoke, the handle written in flame gradient and glitching, embers rising, and a broad watcher silhouette on the hill whose eyes burn orange for a moment.", banner_style, defs))
+    "A black banner over a line of fire: an ember moon behind smoke, the handle written in flame gradient and glitching, embers rising, and a broad watcher silhouette on the hill whose eyes burn orange for a moment.", banner_style, defs + FIRE_DEFS))
 
 # ----------------------------------------------------------------- brazier --
 brazier_style = WATCH + FLICK + EMBER_CSS + f"""
 @keyframes glowpulse{{0%,100%{{opacity:.14}}50%{{opacity:.24}}}} .glowpulse{{animation:glowpulse 2.6s {SINE} infinite}}
+@keyframes wisp{{0%{{transform:translate(0,0);opacity:0}}25%{{opacity:.4}}100%{{transform:translate(9px,-34px);opacity:0}}}} .wisp{{animation:wisp 6.5s {SINE} infinite}}
 """
 brazier_body = f"""
 <rect width="260" height="190" rx="14" fill="{PANEL}"/>
@@ -172,6 +200,8 @@ brazier_body = f"""
 {flame(66,114,1.85,0.95,-0.3)}{flame(48,116,0.9,1.1,-0.7)}{flame(84,116,0.9,1.05,-0.5)}
 <path d="M38 116 L94 116 L84 132 L48 132 Z" fill="{SIL2}"/>
 <path d="M52 132 L46 152 M80 132 L86 152 M48 152 L84 152" stroke="{SIL2}" stroke-width="3.4" fill="none"/>
+<ellipse class="wisp" opacity="0" cx="60" cy="58" rx="13" ry="5" fill="#26262e"/>
+<ellipse class="wisp" opacity="0" style="animation-delay:-3.2s" cx="76" cy="54" rx="10" ry="4" fill="#26262e"/>
 {embers([(52,104,1.8,4.6,-0.8),(66,98,1.5,5.4,-2.4),(80,106,1.7,4.9,-3.6),(58,92,1.3,6.1,-1.5)])}
 {watcher(188,152,1.08,SIL2)}
 <rect y="176" width="260" height="14" fill="{INK}"/>
