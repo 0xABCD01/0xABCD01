@@ -1,7 +1,7 @@
 <p align="center">
   <img
-    src="./assets/haunted-banner.svg"
-    alt="A haunted night banner: a glowing full moon, bats, a flickering haunted house, a cute floating ghost, and a lightning flash, over the handle 0xABCD01"
+    src="./assets/dark-banner.svg"
+    alt="A dark banner: a pale moon behind drifting cloud, crows crossing, a lone watcher on a hill whose head turns and whose red eyes open for a moment, and the handle glitching in slices"
     width="100%"
   >
 </p>
@@ -10,7 +10,7 @@
   <img src="./assets/roles.svg" alt="Areas of work: bug bounty, pentest, OSINT" width="410">
 </p>
 
-<img src="./assets/haunted-house.svg" align="right" width="252" alt="A small haunted house: a ghost peeks from the attic window, a spider dangles from the roof, and the windows flicker">
+<img src="./assets/streetlamp.svg" align="right" width="252" alt="A streetlamp that dips once every few seconds, a moth circling it, and a watcher at the edge of the light whose red eyes open briefly">
 
 # Hafiar
 
@@ -21,15 +21,15 @@ Personal site: [0xabcd01.github.io](https://0xabcd01.github.io)
 <br clear="right">
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Boo.+Found+your+bug.;Haunting+legacy+code%2C+politely.;The+ghost+in+the+machine+is+me." alt="Boo. Found your bug. Haunting legacy code, politely. The ghost in the machine is me.">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=I+see+the+bugs+you+hide.;Nothing+ships+unobserved.;Your+move." alt="I see the bugs you hide. Nothing ships unobserved. Your move.">
 </p>
 
 <p align="center">
-  <img src="./assets/spider-divider.svg" alt="" width="560">
+  <img src="./assets/glitch-divider.svg" alt="" width="560">
 </p>
 
 <p align="center">
-  <img src="./assets/spooky-eyes.svg" alt="Pairs of eyes blink in the dark and glance side to side while a small ghost bobs below them" width="180">
+  <img src="./assets/watcher-eyes.svg" alt="One pair of sharp, slanted eyes in the dark; the pupils track slowly side to side and the blink is slow and heavy" width="180">
 </p>
 
 ## <img src="./assets/icon-research.svg" width="20" height="20" align="left" alt=""> Research
@@ -143,7 +143,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | raystack/apsara | [Start text filters on contains in data-view filter chips](https://github.com/raystack/apsara/pull/1025) |
 
 <p align="center">
-  <img src="./assets/ghost-chase.svg" alt="A cute ghost chasing a bug along a dotted path, shouting BOO!" width="560">
+  <img src="./assets/shadow-walk.svg" alt="A stickman walks across while his shadow walks out of sync with him, a half-step behind" width="560">
 </p>
 
 <p align="center">
@@ -161,9 +161,9 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/pacman-contribution-graph-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/pacman-contribution-graph.svg">
-    <img alt="Pac-Man eating his way through the contribution graph while ghosts chase him" src="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/pacman-contribution-graph.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake.svg">
+    <img alt="A snake eating its way through the contribution graph" src="https://raw.githubusercontent.com/0xABCD01/0xABCD01/output/github-contribution-grid-snake.svg">
   </picture>
 </p>
 
@@ -179,7 +179,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
 <p align="center">
-  <img src="./assets/pumpkin-pulse.svg" alt="Three jack-o'-lanterns on a vine; their candle faces flicker and the middle one swaps between a grin and a scary face" width="560">
+  <img src="./assets/raven.svg" alt="A raven on a branch slowly turns its head to look and flicks its tail; two smaller crows sit further along, their red eyes brightening now and then" width="560">
 </p>
 
 ## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
@@ -189,11 +189,11 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 - Turning the parts of pentesting I repeat by hand into small tools.
 
 <p align="center">
-  <img src="./assets/stickman-hunt.svg" alt="A stickman with a flashlight walks in, startles back when a ghost pops up, then panic-walks past it" width="560">
+  <img src="./assets/the-watcher.svg" alt="A lone figure stands motionless on a hill in fog; after a long stillness its head turns toward you and two red eyes open, hold, and close" width="560">
 </p>
 
 <p align="center">
-  <img src="./assets/graveyard.svg" alt="A graveyard at night: a ghost rises from behind a tombstone marked BUGS, fog drifts, eyes blink in the dark, and a bat hangs from a dead tree" width="100%">
+  <img src="./assets/rooftop.svg" alt="A night skyline with flickering windows; a lone figure stands on the tallest roof, coat fluttering, watching the city" width="100%">
 </p>
 
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
@@ -210,7 +210,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 </p>
 
 <p align="center">
-  <img src="./assets/fog.svg" alt="Layers of fog drift past each other while a small ghost glides through and a pair of eyes blinks from the mist" width="100%">
+  <img src="./assets/mist.svg" alt="Slow layers of mist drift against each other while a small dark figure walks far behind them, half hidden" width="100%">
 </p>
 
 <p align="center">
