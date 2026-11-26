@@ -189,6 +189,10 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 - Turning the parts of pentesting I repeat by hand into small tools.
 
 <p align="center">
+  <img src="./assets/stickman-hunt.svg" alt="A stickman with a flashlight walks in, startles back when a ghost pops up, then panic-walks past it" width="560">
+</p>
+
+<p align="center">
   <img src="./assets/graveyard.svg" alt="A graveyard at night: a ghost rises from behind a tombstone marked BUGS, fog drifts, eyes blink in the dark, and a bat hangs from a dead tree" width="100%">
 </p>
 

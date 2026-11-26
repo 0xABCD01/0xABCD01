@@ -52,9 +52,16 @@ One ghost haunts the whole profile, top to bottom:
 6. **pumpkin-pulse** — the vine draws itself (path draw-on), three
    jack-o'-lanterns pop in on a wave stagger and sway; the middle one's
    face pops as it swaps grin ↔ scary.
-7. **graveyard** — the ghost rises on a swaying arc from the BUGS
+7. **stickman-hunt** — a jointed stickman (hip/shoulder pivots,
+   opposite-phase limb swing at the quick token, body bob at half-cycle)
+   walks in with a sweeping flashlight beam; the ghost pops up ahead, he
+   startles back with a squash and a "!!", then panic-walks past.
+8. **graveyard** — the ghost rises on a swaying arc from the BUGS
    tombstone, hovers, sinks back. Fog moves at gas speed (2x duration).
-8. **fog** — the ghost glides out on a long shallow arc while the mist
+   The same stickman stands guard at the right edge, flashlight aimed
+   across the graves, shivering exactly while the ghost is up (synced
+   10 s cycle).
+9. **fog** — the ghost glides out on a long shallow arc while the mist
    layers counter-drift at 20-30% of its speed.
 
 The contribution graph below the stats is Pac-Man chased by ghosts

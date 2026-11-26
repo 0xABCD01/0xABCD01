@@ -78,6 +78,24 @@ def stars(points):
 
 TWINKLE = "@keyframes tw{0%,100%{opacity:.25}50%{opacity:1}} .tw{animation:tw 3.4s " + SINE + " infinite}"
 
+def stickman(color=CREAM, s=1.0):
+    """Jointed stickman: legs/arms swing from the hip/shoulder pivots
+    (transform-box: fill-box, origin on the joint), opposite-phase walk cycle."""
+    return (f'<g transform="scale({s})" stroke="{color}" stroke-width="3.4" stroke-linecap="round" fill="none">'
+            f'<circle cx="0" cy="-35" r="9.5" fill="none"/>'
+            f'<line x1="0" y1="-26" x2="0" y2="0"/>'
+            f'<g class="legL"><path d="M0 0 L-10 21"/></g>'
+            f'<g class="legR"><path d="M0 0 L10 21"/></g>'
+            f'<g class="armL"><path d="M0 -22 L-13 -7"/></g>'
+            f'<g class="armR"><path d="M0 -22 L13 -7"/></g></g>')
+
+WALK_CSS = (".legL{transform-box:fill-box;transform-origin:100% 0;animation:swA .56s " + SINE + " infinite}"
+            ".legR{transform-box:fill-box;transform-origin:0 0;animation:swB .56s " + SINE + " infinite}"
+            ".armL{transform-box:fill-box;transform-origin:100% 0;animation:swB .56s " + SINE + " infinite}"
+            ".armR{transform-box:fill-box;transform-origin:0 0;animation:swA .56s " + SINE + " infinite}"
+            "@keyframes swA{0%,100%{transform:rotate(17deg)}50%{transform:rotate(-17deg)}}"
+            "@keyframes swB{0%,100%{transform:rotate(-17deg)}50%{transform:rotate(17deg)}}")
+
 # ------------------------------------------------------------------ banner --
 # Primary: ghost floats on an arc, startled by the lightning (squash -> stretch -> settle).
 # Secondary: bats flap across on curved paths, windows flicker, terminal types itself.
@@ -286,6 +304,8 @@ grave_style = TWINKLE + FLAP + f"""
 @keyframes fogmove2{{0%{{transform:translateX(38px)}}100%{{transform:translateX(-38px)}}}} .fogm2{{animation:fogmove2 24s {SINE} infinite alternate}}
 @keyframes blinkg{{0%,90%,100%{{opacity:1}}94%{{opacity:0}}}} .blinkg{{animation:blinkg 5.4s linear infinite}}
 @keyframes hang{{0%,100%{{transform:rotate(6deg)}}50%{{transform:rotate(-6deg)}}}} .hang{{transform-origin:118px 26px;animation:hang 4.2s {SINE} infinite}}
+@keyframes shiver{{0%,20%,64%,100%{{transform:translateX(0)}}28%{{transform:translateX(-1.4px)}}34%{{transform:translateX(1.4px)}}40%{{transform:translateX(-1.4px)}}46%{{transform:translateX(1.4px)}}52%{{transform:translateX(-1px)}}58%{{transform:translateX(1px)}}}} .shiver{{animation:shiver 10s linear infinite}}
+@keyframes beamf{{0%,100%{{opacity:.28}}48%{{opacity:.34}}52%{{opacity:.18}}56%{{opacity:.3}}}} .beamf{{animation:beamf 10s linear infinite}}
 """
 def tomb(x, y, w, h, label="RIP"):
     return (f'<path d="M{x} {y} L{x} {y-h+w/2} Q {x} {y-h} {x+w/2} {y-h} Q {x+w} {y-h} {x+w} {y-h+w/2} L{x+w} {y} Z" fill="#39445f"/>'
@@ -303,11 +323,39 @@ grave_body = f"""
 <g clip-path="url(#graveclip)"><g class="rise" opacity="0">{ghost(451,86,0.8)}</g></g>
 <g class="blinkg"><circle cx="300" cy="98" r="2.6" fill="{ORANGE_L}"/><circle cx="312" cy="98" r="2.6" fill="{ORANGE_L}"/></g>
 <g class="blinkg" style="animation-delay:-2.7s"><circle cx="566" cy="104" r="2.3" fill="{ORANGE_L}"/><circle cx="577" cy="104" r="2.3" fill="{ORANGE_L}"/></g>
+<g transform="translate(772 94)"><g class="shiver"><polygon class="beamf" points="-12,-9 -64,-2 -62,13" fill="{GOLD}"/>
+{stickman(CREAM, 0.92)}</g></g>
 <g class="fogm"><ellipse cx="240" cy="122" rx="150" ry="10" fill="{LAV}" opacity="0.16"/><ellipse cx="620" cy="128" rx="170" ry="9" fill="{LAV}" opacity="0.13"/></g>
 <g class="fogm2"><ellipse cx="440" cy="118" rx="130" ry="8" fill="{CREAM}" opacity="0.10"/></g>
 """
 write("graveyard.svg", svg(880, 140, grave_body, "Graveyard",
     "A graveyard at night: a ghost rises on a swaying arc from behind a tombstone marked BUGS, hovers, and sinks back; fog drifts slowly and a bat swings upside down from a dead tree.", grave_style))
+
+# ------------------------------------------------------------- stickman hunt --
+# Story in 8s: the stickman walks in with a flashlight (jointed walk cycle,
+# opposite-phase limbs, body bob), a ghost pops up ahead, he startles back
+# (squash, "!!"), then panic-walks past as the ghost sinks away.
+hunt_style = TWINKLE + WALK_CSS + f"""
+@keyframes walkx{{0%{{transform:translate(-46px,0)}}54%{{transform:translate(322px,0)}}60%{{transform:translate(304px,-9px) scale(1.06,.9)}}66%{{transform:translate(310px,0) scale(1,1)}}100%{{transform:translate(716px,0)}}}} .walkx{{animation:walkx 8s {SMOOTH} infinite}}
+@keyframes bobw{{0%,100%{{transform:translateY(0)}}50%{{transform:translateY(-2.6px)}}}} .bobw{{animation:bobw .28s {SINE} infinite}}
+@keyframes beamh{{0%,100%{{transform:rotate(-4deg)}}50%{{transform:rotate(5deg)}}}} .beamh{{transform-box:fill-box;transform-origin:0 50%;animation:beamh 2.2s {SINE} infinite}}
+@keyframes popghost{{0%,50%{{transform:translateY(30px);opacity:0}}58%,74%{{transform:translateY(0);opacity:1}}82%,100%{{transform:translateY(30px);opacity:0}}}} .popghost{{animation:popghost 8s {SHARP} infinite}}
+@keyframes bang{{0%,56%{{opacity:0;transform:scale(.5) rotate(6deg)}}63%,72%{{opacity:1;transform:scale(1.1) rotate(-6deg)}}78%,100%{{opacity:0;transform:scale(.9)}}}} .bang{{transform-origin:330px 18px;animation:bang 8s {BACK} infinite}}
+"""
+hunt_body = f"""
+<line x1="6" y1="88" x2="714" y2="88" stroke="{LAV}" stroke-width="2.4" stroke-dasharray="2 10" stroke-linecap="round" opacity="0.7"/>
+{stars([(90,14,1.5),(250,8,1.3),(610,12,1.5),(690,26,1.2)])}
+<g clip-path="url(#huntclip)"><g class="popghost" opacity="0">{ghost(486,58,0.95)}</g></g>
+<clipPath id="huntclip"><rect x="430" y="8" width="112" height="82"/></clipPath>
+<g class="walkx"><g transform="translate(0 62)"><g class="bobw">
+<g class="beamh"><polygon points="13,-9 74,2 72,17" fill="{GOLD}" opacity="0.32"/></g>
+{stickman(CREAM, 1.0)}
+<rect x="10" y="-13" width="7" height="5" rx="1.6" fill="{ORANGE_L}"/>
+</g></g></g>
+<text class="bang" opacity="0" x="318" y="26" font-family="{MONO}" font-size="22" font-weight="700" fill="{ORANGE_L}">!!</text>
+"""
+write("stickman-hunt.svg", svg(720, 110, hunt_body, "Stickman hunt",
+    "A stickman with a flashlight walks in with a jointed walk cycle, startles back with a squash when a ghost pops up, then panic-walks past as it sinks away.", hunt_style))
 
 # ---------------------------------------------------------------------- fog --
 # Gas material: slowest durations, sine easing, ghost glides a long shallow arc.
