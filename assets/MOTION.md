@@ -81,3 +81,19 @@ banner, the brazier, and the-watcher.
 
 The contribution snake is on fire too: `snake.yml` passes
 `color_snake=#ff6a00` and ember-ramp `color_dots` for both palettes.
+
+## v5 — api neraka (hellfire pass, same day)
+
+The user pushed the vibe further: "vibes api neraka yang membara"
+(blazing hellfire). Same set, intensified, no new files:
+
+- The watcher grows **horns and a cloak** (one `watcher()` change, so he
+  upgrades in the banner, brazier, and the-watcher at once) and stands
+  silhouetted in front of a **burning hell gate** on the banner hill.
+- The banner moon becomes a **ring-of-fire eclipse** (annular, gradient
+  ring, black core) and the fire line becomes a **lava lake**: gradient
+  band, pulsing bubbles, fewer but larger flames on its surface.
+- the-watcher gets **lava flows** pouring from beneath the watcher's
+  feet; the divider lines turn molten (pulsing ember); the wolf grows a
+  **flame mane** and a flame tail-tip; a second rooftop catches fire;
+  the closing strip gains falling **ash** over the smoke and embers.

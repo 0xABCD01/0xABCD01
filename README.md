@@ -1,7 +1,7 @@
 <p align="center">
   <img
     src="./assets/inferno-banner.svg"
-    alt="A black banner over a line of fire: an ember moon behind smoke, the handle written in flame gradient and glitching, embers rising, and a broad watcher on the hill whose eyes burn orange for a moment"
+    alt="A black banner over a lake of lava: a ring-of-fire eclipse, a hell gate burning on the hill with a horned cloaked watcher silhouetted in front of it, the handle written in flame gradient and glitching, and embers rising"
     width="100%"
   >
 </p>
@@ -10,7 +10,7 @@
   <img src="./assets/roles.svg" alt="Areas of work: bug bounty, pentest, OSINT" width="410">
 </p>
 
-<img src="./assets/brazier.svg" align="right" width="252" alt="An iron brazier burning with a tall flickering flame and rising embers, beside a broad watcher whose head turns and whose eyes burn briefly">
+<img src="./assets/brazier.svg" align="right" width="252" alt="An iron brazier burning with tall flickering flames and rising embers, beside a horned cloaked watcher whose head turns and whose eyes burn briefly">
 
 # Hafiar
 
@@ -179,7 +179,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
 <p align="center">
-  <img src="./assets/wolf.svg" alt="An angular wolf silhouette on a rock under an ember moon throws its head back to howl, a puff of ember breath escaping, its eye burning" width="560">
+  <img src="./assets/wolf.svg" alt="An angular wolf silhouette with a mane of small flames on a rock under an ember moon throws its head back to howl, a puff of ember breath escaping, its eye burning" width="560">
 </p>
 
 ## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
@@ -189,7 +189,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 - Turning the parts of pentesting I repeat by hand into small tools.
 
 <p align="center">
-  <img src="./assets/the-watcher.svg" alt="A broad watcher stands motionless on a hill split by glowing lava cracks, embers rising; after a long stillness his head turns and his eyes burn orange, hold, and go dark" width="560">
+  <img src="./assets/the-watcher.svg" alt="A horned cloaked watcher stands motionless on a hill split by glowing lava cracks, lava flowing from beneath his feet, embers rising; after a long stillness his head turns and his eyes burn orange, hold, and go dark" width="560">
 </p>
 
 <p align="center">

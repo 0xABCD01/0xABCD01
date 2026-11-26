@@ -80,12 +80,13 @@ def embers(specs):
 def watcher(x, y, s, color=INK):
     """Broad build: wide shoulder bar, angled torso, thick strokes, wide
     stance. Head turns; the eyes burn (orange shell, pale core)."""
-    return (f'<g transform="translate({x} {y})"><g class="breathe"><g transform="scale({s})" stroke="{color}" stroke-width="5" stroke-linecap="round" fill="none">'
-            f'<line x1="-14" y1="-27" x2="14" y2="-27"/>'
-            f'<path d="M-13 -27 L-6 0 M13 -27 L6 0"/>'
-            f'<path d="M-14 -26 L-18 -5 M14 -26 L18 -5"/>'
-            f'<path d="M-5 0 L-13 22 M5 0 L13 22"/></g>'
+    return (f'<g transform="translate({x} {y})"><g class="breathe">'
+            f'<path d="M{-15*s} {-27*s} L{15*s} {-27*s} L{21*s} {15*s} L{-21*s} {15*s} Z" fill="{color}"/>'
+            f'<g transform="scale({s})" stroke="{color}" stroke-width="5" stroke-linecap="round" fill="none">'
+            f'<path d="M-14 -26 L-19 -4 M14 -26 L19 -4"/>'
+            f'<path d="M-6 12 L-13 22 M6 12 L13 22"/></g>'
             f'<g class="headturn"><circle cx="0" cy="{-40*s}" r="{10.5*s}" fill="{color}"/>'
+            f'<path d="M{-8.5*s} {-47*s} q {-8*s} {-5*s} {-4*s} {-16*s} M{8.5*s} {-47*s} q {8*s} {-5*s} {4*s} {-16*s}" stroke="{color}" stroke-width="{3.4*s}" stroke-linecap="round" fill="none"/>'
             f'<g class="eyeglow" opacity="0"><circle cx="{-3.8*s}" cy="{-40*s}" r="{2.1*s}" fill="{BURN}"/><circle cx="{3.8*s}" cy="{-40*s}" r="{2.1*s}" fill="{BURN}"/>'
             f'<circle cx="{-3.8*s}" cy="{-40*s}" r="{0.9*s}" fill="{CORE}"/><circle cx="{3.8*s}" cy="{-40*s}" r="{0.9*s}" fill="{CORE}"/></g></g>'
             f'</g></g>')
@@ -114,7 +115,9 @@ def crow(x, y, s, fill=SIL2):
     return f'<g class="flap">{crow_path(x, y, s, fill)}</g>'
 
 # ------------------------------------------------------------------ banner --
-banner_style = TWINKLE + FLAP + WATCH + FLICK + EMBER_CSS + f"""
+banner_style = TWINKLE + FLAP + WATCH + FLICK + EMBER_CSS + """
+@keyframes lavabub{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.5);opacity:.7}} .lavabub{transform-box:fill-box;transform-origin:center;animation:lavabub 3.8s """ + SINE + """ infinite}
+""" + f"""
 @keyframes moonglow{{0%,100%{{opacity:.35}}50%{{opacity:.6}}}} .mg{{animation:moonglow 6s {SINE} infinite}}
 @keyframes smoke1{{0%{{transform:translateX(-26px)}}100%{{transform:translateX(120px)}}}} .smoke1{{animation:smoke1 38s {SINE} infinite alternate}}
 @keyframes crowfly1{{0%{{transform:translate(-160px,8px)}}38%{{transform:translate(560px,-14px)}}100%{{transform:translate(1760px,-30px)}}}} .crowfly1{{animation:crowfly1 24s {SINE} infinite}}
@@ -125,17 +128,25 @@ banner_style = TWINKLE + FLAP + WATCH + FLICK + EMBER_CSS + f"""
 defs = (f'<radialGradient id="moong"><stop offset="0%" stop-color="{FLAME}"/><stop offset="70%" stop-color="{EMBER}"/>'
         f'<stop offset="100%" stop-color="#b34700"/></radialGradient>'
         f'<linearGradient id="firetext" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="{CORE}"/>'
-        f'<stop offset="45%" stop-color="{FLAME}"/><stop offset="100%" stop-color="{EMBER}"/></linearGradient>')
-fire_row = "".join(flame(x, 424, s, 0.9 + (i % 4) * 0.17, -i * 0.23) for i, x in enumerate(range(6, 1600, 62)) for s in [0.85 + (i % 3) * 0.3])
+        f'<stop offset="45%" stop-color="{FLAME}"/><stop offset="100%" stop-color="{EMBER}"/></linearGradient>'
+        f'<linearGradient id="lavagrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="{FLAME}"/>'
+        f'<stop offset="35%" stop-color="{EMBER}"/><stop offset="100%" stop-color="#6e1a00"/></linearGradient>')
+fire_row = "".join(flame(x, 402, s, 0.9 + (i % 4) * 0.17, -i * 0.23) for i, x in enumerate(range(16, 1600, 96)) for s in [0.6 + (i % 3) * 0.22])
+lava_lake = (f'<rect x="0" y="398" width="1600" height="22" fill="url(#lavagrad)"/>'
+             + "".join(f'<circle class="lavabub" style="animation-delay:{i*0.9:.1f}s" cx="{140+i*210}" cy="409" r="{4+(i%3)}" fill="{CORE}" opacity="0.5"/>' for i in range(7)))
 banner_body = f"""
 <rect width="1600" height="420" fill="{BG}"/>
-<circle class="mg" opacity="0.45" cx="1392" cy="90" r="84" fill="{EMBER}"/>
-<circle cx="1392" cy="90" r="56" fill="url(#moong)"/>
+<circle class="mg" opacity="0.5" cx="1392" cy="90" r="76" fill="{EMBER}"/>
+<circle cx="1392" cy="90" r="55" fill="none" stroke="url(#moong)" stroke-width="11"/>
+<circle cx="1392" cy="90" r="47" fill="{BG}"/>
 <g class="smoke1"><ellipse cx="1352" cy="76" rx="92" ry="15" fill="{BG}" opacity="0.9"/><ellipse cx="1424" cy="100" rx="74" ry="12" fill="{BG}" opacity="0.82"/></g>
 {stars([(90,54,2.0),(230,110,1.4),(380,44,1.8),(560,88,1.3),(740,50,1.9),(920,104,1.4),(1080,40,1.7),(660,150,1.2),(180,190,1.3)], 0.35)}
 <g class="crowfly1">{crow(0,74,1.05,INK)}</g>
 <path d="M0 420 L0 384 Q 340 350 700 372 T 1600 376 L1600 420 Z" fill="{INK}"/>
-{watcher(1158,348,1.35)}
+<path d="M1096 356 L1096 262 Q1158 224 1220 262 L1220 356 Z" fill="#0d0d12"/>
+<path d="M1108 356 L1108 268 Q1158 238 1208 268 L1208 356 Z" fill="url(#moong)" opacity="0.85"/>
+{flame(1132,356,0.8,1.0,-0.3)}{flame(1158,356,1.0,0.9,0.0)}{flame(1184,356,0.8,1.1,-0.6)}
+{watcher(1158,352,1.35)}
 <text class="gl1" opacity="0" x="88" y="196" font-family="{MONO}" font-size="96" font-weight="700" fill="{CREAM}" clip-path="url(#gslice)">0xABCD01</text>
 <text class="gl2" opacity="0" x="88" y="196" font-family="{MONO}" font-size="96" font-weight="700" fill="{EMBER}" clip-path="url(#gslice2)">0xABCD01</text>
 <clipPath id="gslice"><rect x="80" y="118" width="620" height="30"/></clipPath>
@@ -144,7 +155,8 @@ banner_body = f"""
 <text x="92" y="252" font-family="{MONO}" font-size="27" letter-spacing="6" fill="{FLAME}">BUG BOUNTY · PENTEST · OSINT</text>
 <g><clipPath id="tc"><rect class="ty" x="88" y="286" width="640" height="40"/></clipPath>
 <text clip-path="url(#tc)" x="90" y="318" font-family="{MONO}" font-size="26" fill="{BURN}">&gt; forged in fire, hunting in the dark_</text></g>
-{embers([(140,392,2.2,6.5,-1.0),(330,398,1.7,7.4,-3.2),(520,390,2.4,5.8,-2.1),(760,396,1.8,6.9,-4.4),(980,392,2.1,6.2,-0.6),(1240,398,1.7,7.8,-2.8),(1470,390,2.3,6.6,-5.0),(240,404,1.5,8.2,-5.6),(880,404,1.6,7.1,-1.7),(1330,404,1.5,8.6,-3.9)])}
+{embers([(140,392,2.2,6.5,-1.0),(330,398,1.7,7.4,-3.2),(520,390,2.4,5.8,-2.1),(760,396,1.8,6.9,-4.4),(980,392,2.1,6.2,-0.6),(1240,398,1.7,7.8,-2.8),(1470,390,2.3,6.6,-5.0),(240,404,1.5,8.2,-5.6),(880,404,1.6,7.1,-1.7),(1330,404,1.5,8.6,-3.9),(420,386,1.9,6.0,-2.5),(1080,386,1.9,6.3,-4.9)])}
+{lava_lake}
 {fire_row}
 """
 write("inferno-banner.svg", svg(1600, 420, banner_body, "0xABCD01 inferno banner",
@@ -157,7 +169,7 @@ brazier_style = WATCH + FLICK + EMBER_CSS + f"""
 brazier_body = f"""
 <rect width="260" height="190" rx="14" fill="{PANEL}"/>
 <ellipse class="glowpulse" opacity="0.2" cx="66" cy="96" rx="52" ry="46" fill="{EMBER}"/>
-{flame(66,112,1.55,0.95,-0.3)}
+{flame(66,114,1.85,0.95,-0.3)}{flame(48,116,0.9,1.1,-0.7)}{flame(84,116,0.9,1.05,-0.5)}
 <path d="M38 116 L94 116 L84 132 L48 132 Z" fill="{SIL2}"/>
 <path d="M52 132 L46 152 M80 132 L86 152 M48 152 L84 152" stroke="{SIL2}" stroke-width="3.4" fill="none"/>
 {embers([(52,104,1.8,4.6,-0.8),(66,98,1.5,5.4,-2.4),(80,106,1.7,4.9,-3.6),(58,92,1.3,6.1,-1.5)])}
@@ -176,7 +188,8 @@ eyes_style = FLICK + EMBER_CSS + f"""
 eyes_body = f"""
 <circle cx="100" cy="100" r="97" fill="{INK}"/>
 <circle class="ring" cx="100" cy="100" r="90" fill="none" stroke="{SIL2}" stroke-width="2" stroke-dasharray="8 16"/>
-{flame(72,64,0.34,0.9,-0.2)}{flame(128,64,0.34,1.05,-0.6)}
+<path d="M58 66 q -10 -6 -6 -22 M142 66 q 10 -6 6 -22" stroke="{SIL2}" stroke-width="5" stroke-linecap="round" fill="none"/>
+{flame(72,64,0.5,0.9,-0.2)}{flame(128,64,0.5,1.05,-0.6)}
 <path d="M46 80 L95 90 M154 80 L105 90" stroke="#4a4238" stroke-width="6" stroke-linecap="round"/>
 <g class="eye2"><path d="M52 94 L92 101 L89 112 L55 106 Z" fill="{CREAM}" opacity="0.94"/>
 <path d="M148 94 L108 101 L111 112 L145 106 Z" fill="{CREAM}" opacity="0.94"/>
@@ -189,12 +202,14 @@ write("watcher-eyes.svg", svg(200, 200, eyes_body, "Burning watcher eyes",
     "Sharp slanted eyes in the dark with burning orange pupils, small flames flickering above the brows, embers drifting up, and a slow heavy blink.", eyes_style))
 
 # ------------------------------------------------------------ flame divider --
-divider_style = FLICK + EMBER_CSS + f"""
+divider_style = FLICK + EMBER_CSS + """
+@keyframes lavapulse{0%,100%{opacity:.45}50%{opacity:.95}} .lavapulse{animation:lavapulse 4.2s """ + SINE + """ infinite}
+""" + f"""
 @keyframes endglow{{0%,100%{{opacity:.35}}50%{{opacity:.8}}}} .endglow{{animation:endglow 2.8s {SINE} infinite}}
 """
 divider_body = f"""
-<line x1="8" y1="40" x2="318" y2="40" stroke="#2b2b31" stroke-width="2.4"/>
-<line x1="402" y1="40" x2="712" y2="40" stroke="#2b2b31" stroke-width="2.4"/>
+<line class="lavapulse" x1="8" y1="40" x2="318" y2="40" stroke="{EMBER}" stroke-width="2.4"/>
+<line class="lavapulse" x1="402" y1="40" x2="712" y2="40" stroke="{EMBER}" stroke-width="2.4"/>
 <circle class="endglow" cx="318" cy="40" r="3" fill="{EMBER}"/><circle class="endglow" cx="402" cy="40" r="3" fill="{EMBER}"/>
 {flame(120,52,0.55,1.0,-0.4)}{flame(600,52,0.55,1.15,-0.8)}
 {flame(338,54,0.95,1.05,-0.2)}{flame(361,56,1.3,0.9,0.0)}{flame(384,54,0.95,1.2,-0.5)}
@@ -233,6 +248,7 @@ watcher_body = f"""
 <path d="M0 110 L0 84 Q 200 66 360 78 T 720 82 L720 110 Z" fill="{SIL2}"/>
 <path d="M0 110 L0 96 Q 240 84 470 92 T 720 94 L720 110 Z" fill="{SIL}"/>
 <path class="lavapulse" d="M120 100 L168 92 L214 99 M470 96 L522 90 L566 97 M300 104 L344 98" stroke="{EMBER}" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+<path class="lavapulse" style="animation-delay:-2s" d="M352 82 C 344 92 336 98 326 106 M372 84 C 380 92 388 99 398 107" stroke="{EMBER}" stroke-width="3" fill="none" stroke-linecap="round"/>
 {watcher(360,54,1.22)}
 {embers([(300,96,1.7,6.2,-1.4),(352,100,1.5,7.0,-3.3),(404,97,1.7,6.6,-2.2),(448,100,1.4,7.5,-4.6),(262,100,1.3,7.9,-5.4)])}
 <ellipse class="fogdrift2" cx="360" cy="104" rx="230" ry="6" fill="{LAV}" opacity="0.07"/>
@@ -241,7 +257,7 @@ write("the-watcher.svg", svg(720, 110, watcher_body, "The watcher",
     "A broad watcher stands motionless on a hill split by glowing lava cracks, embers rising around him. After a long stillness his head turns and his eyes burn orange, hold, and go dark.", watcher_style))
 
 # --------------------------------------------------------------------- wolf --
-wolf_style = EMBER_CSS + f"""
+wolf_style = EMBER_CSS + FLICK + f"""
 @keyframes howl{{0%,26%,58%,100%{{transform:rotate(0deg)}}34%,50%{{transform:rotate(-16deg)}}}} .howl{{transform-box:fill-box;transform-origin:18% 88%;animation:howl 9s {SINE} infinite}}
 @keyframes puff{{0%,32%{{transform:translate(0,0);opacity:0}}38%{{opacity:.8}}54%,100%{{transform:translate(26px,-16px);opacity:0}}}} .puff{{animation:puff 9s {SINE} infinite}}
 @keyframes tailw{{0%,100%{{transform:rotate(0deg)}}50%{{transform:rotate(4deg)}}}} .tailw{{transform-box:fill-box;transform-origin:100% 20%;animation:tailw 4.4s {SINE} infinite}}
@@ -259,7 +275,8 @@ wolf_body = f"""
 <path d="M52 -4 L70 -10 L72 -4 L56 4 Z" fill="{SIL2}"/>
 <path d="M42 -6 L44 -16 L50 -7 Z" fill="{SIL2}"/>
 <circle cx="47" cy="2" r="1.7" fill="{BURN}"/></g>
-<g class="puff" opacity="0"><circle cx="76" cy="-6" r="2.6" fill="{FLAME}"/><circle cx="84" cy="-9" r="1.8" fill="{EMBER}"/></g>
+<g class="puff" opacity="0"><circle cx="76" cy="-6" r="3.2" fill="{FLAME}"/><circle cx="85" cy="-10" r="2.2" fill="{EMBER}"/><circle cx="93" cy="-13" r="1.5" fill="{CORE}"/></g>
+{flame(30,10,0.42,1.0,-0.3)}{flame(44,6,0.5,0.9,-0.6)}{flame(-16,30,0.4,1.1,-0.9)}
 </g>
 {embers([(150,50,1.5,6.8,-2.2),(520,50,1.5,7.3,-3.7),(600,50,1.3,6.1,-1.1)])}
 """
@@ -287,6 +304,8 @@ roof_body = f"""
 </g>
 {win(52,84,-1.2)}{win(168,66,-3.4)}{win(258,94,-2.1)}{win(376,58,-4.6)}{win(592,62,-2.9)}{win(688,92,-5.2)}{win(796,74,-1.8)}{win(86,106,-4.1)}
 <ellipse class="smokerise" cx="498" cy="34" rx="20" ry="7" fill="#26262e"/>
+<ellipse class="smokerise" style="animation-delay:-3.5s" cx="176" cy="22" rx="14" ry="5" fill="#26262e"/>
+{flame(164,48,0.55,1.0,-0.4)}{flame(180,48,0.7,0.92,-0.15)}{flame(194,48,0.55,1.08,-0.7)}
 {flame(478,62,0.62,0.95,-0.2)}{flame(498,62,0.8,1.1,-0.55)}{flame(518,62,0.62,1.0,-0.8)}
 <g transform="translate(390 38)"><g class="flutter"><path d="M-3 -24 L9 -24 L13 0 L-6 0 Z" fill="{INK}"/></g>
 <g stroke="{INK}" stroke-width="3.4" stroke-linecap="round"><line x1="0" y1="-24" x2="0" y2="-2"/><line x1="0" y1="-2" x2="-7" y2="0"/><line x1="0" y1="-2" x2="7" y2="0"/></g>
@@ -302,6 +321,7 @@ mist_style = EMBER_CSS + WALK_CSS + f"""
 @keyframes drift2{{from{{transform:translateX(-360px)}}to{{transform:translateX(0)}}}} .d2{{animation:drift2 46s {SINE} infinite}}
 @keyframes farwalk{{0%{{transform:translateX(-40px)}}100%{{transform:translateX(760px)}}}} .farwalk{{animation:farwalk 30s {SINE} infinite}}
 @keyframes farpulse{{0%,100%{{opacity:.55}}50%{{opacity:1}}}} .farpulse{{animation:farpulse 3.4s {SINE} infinite}}
+@keyframes ashfall{{0%{{transform:translate(0,-6px);opacity:0}}18%{{opacity:.5}}100%{{transform:translate(-16px,64px);opacity:0}}}} .ashfall{{animation:ashfall 9s linear infinite}}
 """
 smoke_path = lambda y, op: (f'<path d="M0 {y} Q 90 {y-16} 180 {y} T 360 {y} T 540 {y} T 720 {y} T 900 {y} T 1080 {y} L1080 84 L0 84 Z" fill="#17171e" opacity="{op}"/>')
 mist_body = f"""
@@ -311,6 +331,7 @@ mist_body = f"""
 <g class="d2">{smoke_path(56, 0.9)}</g>
 {embers([(120,74,1.7,5.8,-1.0),(250,78,1.5,6.6,-3.1),(390,74,1.8,6.1,-2.0),(520,78,1.5,7.0,-4.3),(650,74,1.6,6.4,-0.5),(70,80,1.3,7.5,-5.0),(590,80,1.3,7.8,-2.7)])}
 <g class="d1" style="animation-duration:52s">{smoke_path(74, 0.95)}</g>
+<g fill="#8f8f99"><circle class="ashfall" style="animation-delay:-1s" cx="150" cy="6" r="1.6"/><circle class="ashfall" style="animation-delay:-4s" cx="330" cy="2" r="1.3"/><circle class="ashfall" style="animation-delay:-6.5s" cx="520" cy="8" r="1.7"/><circle class="ashfall" style="animation-delay:-2.8s" cx="660" cy="4" r="1.4"/></g>
 """
 write("embers.svg", svg(720, 84, mist_body, "Embers",
     "Dark smoke layers drift against each other through rising embers, and far behind them a small figure walks with two burning eyes, half hidden, never hurrying.", mist_style))
