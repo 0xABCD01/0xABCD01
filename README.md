@@ -1,7 +1,7 @@
 <p align="center">
   <img
-    src="./assets/dark-banner.svg"
-    alt="A dark banner: a pale moon behind drifting cloud, crows crossing, a lone watcher on a hill whose head turns and whose red eyes open for a moment, and the handle glitching in slices"
+    src="./assets/inferno-banner.svg"
+    alt="A black banner over a line of fire: an ember moon behind smoke, the handle written in flame gradient and glitching, embers rising, and a broad watcher on the hill whose eyes burn orange for a moment"
     width="100%"
   >
 </p>
@@ -10,7 +10,7 @@
   <img src="./assets/roles.svg" alt="Areas of work: bug bounty, pentest, OSINT" width="410">
 </p>
 
-<img src="./assets/streetlamp.svg" align="right" width="252" alt="A streetlamp that dips once every few seconds, a moth circling it, and a watcher at the edge of the light whose red eyes open briefly">
+<img src="./assets/brazier.svg" align="right" width="252" alt="An iron brazier burning with a tall flickering flame and rising embers, beside a broad watcher whose head turns and whose eyes burn briefly">
 
 # Hafiar
 
@@ -21,15 +21,15 @@ Personal site: [0xabcd01.github.io](https://0xabcd01.github.io)
 <br clear="right">
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=I+see+the+bugs+you+hide.;Nothing+ships+unobserved.;Your+move." alt="I see the bugs you hide. Nothing ships unobserved. Your move.">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1200&color=20304D&center=true&vCenter=true&width=600&lines=Forged+in+fire%2C+hunting+in+the+dark.;I+see+the+bugs+you+hide.;Your+move." alt="Forged in fire, hunting in the dark. I see the bugs you hide. Your move.">
 </p>
 
 <p align="center">
-  <img src="./assets/glitch-divider.svg" alt="" width="560">
+  <img src="./assets/flame-divider.svg" alt="" width="560">
 </p>
 
 <p align="center">
-  <img src="./assets/watcher-eyes.svg" alt="One pair of sharp, slanted eyes in the dark; the pupils track slowly side to side and the blink is slow and heavy" width="180">
+  <img src="./assets/watcher-eyes.svg" alt="Sharp slanted eyes in the dark with burning orange pupils, small flames flickering above the brows, and a slow heavy blink" width="180">
 </p>
 
 ## <img src="./assets/icon-research.svg" width="20" height="20" align="left" alt=""> Research
@@ -143,7 +143,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | raystack/apsara | [Start text filters on contains in data-view filter chips](https://github.com/raystack/apsara/pull/1025) |
 
 <p align="center">
-  <img src="./assets/shadow-walk.svg" alt="A stickman walks across while his shadow walks out of sync with him, a half-step behind" width="560">
+  <img src="./assets/shadow-walk.svg" alt="A stickman walks through rising embers while his shadow walks out of sync behind him, and halfway across two burning eyes open inside the shadow" width="560">
 </p>
 
 <p align="center">
@@ -179,7 +179,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 | [crystal-cavern](https://github.com/0xABCD01/crystal-cavern) | Puzzle game written in C++17 and compiled to WebAssembly, no runtime dependencies. [Play it](https://0xabcd01.github.io/crystal-cavern/). |
 
 <p align="center">
-  <img src="./assets/raven.svg" alt="A raven on a branch slowly turns its head to look and flicks its tail; two smaller crows sit further along, their red eyes brightening now and then" width="560">
+  <img src="./assets/wolf.svg" alt="An angular wolf silhouette on a rock under an ember moon throws its head back to howl, a puff of ember breath escaping, its eye burning" width="560">
 </p>
 
 ## <img src="./assets/icon-now.svg" width="20" height="20" align="left" alt=""> Currently
@@ -189,11 +189,11 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 - Turning the parts of pentesting I repeat by hand into small tools.
 
 <p align="center">
-  <img src="./assets/the-watcher.svg" alt="A lone figure stands motionless on a hill in fog; after a long stillness its head turns toward you and two red eyes open, hold, and close" width="560">
+  <img src="./assets/the-watcher.svg" alt="A broad watcher stands motionless on a hill split by glowing lava cracks, embers rising; after a long stillness his head turns and his eyes burn orange, hold, and go dark" width="560">
 </p>
 
 <p align="center">
-  <img src="./assets/rooftop.svg" alt="A night skyline with flickering windows; a lone figure stands on the tallest roof, coat fluttering, watching the city" width="100%">
+  <img src="./assets/rooftop.svg" alt="A black skyline under an ember moon; one rooftop burns with flickering flames and rising smoke, and a lone figure stands on the tallest roof, coat fluttering, watching" width="100%">
 </p>
 
 ## <img src="./assets/icon-contact.svg" width="20" height="20" align="left" alt=""> Contact
@@ -210,7 +210,7 @@ The [Drupal lab](https://github.com/0xABCD01/drupal-11.4.9-vuln-lab) covers all 
 </p>
 
 <p align="center">
-  <img src="./assets/mist.svg" alt="Slow layers of mist drift against each other while a small dark figure walks far behind them, half hidden" width="100%">
+  <img src="./assets/embers.svg" alt="Dark smoke layers drift against each other through rising embers while a small figure walks far behind them with two burning eyes, half hidden" width="100%">
 </p>
 
 <p align="center">
